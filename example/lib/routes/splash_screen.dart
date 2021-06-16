@@ -10,8 +10,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  /// Starting opacity.
   double opacity = 0.0;
+
+  /// Duration the splash screen is alive.
   int splashScreenDuration = 3;
+
+  /// the opacity duration.
   int opacityDuration = 1;
 
   @override
@@ -24,8 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  // PRECACHE IMAGES
-
+  /// PRECACHE IMAGES
+  /// List of all images which should be pre-cached.
   List<Map<String, dynamic>> images = [];
 
   @override

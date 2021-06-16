@@ -17,9 +17,16 @@ class PersistNavigation {
 }
 
 class SplashLoadingScreen extends StatelessWidget {
+  /// 'bgColor' sets the background Color for the splash page.
   final bgColor;
+
+  /// 'opacity'
   final opacity;
+
+  /// 'imgDuration' sets how long until the image fades completely in.
   final imgDuration;
+
+  /// 'splashImage' defines the image which should be shown on the splash screen.
   final splashImage;
   SplashLoadingScreen(
       {this.bgColor, this.opacity, this.imgDuration, this.splashImage});
