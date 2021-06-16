@@ -15,3 +15,50 @@ class PersistNavigation {
     }
   }
 }
+
+class SplashLoadingScreen extends StatelessWidget {
+  final bgColor;
+  final opacity;
+  final imgDuration;
+  final splashImage;
+  SplashLoadingScreen(
+      {this.bgColor, this.opacity, this.imgDuration, this.splashImage});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: bgColor,
+      body: Center(
+        child: Container(
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                    child: Container(
+                      child: Column(
+                        children: <Widget>[
+                          AnimatedOpacity(
+                            opacity: opacity,
+                            duration: Duration(milliseconds: imgDuration),
+                            child: Center(
+                                child: Image.asset(
+                              splashImage,
+                              fit: BoxFit.cover,
+                              width: MediaQuery.of(context).size.width / 3,
+                            )),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

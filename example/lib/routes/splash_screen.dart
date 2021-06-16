@@ -1,7 +1,6 @@
 import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/core/persist/splash.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io' show Platform;
 import 'package:salem/core/audio/gameAudio.dart';
 
@@ -11,46 +10,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  SharedPreferences? sharedPreferences;
-
-  double? opacity = 0.0;
+  double opacity = 0.0;
+  int splashScreenDuration = 3;
+  int opacityDuration = 1;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Container(
-          child: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      child: Column(
-                        children: <Widget>[
-                          AnimatedOpacity(
-                            opacity: opacity!,
-                            duration: const Duration(milliseconds: 250),
-                            child: Center(
-                                child: Image.asset(
-                              "assets/images/MUTA.png",
-                              fit: BoxFit.cover,
-                              width: MediaQuery.of(context).size.width / 3,
-                            )),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
+    return SplashLoadingScreen(
+      bgColor: Colors.black,
+      opacity: opacity,
+      imgDuration: 250,
+      splashImage: "assets/images/MUTA.png",
     );
   }
 
@@ -77,17 +47,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        opacity = 1.0;
-      });
+    Future.delayed(Duration(seconds: splashScreenDuration), () {
+      PersistNavigation.initSplash(context);
     });
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        PersistNavigation.initSplash(context);
-      }
-    });
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(Duration(seconds: opacityDuration), () {
       setState(() {
         opacity = 1.0;
       });
