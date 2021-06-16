@@ -1,5 +1,5 @@
-name: sd_engine
-description: A text-based, visual novel 2d game engine.
+name: salem
+description: SALEM - A text-based, visual novel 2d game engine.
 version: 0.0.1
 homepage: https://github.com/SmallDreams/Engine
 repository: https://github.com/SmallDreams/Engine
@@ -25,3 +25,4 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 flutter:
+  uses-material-design: true
