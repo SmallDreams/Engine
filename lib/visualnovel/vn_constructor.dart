@@ -24,7 +24,7 @@ class VNConstructorTextSound extends StatefulWidget {
 }
 
 class _InterludeState extends State<VNConstructorTextSound> {
-  int? speed = 50;
+  int? speed;
   String? _name;
   @override
   void initState() {
