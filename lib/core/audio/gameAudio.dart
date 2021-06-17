@@ -46,5 +46,5 @@ class GameAudio {
 }
 
 class GameAudioDesktop {
-  static late final PlayAudio playAudio = PlayAudio();
+  static late final PlayDesktopAudio playDesktopAudio = PlayDesktopAudio();
 }

@@ -47,17 +47,18 @@ class Bgm extends WidgetsBindingObserver {
   ///
   /// It is safe to call this function even when a current BGM track is
   /// playing.
-  Future<void> play(String filename, {double volume = 2.0}) async {
+  ///
+  Future<void> play(String filename, {double volume = 1.0}) async {
     //AudioService service = Provider.of<AudioService>(context);
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('volValue');
+    double? vol = prefs.getDouble('musicVolumeValue');
     final currentPlayer = audioPlayer;
     if (currentPlayer != null && currentPlayer.state != PlayerState.STOPPED) {
       currentPlayer.stop();
     }
 
     isPlaying = true;
-    audioPlayer = await audioCache.loop(filename, volume: vol ?? 2.0);
+    audioPlayer = await audioCache.loop(filename, volume: vol ?? 1.0);
   }
 
   /// Stops the currently playing background music track (if any).
@@ -131,7 +132,7 @@ class Bgm extends WidgetsBindingObserver {
   }
 }
 
-class PlayAudio extends WidgetsBindingObserver {
+class PlayDesktopAudio extends WidgetsBindingObserver {
   Player? player;
   bool isPlaying = false;
 
@@ -142,9 +143,11 @@ class PlayAudio extends WidgetsBindingObserver {
   ///
   /// It is safe to call this function even when a current BGM track is
   /// playing.
+  ///
+  /// For macOS use 'gameAudio.bgm'.
   Future<void> play(String filename, {double volume = 1.0}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('volValue');
+    double? vol = prefs.getDouble('musicVolumeValue');
     await player?.open(
       Playlist(
         playlistMode: PlaylistMode.loop,
@@ -165,16 +168,7 @@ class PlayAudio extends WidgetsBindingObserver {
     }
   }
 
-  /// Resumes the currently played (but resumed) background music.
-  // Future<void> resume() async {
-  //   if (audioPlayer != null) {
-  //     isPlaying = true;
-  //     await audioPlayer!.resume();
-  //   }
-  // }
-
-  /// Pauses the background music without unloading or resetting the audio
-  /// player.
+  /// Pauses the currently playing background music track.
   Future<void> pause() async {
     if (player != null) {
       isPlaying = false;
@@ -182,18 +176,8 @@ class PlayAudio extends WidgetsBindingObserver {
     }
   }
 
+  /// Sets the volume of the current audio instance.
   Future<void> volume(volume) async {
     await player?.setVolume(volume);
   }
-
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   if (state == AppLifecycleState.resumed) {
-  //     if (isPlaying && player?.state == PlayerState.PAUSED) {
-  //       audioPlayer?.resume();
-  //     }
-  //   } else {
-  //     audioPlayer?.pause();
-  //   }
-  // }
 }
