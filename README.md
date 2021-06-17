@@ -26,6 +26,7 @@ A cross-platform visual novel game engine, developed in Flutter.
 <p float="left">
  <img src="https://blog.jonafeucht.de/wp-content/uploads/2020/11/Apple-iPad-Pro-13-Inch-Screenshot-1.png" width="400">
  <img src="https://blog.jonafeucht.de/wp-content/uploads/2020/11/Apple-iPad-Pro-13-Inch-Screenshot-2.png" width="400">
+ <br/>
  <img src="https://blog.jonafeucht.de/wp-content/uploads/2020/11/Apple-iPad-Pro-13-Inch-Screenshot-3.png" width="400">
 </p>
 
