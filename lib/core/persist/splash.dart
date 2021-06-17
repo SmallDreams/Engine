@@ -11,6 +11,7 @@ class PersistNavigation {
     } else if (previousRoute != null && previousRoute != '/') {
       Navigator.pushReplacementNamed(context, previousRoute);
     } else {
+      // todo: custom main menu route
       Navigator.of(context).pushReplacementNamed('/home');
     }
   }

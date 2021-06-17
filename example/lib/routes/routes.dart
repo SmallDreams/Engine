@@ -3,6 +3,7 @@ import 'package:example/routes/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/core/persist/route_observer.dart';
 
+// ignore: use_key_in_widget_constructors
 class Routes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

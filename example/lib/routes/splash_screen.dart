@@ -4,6 +4,7 @@ import 'package:salem/core/persist/splash.dart';
 import 'dart:io' show Platform;
 import 'package:salem/core/audio/gameAudio.dart';
 
+// ignore: use_key_in_widget_constructors
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
