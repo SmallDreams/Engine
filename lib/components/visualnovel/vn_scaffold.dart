@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:salem/visualnovel/vn_constructor.dart';
+import 'package:salem/components/visualnovel/vn_constructor.dart';
 
 class VNScaffold extends StatefulWidget {
   final bgImage;

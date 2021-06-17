@@ -145,26 +145,14 @@ class PlayAudio extends WidgetsBindingObserver {
   Future<void> play(String filename, {double volume = 1.0}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     double? vol = prefs.getDouble('volValue');
-    if (Platform.isLinux) {
-      await player?.open(
-        Playlist(
-          playlistMode: PlaylistMode.loop,
-          medias: [
-            await Media.network(
-                'https://edenhost.de/gameAudio/fablesofdesire/' + filename),
-          ],
-        ),
-      );
-    } else {
-      await player?.open(
-        Playlist(
-          playlistMode: PlaylistMode.loop,
-          medias: [
-            await Media.asset('assets/audio/' + filename),
-          ],
-        ),
-      );
-    }
+    await player?.open(
+      Playlist(
+        playlistMode: PlaylistMode.loop,
+        medias: [
+          await Media.asset('assets/audio/' + filename),
+        ],
+      ),
+    );
     await player?.setVolume(vol ?? 1.0);
     isPlaying = true;
   }
