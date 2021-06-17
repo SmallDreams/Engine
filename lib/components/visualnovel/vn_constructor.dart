@@ -4,7 +4,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/components/visualnovel/UI/buttons.dart';
-import 'package:salem/components/visualnovel/img_builder.dart';
+import 'package:salem/components/visualnovel/UI/vn_img_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VNConstructorTextSound extends StatefulWidget {
