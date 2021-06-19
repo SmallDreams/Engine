@@ -22,7 +22,7 @@ class _VNState extends State<VN1> {
       hasVoiceActing: false,
       bgImage: "bg1.jpg",
       nameBuilder:
-          // todo: fix character name not updating!
+          // TODO: fix character name not updating!
           VNNameBuilder(
         characterCardOpacity: 0.8,
         characterCardColor: Colors.white,

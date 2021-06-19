@@ -50,7 +50,7 @@ class _VNState extends State<VNScaffold> {
                   nextRoute: widget.nextRoute,
                   nameBuilder: widget.nameBuilder,
                 )
-              // todo: add voiceacting constructor
+              // TODO: add voiceacting constructor
               : VNConstructorTextSound(
                   bgImage: "assets/images/bgs/" + widget.bgImage,
                   characterName: widget.textSound.getCharacterName(),
