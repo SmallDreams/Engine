@@ -7,14 +7,15 @@ class VNScaffold extends StatefulWidget {
   final route;
   final nextRoute;
   final hasVoiceActing;
-  VNScaffold(
-      {Key? key,
-      required this.bgImage,
-      required this.textSound,
-      required this.route,
-      required this.nextRoute,
-      required this.hasVoiceActing})
-      : super(key: key);
+  final nameBuilder;
+  VNScaffold({
+    required this.bgImage,
+    required this.textSound,
+    required this.route,
+    required this.nextRoute,
+    required this.hasVoiceActing,
+    required this.nameBuilder,
+  });
   @override
   _VNState createState() => _VNState();
 }
@@ -46,7 +47,9 @@ class _VNState extends State<VNScaffold> {
                   initNumber: widget.textSound.getNumber(),
                   charImage: widget.textSound.getImage(),
                   route: widget.route,
-                  nextRoute: widget.nextRoute)
+                  nextRoute: widget.nextRoute,
+                  nameBuilder: widget.nameBuilder,
+                )
               // todo: add voiceacting constructor
               : VNConstructorTextSound(
                   bgImage: "assets/images/bgs/" + widget.bgImage,
@@ -55,7 +58,9 @@ class _VNState extends State<VNScaffold> {
                   initNumber: widget.textSound.getNumber(),
                   charImage: widget.textSound.getImage(),
                   route: widget.route,
-                  nextRoute: widget.nextRoute),
+                  nextRoute: widget.nextRoute,
+                  nameBuilder: widget.nameBuilder,
+                ),
         ),
       ),
     );

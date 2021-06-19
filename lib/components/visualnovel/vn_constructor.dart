@@ -5,7 +5,6 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/components/visualnovel/UI/buttons.dart';
 import 'package:salem/components/visualnovel/UI/vn_img_builder.dart';
-import 'package:salem/components/visualnovel/components/vn_name_builder.dart';
 import 'package:salem/components/visualnovel/ui/background_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,17 +16,17 @@ class VNConstructorTextSound extends StatefulWidget {
   final charImage;
   final route;
   final nextRoute;
+  final nameBuilder;
 
-  const VNConstructorTextSound(
-      {Key? key,
-      required this.bgImage,
+  VNConstructorTextSound(
+      {required this.bgImage,
       required this.characterName,
       required this.characterText,
       required this.initNumber,
       required this.charImage,
       required this.route,
-      required this.nextRoute})
-      : super(key: key);
+      required this.nextRoute,
+      required this.nameBuilder});
 
   @override
   _InterludeState createState() => _InterludeState();
@@ -35,15 +34,9 @@ class VNConstructorTextSound extends StatefulWidget {
 
 class _InterludeState extends State<VNConstructorTextSound> {
   int? speed;
-  String? _name;
   @override
   void initState() {
     super.initState();
-    SharedPreferences.getInstance().then((nameValue) => {
-          setState(() {
-            _name = nameValue.getString('name') ?? 'MC';
-          })
-        });
     getSpeed();
   }
 
@@ -93,9 +86,7 @@ class _InterludeState extends State<VNConstructorTextSound> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    VNNameBuilder(
-                      characterName: widget.characterName,
-                    ),
+                    widget.nameBuilder,
                     Container(
                       child: Stack(
                         alignment: Alignment.centerLeft,
@@ -165,7 +156,8 @@ class _InterludeState extends State<VNConstructorTextSound> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      VNNameBuilder(),
+                      //VNNameBuilder(),
+                      widget.nameBuilder,
                       Container(
                         padding: EdgeInsets.symmetric(
                             horizontal:

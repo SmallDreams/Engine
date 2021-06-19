@@ -11,23 +11,25 @@ A cross-platform visual novel game engine, developed in Flutter.
 
 ## Fables of Desire
 
-![MAIN MENU](https://i.postimg.cc/sD7wtqmB/Bildschirmfoto-2021-06-17-um-09-41-54.png)
-![Visual Novel](https://i.postimg.cc/3wJ10RTp/Bildschirmfoto-2021-06-17-um-09-42-46.png)
+
+<p float="left">
+ <img src="https://i.postimg.cc/sD7wtqmB/Bildschirmfoto-2021-06-17-um-09-41-54.png" width="300">
+ <img src="https://i.postimg.cc/3wJ10RTp/Bildschirmfoto-2021-06-17-um-09-42-46.png" width="300">
+</p>
 
 ---
 
 ## Dance of Love
 <p float="left">
-  <img src="https://danceoflove.smalldreams.co/images/danceoflove/index.png" width="200" />
   <img src="https://danceoflove.smalldreams.co/images/danceoflove/index4.png" width="200" /> 
   <img src="https://blog.jonafeucht.de/wp-content/uploads/2021/04/Apple-iPhone-11-Pro-Max-Screenshot-5.png" width="200" />
+  <img src="https://danceoflove.smalldreams.co/images/danceoflove/index.png" width="200" />
   <img src="https://blog.jonafeucht.de/wp-content/uploads/2020/11/Apple-iPhone-11-Pro-Max-Screenshot-2-2.png" width=200" />
 </p>
 <p float="left">
- <img src="https://blog.jonafeucht.de/wp-content/uploads/2020/11/Apple-iPad-Pro-13-Inch-Screenshot-1.png" width="400">
- <img src="https://blog.jonafeucht.de/wp-content/uploads/2020/11/Apple-iPad-Pro-13-Inch-Screenshot-2.png" width="400">
- <br/>
- <img src="https://blog.jonafeucht.de/wp-content/uploads/2020/11/Apple-iPad-Pro-13-Inch-Screenshot-3.png" width="400">
+ <img src="https://blog.jonafeucht.de/wp-content/uploads/2020/11/Apple-iPad-Pro-13-Inch-Screenshot-1.png" width="200">
+ <img src="https://blog.jonafeucht.de/wp-content/uploads/2020/11/Apple-iPad-Pro-13-Inch-Screenshot-2.png" width="200">
+ <img src="https://blog.jonafeucht.de/wp-content/uploads/2020/11/Apple-iPad-Pro-13-Inch-Screenshot-3.png" width="200">
 </p>
 
 ---

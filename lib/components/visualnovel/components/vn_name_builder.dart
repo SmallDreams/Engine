@@ -1,30 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class VNNameBuilder extends StatelessWidget {
+class VNNameBuilder extends StatefulWidget {
   final characterCardOpacity;
   final characterCardColor;
   final characterName;
   final characterFontFamily;
   final characterFontSize;
   final characterFontColor;
-  VNNameBuilder(
-      {this.characterCardOpacity,
-      this.characterCardColor,
-      this.characterName,
-      this.characterFontFamily,
-      this.characterFontSize,
-      this.characterFontColor});
+  VNNameBuilder({
+    Key? key,
+    this.characterCardOpacity,
+    this.characterCardColor,
+    this.characterName,
+    this.characterFontFamily,
+    this.characterFontSize,
+    this.characterFontColor,
+  });
+  @override
+  _VNNameBuilderState createState() => _VNNameBuilderState();
+}
+
+class _VNNameBuilderState extends State<VNNameBuilder> {
+  @override
+  void initState() {
+    super.initState();
+    SharedPreferences.getInstance().then((nameValue) => {
+          setState(() {
+            _name = nameValue.getString('name') ?? 'MC';
+          })
+        });
+  }
 
   String? _name = "MC";
   @override
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        if (characterName == "MC") {
+        if (widget.characterName == "MC") {
           return Opacity(
-            opacity: characterCardOpacity ?? 0.8,
+            opacity: widget.characterCardOpacity ?? 0.8,
             child: Card(
-              color: characterCardColor ?? Colors.white,
+              color: widget.characterCardColor ?? Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
@@ -33,9 +50,9 @@ class VNNameBuilder extends StatelessWidget {
                 child: Text(
                   "$_name",
                   style: TextStyle(
-                    fontFamily: characterFontFamily,
-                    fontSize: characterFontSize ?? 20,
-                    color: characterFontColor ?? Colors.black,
+                    fontFamily: widget.characterFontFamily,
+                    fontSize: widget.characterFontSize ?? 20,
+                    color: widget.characterFontColor ?? Colors.black,
                   ),
                 ),
               ),
@@ -43,9 +60,9 @@ class VNNameBuilder extends StatelessWidget {
           );
         } else {
           return Opacity(
-            opacity: characterCardOpacity ?? 0.8,
+            opacity: widget.characterCardOpacity ?? 0.8,
             child: Card(
-              color: characterCardColor ?? Colors.white,
+              color: widget.characterCardColor ?? Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
@@ -53,11 +70,11 @@ class VNNameBuilder extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 2, horizontal: 15),
                 child: Text(
-                  characterName ?? "Side Character",
+                  widget.characterName ?? "Side Character",
                   style: TextStyle(
-                    fontFamily: characterFontFamily,
-                    fontSize: characterFontSize ?? 20,
-                    color: characterFontColor ?? Colors.black,
+                    fontFamily: widget.characterFontFamily,
+                    fontSize: widget.characterFontSize ?? 20,
+                    color: widget.characterFontColor ?? Colors.black,
                   ),
                 ),
               ),
