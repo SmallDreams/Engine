@@ -30,6 +30,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            TextButton(
+                onPressed: () =>
+                    Navigator.of(context).pushReplacementNamed('/1'),
+                child: const Text("VN")),
             const Text(
               'You have pushed the button this many times:',
             ),

@@ -5,19 +5,21 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/components/visualnovel/UI/buttons.dart';
 import 'package:salem/components/visualnovel/UI/vn_img_builder.dart';
+import 'package:salem/components/visualnovel/components/vn_name_builder.dart';
+import 'package:salem/components/visualnovel/ui/background_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VNConstructorTextSound extends StatefulWidget {
   final bgImage;
-  final String? a;
-  final String? q;
+  final characterName;
+  final characterText;
   final int n;
   final charImage;
   final route;
   final nextRoute;
 
-  const VNConstructorTextSound(this.bgImage, this.a, this.q, this.n,
-      this.charImage, this.route, this.nextRoute);
+  const VNConstructorTextSound(this.bgImage, this.characterName,
+      this.characterText, this.n, this.charImage, this.route, this.nextRoute);
 
   @override
   _InterludeState createState() => _InterludeState();
@@ -38,7 +40,7 @@ class _InterludeState extends State<VNConstructorTextSound> {
   }
 
   getSpeed() async {
-    speed = await getSpeedState();
+    speed = await getSpeedState() ?? 50;
     setState(() {});
   }
 
@@ -61,17 +63,19 @@ class _InterludeState extends State<VNConstructorTextSound> {
       fit: StackFit.expand,
       children: [
         BackgroundBuilder(image: widget.bgImage),
-        // Character here
         Builder(
           builder: (BuildContext context) {
-            if (widget.a == "MC") {
-              return ImageBuilderMC(image: widget.charImage);
+            if (widget.charImage.isNotEmpty || widget.charImage != null) {
+              if (widget.characterName == "MC") {
+                return ImageBuilderMC(image: widget.charImage);
+              } else {
+                return ImageBuilder(image: widget.charImage);
+              }
             } else {
-              return ImageBuilder(image: widget.charImage);
+              return SizedBox.shrink();
             }
           },
         ),
-
         Builder(
           builder: (context) {
             if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
@@ -81,55 +85,7 @@ class _InterludeState extends State<VNConstructorTextSound> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Builder(
-                      builder: (context) {
-                        if (widget.a! == "MC") {
-                          return Opacity(
-                            opacity: 0.8,
-                            child: Card(
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 2, horizontal: 15),
-                                child: Text(
-                                  "$_name",
-                                  style: const TextStyle(
-                                    fontFamily: "Julee",
-                                    fontSize: 30,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        } else {
-                          return Opacity(
-                            opacity: 0.8,
-                            child: Card(
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 2, horizontal: 15),
-                                child: Text(
-                                  widget.a!,
-                                  style: const TextStyle(
-                                    fontFamily: "Julee",
-                                    fontSize: 30,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                      },
-                    ),
+                    VNNameBuilder(),
                     Container(
                       child: Stack(
                         alignment: Alignment.centerLeft,
@@ -158,13 +114,15 @@ class _InterludeState extends State<VNConstructorTextSound> {
                                   child: AnimatedTextKit(
                                     animatedTexts: [
                                       TyperAnimatedText(
-                                        widget.q!,
+                                        widget.characterText ??
+                                            "Placeholder text.",
                                         textAlign: TextAlign.left,
                                         textStyle: const TextStyle(
                                             color: Colors.black,
                                             fontFamily: "Mali",
                                             fontSize: 22),
-                                        speed: Duration(milliseconds: speed!),
+                                        speed:
+                                            Duration(milliseconds: speed ?? 50),
                                       ),
                                     ],
                                     displayFullTextOnTap: true,
@@ -178,10 +136,10 @@ class _InterludeState extends State<VNConstructorTextSound> {
                         ],
                       ),
                     ),
-                    Buttons(
-                      route: widget.route,
-                      nextRoute: widget.nextRoute,
-                    ),
+                    // Buttons(
+                    //   route: widget.route,
+                    //   nextRoute: widget.nextRoute,
+                    // ),
                   ],
                 ),
               );
@@ -189,63 +147,15 @@ class _InterludeState extends State<VNConstructorTextSound> {
               return Stack(
                 fit: StackFit.expand,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, bottom: 15),
-                    child: Buttons(route: widget.route),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 10, bottom: 15),
+                  //   child: Buttons(route: widget.route),
+                  // ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Builder(
-                        builder: (context) {
-                          if (widget.a! == "MC") {
-                            return Opacity(
-                              opacity: 0.8,
-                              child: Card(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 2, horizontal: 15),
-                                  child: Text(
-                                    "$_name",
-                                    style: const TextStyle(
-                                      fontFamily: "Julee",
-                                      fontSize: 21,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          } else {
-                            return Opacity(
-                              opacity: 0.8,
-                              child: Card(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 2, horizontal: 15),
-                                  child: Text(
-                                    widget.a!,
-                                    style: const TextStyle(
-                                      fontFamily: "Julee",
-                                      fontSize: 21,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                      ),
+                      VNNameBuilder(),
                       Container(
                         padding: EdgeInsets.symmetric(
                             horizontal:
@@ -284,14 +194,15 @@ class _InterludeState extends State<VNConstructorTextSound> {
                                         child: AnimatedTextKit(
                                           animatedTexts: [
                                             TyperAnimatedText(
-                                              widget.q!,
+                                              widget.characterText ??
+                                                  "Placeholder text.",
                                               textAlign: TextAlign.left,
                                               textStyle: const TextStyle(
                                                   color: Colors.black,
                                                   fontFamily: "Aleo",
                                                   fontSize: 18),
                                               speed: Duration(
-                                                  milliseconds: speed!),
+                                                  milliseconds: speed ?? 50),
                                             ),
                                           ],
                                           displayFullTextOnTap: true,

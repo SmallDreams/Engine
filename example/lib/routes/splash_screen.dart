@@ -38,9 +38,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (Platform.isWindows ||
-        Platform.isLinux && GameAudioDesktop.playAudio.isPlaying == false) {
+        Platform.isLinux &&
+            GameAudioDesktop.playDesktopAudio.isPlaying == false) {
       super.didChangeDependencies();
-      GameAudioDesktop.playAudio.player = Player(
+      GameAudioDesktop.playDesktopAudio.player = Player(
         id: 0,
       );
     }

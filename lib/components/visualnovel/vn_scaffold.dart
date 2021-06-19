@@ -8,11 +8,13 @@ class VNScaffold extends StatefulWidget {
   final nextRoute;
   final hasVoiceActing;
   VNScaffold(
-      {this.bgImage,
-      this.textSound,
-      this.route,
-      this.nextRoute,
-      this.hasVoiceActing});
+      {Key? key,
+      required this.bgImage,
+      required this.textSound,
+      required this.route,
+      required this.nextRoute,
+      required this.hasVoiceActing})
+      : super(key: key);
   @override
   _VNState createState() => _VNState();
 }
@@ -28,6 +30,7 @@ class _VNState extends State<VNScaffold> {
             setState(() {
               if (widget.textSound.isFinished() == true) {
                 Navigator.of(context).pushNamed(widget.nextRoute);
+                widget.textSound.reset();
               } else {
                 widget.textSound.nextQuestion();
               }
@@ -35,18 +38,18 @@ class _VNState extends State<VNScaffold> {
           },
           child: widget.hasVoiceActing
               ? VNConstructorTextSound(
-                  "assets/images/bgs/" + widget.bgImage + ".jpg",
-                  widget.textSound.getCorrectAnswer(),
-                  widget.textSound.getQuestionText(),
+                  "assets/images/bgs/" + widget.bgImage,
+                  widget.textSound.getCharacterName(),
+                  widget.textSound.getCharacterText(),
                   widget.textSound.getNumber(),
                   widget.textSound.getImage(),
                   widget.route,
                   widget.nextRoute)
               // todo: add voiceacting constructor
               : VNConstructorTextSound(
-                  "assets/images/bgs/" + widget.bgImage + ".jpg",
-                  widget.textSound.getCorrectAnswer(),
-                  widget.textSound.getQuestionText(),
+                  "assets/images/bgs/" + widget.bgImage,
+                  widget.textSound.getCharacterName(),
+                  widget.textSound.getCharacterText(),
                   widget.textSound.getNumber(),
                   widget.textSound.getImage(),
                   widget.route,
