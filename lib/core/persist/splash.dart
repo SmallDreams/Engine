@@ -17,6 +17,7 @@ class PersistNavigation {
   }
 }
 
+/// Necessary screen to load in all the assets.
 class SplashLoadingScreen extends StatelessWidget {
   /// 'bgColor' sets the background Color for the splash page.
   final bgColor;
