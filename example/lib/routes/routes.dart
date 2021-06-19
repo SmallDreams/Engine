@@ -20,7 +20,7 @@ class Routes extends StatelessWidget {
         '/': (_) {
           return SplashScreen();
         },
-        "/home": (_) {
+        "/mainmenu": (_) {
           return MyHomePage();
         },
         // '/intro': (_) {

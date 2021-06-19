@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: splashScreenDuration), () {
-      PersistNavigation.initSplash(context);
+      PersistNavigation.initSplash(context, "/mainmenu");
     });
     Future.delayed(Duration(seconds: opacityDuration), () {
       setState(() {

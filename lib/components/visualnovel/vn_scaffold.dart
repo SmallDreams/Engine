@@ -22,10 +22,12 @@ class VNScaffold extends StatefulWidget {
 class _VNState extends State<VNScaffold> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
-      body: InkWell(
+    return WillPopScope(
+      onWillPop: () => getOnWillPop(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.black,
+        body: InkWell(
           onTap: () {
             setState(() {
               if (widget.textSound.isFinished() == true) {
@@ -38,22 +40,28 @@ class _VNState extends State<VNScaffold> {
           },
           child: widget.hasVoiceActing
               ? VNConstructorTextSound(
-                  "assets/images/bgs/" + widget.bgImage,
-                  widget.textSound.getCharacterName(),
-                  widget.textSound.getCharacterText(),
-                  widget.textSound.getNumber(),
-                  widget.textSound.getImage(),
-                  widget.route,
-                  widget.nextRoute)
+                  bgImage: "assets/images/bgs/" + widget.bgImage,
+                  characterName: widget.textSound.getCharacterName(),
+                  characterText: widget.textSound.getCharacterText(),
+                  initNumber: widget.textSound.getNumber(),
+                  charImage: widget.textSound.getImage(),
+                  route: widget.route,
+                  nextRoute: widget.nextRoute)
               // todo: add voiceacting constructor
               : VNConstructorTextSound(
-                  "assets/images/bgs/" + widget.bgImage,
-                  widget.textSound.getCharacterName(),
-                  widget.textSound.getCharacterText(),
-                  widget.textSound.getNumber(),
-                  widget.textSound.getImage(),
-                  widget.route,
-                  widget.nextRoute)),
+                  bgImage: "assets/images/bgs/" + widget.bgImage,
+                  characterName: widget.textSound.getCharacterName(),
+                  characterText: widget.textSound.getCharacterText(),
+                  initNumber: widget.textSound.getNumber(),
+                  charImage: widget.textSound.getImage(),
+                  route: widget.route,
+                  nextRoute: widget.nextRoute),
+        ),
+      ),
     );
+  }
+
+  getOnWillPop() {
+    print("Not allowed.");
   }
 }

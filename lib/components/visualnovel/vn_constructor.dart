@@ -13,13 +13,21 @@ class VNConstructorTextSound extends StatefulWidget {
   final bgImage;
   final characterName;
   final characterText;
-  final int n;
+  final initNumber;
   final charImage;
   final route;
   final nextRoute;
 
-  const VNConstructorTextSound(this.bgImage, this.characterName,
-      this.characterText, this.n, this.charImage, this.route, this.nextRoute);
+  const VNConstructorTextSound(
+      {Key? key,
+      required this.bgImage,
+      required this.characterName,
+      required this.characterText,
+      required this.initNumber,
+      required this.charImage,
+      required this.route,
+      required this.nextRoute})
+      : super(key: key);
 
   @override
   _InterludeState createState() => _InterludeState();
@@ -31,9 +39,9 @@ class _InterludeState extends State<VNConstructorTextSound> {
   @override
   void initState() {
     super.initState();
-    SharedPreferences.getInstance().then((prefValue) => {
+    SharedPreferences.getInstance().then((nameValue) => {
           setState(() {
-            _name = prefValue.getString('name') ?? 'MC';
+            _name = nameValue.getString('name') ?? 'MC';
           })
         });
     getSpeed();
@@ -85,7 +93,9 @@ class _InterludeState extends State<VNConstructorTextSound> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    VNNameBuilder(),
+                    VNNameBuilder(
+                      characterName: widget.characterName,
+                    ),
                     Container(
                       child: Stack(
                         alignment: Alignment.centerLeft,
@@ -127,7 +137,7 @@ class _InterludeState extends State<VNConstructorTextSound> {
                                     ],
                                     displayFullTextOnTap: true,
                                     isRepeatingAnimation: false,
-                                    key: ValueKey(widget.n),
+                                    key: ValueKey(widget.initNumber),
                                   ),
                                 ),
                               ),
@@ -136,10 +146,10 @@ class _InterludeState extends State<VNConstructorTextSound> {
                         ],
                       ),
                     ),
-                    // Buttons(
-                    //   route: widget.route,
-                    //   nextRoute: widget.nextRoute,
-                    // ),
+                    Buttons(
+                      route: widget.route,
+                      nextRoute: widget.nextRoute,
+                    ),
                   ],
                 ),
               );
@@ -147,10 +157,10 @@ class _InterludeState extends State<VNConstructorTextSound> {
               return Stack(
                 fit: StackFit.expand,
                 children: <Widget>[
-                  // Padding(
-                  //   padding: const EdgeInsets.only(left: 10, bottom: 15),
-                  //   child: Buttons(route: widget.route),
-                  // ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, bottom: 15),
+                    child: Buttons(route: widget.route),
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -207,7 +217,7 @@ class _InterludeState extends State<VNConstructorTextSound> {
                                           ],
                                           displayFullTextOnTap: true,
                                           isRepeatingAnimation: false,
-                                          key: ValueKey(widget.n),
+                                          key: ValueKey(widget.initNumber),
                                         ),
                                       ),
                                     ],

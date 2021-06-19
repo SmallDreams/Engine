@@ -14,7 +14,7 @@ class _VNState extends State<VN1> {
     return VNScaffold(
       textSound: textSound,
       route: "/1",
-      nextRoute: "/1",
+      nextRoute: "/mainmenu",
       hasVoiceActing: false,
       bgImage: "bg1.jpg",
     );
