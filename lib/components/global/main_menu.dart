@@ -1,6 +1,7 @@
 // Primary
 import 'package:dart_vlc/dart_vlc.dart';
 import 'package:salem/core/audio/gameAudio.dart';
+import 'package:salem/core/audio/globalAudio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _BaseScreenState extends State<MainMenu> {
   void initState() {
     super.initState();
 
-    GameAudio.playAudio.play(widget.mainMenuBGM);
+    GlobalAudio.playAudio.getAudio(widget.mainMenuBGM);
 
     SharedPreferences.getInstance().then((SharedPreferences sp) {
       sharedPreferences = sp;
