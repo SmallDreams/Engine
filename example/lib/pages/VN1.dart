@@ -20,7 +20,8 @@ class _VNState extends State<VN1> {
       route: "/1",
       nextRoute: "/mainmenu",
       hasVoiceActing: false,
-      bgImage: "bg1.jpg",
+      bgImage: "battlegroupSilverDawn.png",
+      bgm: "thefleet.mp3",
       nameBuilder:
           // TODO: fix character name not updating!
           VNNameBuilder(

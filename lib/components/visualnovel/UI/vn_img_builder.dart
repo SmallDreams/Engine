@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ImageBuilder extends StatefulWidget {
   final String? image;
-  const ImageBuilder({Key? key, this.image}) : super(key: key);
+  const ImageBuilder({this.image});
   @override
   _ImageBuilderState createState() => _ImageBuilderState();
 }
@@ -53,7 +53,7 @@ class _ImageBuilderState extends State<ImageBuilder> {
 
 class ImageBuilderMC extends StatefulWidget {
   final String? image;
-  const ImageBuilderMC({Key? key, this.image}) : super(key: key);
+  const ImageBuilderMC({this.image});
   @override
   _ImageBuilderMCState createState() => _ImageBuilderMCState();
 }

@@ -1,5 +1,11 @@
+import 'dart:io';
+
+import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/components/visualnovel/vn_constructor.dart';
+import 'package:salem/core/audio/gameAudio.dart';
+import 'package:salem/core/audio/globalAudio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class VNScaffold extends StatefulWidget {
   final bgImage;
@@ -8,6 +14,7 @@ class VNScaffold extends StatefulWidget {
   final nextRoute;
   final hasVoiceActing;
   final nameBuilder;
+  final bgm;
   VNScaffold({
     required this.bgImage,
     required this.textSound,
@@ -15,12 +22,47 @@ class VNScaffold extends StatefulWidget {
     required this.nextRoute,
     required this.hasVoiceActing,
     required this.nameBuilder,
+    this.bgm,
   });
   @override
   _VNState createState() => _VNState();
 }
 
 class _VNState extends State<VNScaffold> {
+  SharedPreferences? sharedPreferences;
+  String? getPersistBGM;
+  @override
+  void initState() {
+    super.initState();
+
+    GlobalAudio.playAudio.getAudio(widget.bgm);
+
+    SharedPreferences.getInstance().then((SharedPreferences sp) {
+      sharedPreferences = sp;
+      getPersistBGM = sharedPreferences!.getString("getPersistBGM");
+      getPersistBGM = widget.bgm;
+      persistBGM(getPersistBGM!);
+      print(getPersistBGM);
+    });
+  }
+
+  void persistBGM(String value) {
+    setState(() {
+      getPersistBGM = value;
+    });
+    sharedPreferences?.setString("getPersistBGM", value);
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (Platform.isWindows || Platform.isLinux) {
+      super.didChangeDependencies();
+      GameAudioDesktop.playDesktopAudio.player = Player(
+        id: 0,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

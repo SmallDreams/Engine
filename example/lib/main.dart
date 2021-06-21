@@ -17,7 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return MainMenu(
       bgImage: "mainmenu.jpeg",
-      mainMenuBGM: "jetstream.mp3",
+      bgm: "jetstream.mp3",
     );
   }
 }

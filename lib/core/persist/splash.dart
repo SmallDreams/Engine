@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:salem/core/persist/constants/get_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PersistNavigation {
   /// Saves and loads the last route saved into cache.
-  static Future<void> initSplash(context, mainmenu) async {
+  static Future<void> initSplash(context, primary) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? lastRoute = prefs.getString('last_route');
     String? previousRoute = prefs.getString('previous_route');
     if (lastRoute != null && lastRoute != "/") {
-      Navigator.pushReplacementNamed(context, lastRoute);
+      GetRoutes.getLastRoute(context, lastRoute);
     } else if (previousRoute != null && previousRoute != "/") {
-      Navigator.pushReplacementNamed(context, previousRoute);
+      GetRoutes.getPreviousRoute(context, previousRoute);
     } else {
-      Navigator.of(context).pushReplacementNamed(mainmenu ?? "/");
+      GetRoutes.getPrimaryRoute(context, primary);
     }
   }
 }

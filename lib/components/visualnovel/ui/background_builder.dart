@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BackgroundBuilder extends StatefulWidget {
   final String? image;
-  const BackgroundBuilder({Key? key, this.image}) : super(key: key);
+  const BackgroundBuilder({this.image});
   @override
   _BackgroundBuilderState createState() => _BackgroundBuilderState();
 }

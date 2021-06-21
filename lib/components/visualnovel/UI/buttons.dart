@@ -6,7 +6,7 @@ class Buttons extends StatelessWidget {
   final route;
   final nextRoute;
 
-  Buttons({Key? key, this.route, this.nextRoute});
+  Buttons({this.route, this.nextRoute});
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (BuildContext context) {

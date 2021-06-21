@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 
 class MainMenu extends StatefulWidget {
   final bgImage;
-  final mainMenuBGM;
-  MainMenu({this.bgImage, this.mainMenuBGM});
+  final bgm;
+  MainMenu({this.bgImage, this.bgm});
   @override
   _BaseScreenState createState() => _BaseScreenState();
 }
@@ -22,12 +22,12 @@ class _BaseScreenState extends State<MainMenu> {
   void initState() {
     super.initState();
 
-    GlobalAudio.playAudio.getAudio(widget.mainMenuBGM);
+    GlobalAudio.playAudio.getAudio(widget.bgm);
 
     SharedPreferences.getInstance().then((SharedPreferences sp) {
       sharedPreferences = sp;
       getPersistBGM = sharedPreferences!.getString("getPersistBGM");
-      getPersistBGM = widget.mainMenuBGM;
+      getPersistBGM = widget.bgm;
       persistBGM(getPersistBGM!);
       print(getPersistBGM);
     });
