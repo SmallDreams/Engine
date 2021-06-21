@@ -17,6 +17,31 @@ class PersistNavigation {
   }
 }
 
+// TODO: Implement
+class SplashScreenScaffold extends StatefulWidget {
+  final mainMenuRoute;
+  final splashloadingscreen;
+  SplashScreenScaffold({
+    required this.mainMenuRoute,
+    required this.splashloadingscreen,
+  });
+  @override
+  _State createState() => _State();
+}
+
+class _State extends State<SplashScreenScaffold> {
+  @override
+  void initState() {
+    super.initState();
+    PersistNavigation.initSplash(context, widget.mainMenuRoute);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.splashloadingscreen;
+  }
+}
+
 /// Necessary screen to load in all the assets.
 class SplashLoadingScreen extends StatelessWidget {
   /// 'bgColor' sets the background Color for the splash page.
@@ -52,16 +77,17 @@ class SplashLoadingScreen extends StatelessWidget {
                             opacity: opacity,
                             duration: Duration(milliseconds: imgDuration),
                             child: Center(
-                                child: Image.asset(
-                              splashImage,
-                              fit: BoxFit.cover,
-                              width: MediaQuery.of(context).size.width / 3,
-                            )),
+                              child: Image.asset(
+                                splashImage,
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width / 3,
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

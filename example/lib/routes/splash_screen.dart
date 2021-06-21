@@ -20,6 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
   /// the opacity duration.
   int opacityDuration = 1;
 
+  /// Main Menu route defined in Route
+  String mainmenu = "/mainmenu";
+
   @override
   Widget build(BuildContext context) {
     return SplashLoadingScreen(
@@ -55,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: splashScreenDuration), () {
-      PersistNavigation.initSplash(context, "/mainmenu");
+      PersistNavigation.initSplash(context, mainmenu);
     });
     Future.delayed(Duration(seconds: opacityDuration), () {
       setState(() {

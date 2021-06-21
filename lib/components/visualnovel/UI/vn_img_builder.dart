@@ -31,7 +31,19 @@ class _ImageBuilderState extends State<ImageBuilder> {
               "assets/images/sprites/" + widget.image! + ".png",
               fit: BoxFit.cover,
               height: MediaQuery.of(context).size.height / 1,
-            )
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                return Container(
+                  width: 200,
+                  height: 200,
+                  decoration:
+                      BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+                  child: Center(
+                    child: Text("Here should be a Sprite."),
+                  ),
+                );
+              },
+            ),
           ],
         )
       ],
@@ -60,6 +72,18 @@ class _ImageBuilderMCState extends State<ImageBuilderMC> {
               fit: BoxFit.cover,
               height: MediaQuery.of(context).size.height / 1.4,
               key: UniqueKey(),
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                return Container(
+                  width: 200,
+                  height: 200,
+                  decoration:
+                      BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+                  child: Center(
+                    child: Text("Here should be a Sprite."),
+                  ),
+                );
+              },
             ),
           );
         } else {
@@ -70,6 +94,18 @@ class _ImageBuilderMCState extends State<ImageBuilderMC> {
               fit: BoxFit.cover,
               height: MediaQuery.of(context).size.height / 2,
               key: UniqueKey(),
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                return Container(
+                  width: 200,
+                  height: 200,
+                  decoration:
+                      BoxDecoration(color: Colors.red, shape: BoxShape.circle),
+                  child: Center(
+                    child: Text("Here should be a Sprite."),
+                  ),
+                );
+              },
             ),
           );
         }

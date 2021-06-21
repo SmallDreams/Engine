@@ -72,6 +72,25 @@ class SettingsClip extends StatelessWidget {
                   child: Image.asset(
                     "assets/images/gui/more.png",
                     fit: BoxFit.cover,
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.transparent),
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.white,
+                        ),
+                        padding: EdgeInsets.all(5),
+                        child: Text(
+                          "Settings 〣",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: "BottleParty",
+                              fontSize: 18,
+                              letterSpacing: .2),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -102,6 +121,25 @@ dynamic skipClip(context, nextRoute) {
                     child: Image.asset(
                       "assets/images/gui/fastforwardhover.png",
                       fit: BoxFit.cover,
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace? stackTrace) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.transparent),
+                            borderRadius: BorderRadius.circular(50),
+                            color: Colors.white,
+                          ),
+                          padding: EdgeInsets.all(5),
+                          child: Text(
+                            "Skip »",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "BottleParty",
+                                fontSize: 18,
+                                letterSpacing: .2),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
