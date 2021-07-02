@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:salem/core/audio/gameAudio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class GlobalAudio {
   final musicName;
@@ -13,33 +12,39 @@ class GlobalAudio {
 class PlayAudio with WidgetsBindingObserver {
   String? notHome;
   SharedPreferences? sharedPreferences;
+  bool isPlaying = false;
 
-  Future<void> persistNotHome(String value) async {
-    notHome = value;
-    sharedPreferences?.setString("notHome", value);
-  }
-
-  Future<void> getAudio(String musicName) async {
-    if (Platform.isWindows || Platform.isLinux) {
-      if (GameAudioDesktop.playDesktopAudio.isPlaying == false) {
-        GameAudioDesktop.playDesktopAudio.play(musicName);
+  Future<void> getBGM(String musicName) async {
+    isPlaying = true;
+    if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
+      if (GameAudioDesktop.playAudio.isPlaying == false) {
+        GameAudioDesktop.playAudio.play(musicName);
       } else {
-        GameAudioDesktop.playDesktopAudio.stop();
-        GameAudioDesktop.playDesktopAudio.play(musicName);
+        GameAudioDesktop.playAudio.stop();
+        GameAudioDesktop.playAudio.play(musicName);
       }
     } else {
-      if (GameAudio.playAudio.isPlaying == false) {
-        GameAudio.playAudio.play(musicName);
+      if (GameAudio.bgm.isPlaying == false) {
+        GameAudio.bgm.play(musicName);
       } else {
-        GameAudio.playAudio.stop();
-        GameAudio.playAudio.play(musicName);
+        GameAudio.bgm.stop();
+        GameAudio.bgm.play(musicName);
       }
+    }
+  }
+
+  Future<void> stopAudio() async {
+    //isPlaying = false;
+    if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
+      GameAudioDesktop.playAudio.stop();
+    } else {
+      GameAudio.bgm.stop();
     }
   }
 
   // @override
   // void didChangeDependencies() {
-  //   if (Platform.isWindows || Platform.isLinux) {
+  //   if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
   //     super.didChangeDependencies();
   //     GameAudioDesktop.playAudio.player = Player(
   //       id: 0,

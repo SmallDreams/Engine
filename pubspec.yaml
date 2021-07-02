@@ -13,7 +13,8 @@ dependencies:
     sdk: flutter
   
   # core
-  shared_preferences: ^2.0.6
+  universal_platform: ">=1.0.0+1 <2.0.0"
+  shared_preferences: ">=2.0.6 <3.0.0"
   animated_text_kit: ^4.2.1
   
   # audio

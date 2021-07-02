@@ -3,13 +3,57 @@ import 'package:dart_vlc/dart_vlc.dart';
 import 'package:salem/core/audio/gameAudio.dart';
 import 'package:salem/core/audio/globalAudio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class MainMenu extends StatefulWidget {
   final bgImage;
-  final bgm;
-  MainMenu({this.bgImage, this.bgm});
+  final mainMenuBGM;
+  bool button;
+  bool startButton;
+  bool loadButton;
+  bool settingsButton;
+  bool creditsButton;
+  bool topLeft;
+  bool centerLeft;
+  bool bottomLeft;
+  bool topCenter;
+  bool center;
+  bool bottomCenter;
+  bool topRight;
+  bool centerRight;
+  bool bottomRight;
+  double? buttonWidth;
+  double? buttonHeight;
+  double? fontSize;
+  final buttonColor;
+  final textColor;
+  double? buttonRadius;
+
+  MainMenu({
+    this.topLeft = false,
+    this.centerLeft = false,
+    this.bottomLeft = false,
+    this.topCenter = false,
+    this.center = false,
+    this.bottomCenter = false,
+    this.topRight = false,
+    this.centerRight = false,
+    this.bottomRight = false,
+    this.bgImage,
+    this.mainMenuBGM,
+    this.button = true,
+    this.startButton = true,
+    this.loadButton = true,
+    this.settingsButton = true,
+    this.creditsButton = true,
+    this.buttonWidth,
+    this.buttonHeight,
+    this.fontSize,
+    this.buttonColor,
+    this.textColor,
+    this.buttonRadius,
+  });
   @override
   _BaseScreenState createState() => _BaseScreenState();
 }
@@ -22,12 +66,12 @@ class _BaseScreenState extends State<MainMenu> {
   void initState() {
     super.initState();
 
-    GlobalAudio.playAudio.getAudio(widget.bgm);
+    GlobalAudio.playAudio.getBGM(widget.mainMenuBGM);
 
     SharedPreferences.getInstance().then((SharedPreferences sp) {
       sharedPreferences = sp;
       getPersistBGM = sharedPreferences!.getString("getPersistBGM");
-      getPersistBGM = widget.bgm;
+      getPersistBGM = widget.mainMenuBGM;
       persistBGM(getPersistBGM!);
       print(getPersistBGM);
     });
@@ -42,11 +86,47 @@ class _BaseScreenState extends State<MainMenu> {
 
   @override
   void didChangeDependencies() {
-    if (Platform.isWindows || Platform.isLinux) {
+    if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
       super.didChangeDependencies();
-      GameAudioDesktop.playDesktopAudio.player = Player(
+      GameAudioDesktop.playAudio.player = Player(
         id: 0,
       );
+    }
+  }
+
+  checkForImgExtension() {
+    if (widget.bgImage.contains("png")) {
+      return AssetImage("assets/images/bgs/" + widget.bgImage + ".png");
+    } else if (widget.bgImage.contains("jpg")) {
+      return AssetImage("assets/images/bgs/" + widget.bgImage + ".jpg");
+    } else if (widget.bgImage.contains("jpeg")) {
+      return AssetImage("assets/images/bgs/" + widget.bgImage + ".jpeg");
+    } else if (widget.bgImage.contains("svg")) {
+      return AssetImage("assets/images/bgs/" + widget.bgImage + ".svg");
+    }
+  }
+
+  getAlignment() {
+    if (widget.topLeft) {
+      return Alignment.topLeft;
+    } else if (widget.centerLeft) {
+      return Alignment.centerLeft;
+    } else if (widget.bottomLeft) {
+      return Alignment.bottomLeft;
+    } else if (widget.topCenter) {
+      return Alignment.topCenter;
+    } else if (widget.center) {
+      return Alignment.center;
+    } else if (widget.bottomCenter) {
+      return Alignment.bottomCenter;
+    } else if (widget.topRight) {
+      return Alignment.topRight;
+    } else if (widget.centerRight) {
+      return Alignment.centerRight;
+    } else if (widget.bottomRight) {
+      return Alignment.bottomRight;
+    } else {
+      return Alignment.center;
     }
   }
 
@@ -67,22 +147,61 @@ class _BaseScreenState extends State<MainMenu> {
                 ),
               ),
             ),
-            Center(
+            Align(
+              alignment: getAlignment(),
               child: Container(
                 child: SafeArea(
                   child: SingleChildScrollView(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        _button(context, "Start", 30, "FONT", "/1",
-                            Colors.white, Colors.black),
-                        _button(context, "Load", 30, "FONT", "/loadgame",
-                            Colors.white, Colors.black),
-                        _button(context, "Settings", 30, "FONT", "/settings",
-                            Colors.white, Colors.black),
-                        _button(context, "Credits", 30, "", "/credits",
-                            Colors.white, Colors.black),
+                        widget.startButton
+                            ? _button(
+                                context,
+                                "Start",
+                                widget.fontSize,
+                                "FONT",
+                                "/1",
+                                widget.buttonColor,
+                                widget.textColor,
+                                widget.buttonRadius,
+                              )
+                            : SizedBox.shrink(),
+                        widget.loadButton
+                            ? _button(
+                                context,
+                                "Load",
+                                widget.fontSize,
+                                "FONT",
+                                "/loadgame",
+                                widget.buttonColor,
+                                widget.textColor,
+                                widget.buttonRadius,
+                              )
+                            : SizedBox.shrink(),
+                        widget.settingsButton
+                            ? _button(
+                                context,
+                                "Settings",
+                                widget.fontSize,
+                                "FONT",
+                                "/settings",
+                                widget.buttonColor,
+                                widget.textColor,
+                                widget.buttonRadius,
+                              )
+                            : SizedBox.shrink(),
+                        widget.creditsButton
+                            ? _button(
+                                context,
+                                "Credits",
+                                widget.fontSize,
+                                "",
+                                "/credits",
+                                widget.buttonColor,
+                                widget.textColor,
+                                widget.buttonRadius,
+                              )
+                            : SizedBox.shrink(),
                       ],
                     ),
                   ),
@@ -135,32 +254,35 @@ class _BaseScreenState extends State<MainMenu> {
   getOnWillPop() {
     print("Not allowed.");
   }
-}
 
-Widget _button(context, buttonName, double? fontSize, fontFamily, route,
-    buttonColor, textColor) {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-    child: Container(
-      width: MediaQuery.of(context).size.width / 3,
-      child: ElevatedButton(
-          child: Text(
-            buttonName.toUpperCase(),
-            style: TextStyle(
-                color: textColor ?? Colors.black,
-                fontSize: fontSize ?? 20,
-                fontFamily: fontFamily,
-                fontWeight: FontWeight.bold),
-          ),
-          style: ElevatedButton.styleFrom(
-              primary: buttonColor ?? Colors.white,
-              padding: EdgeInsets.symmetric(vertical: 20),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40.0),
-                  side: BorderSide(color: Colors.transparent))),
-          onPressed: () {
-            Navigator.of(context).pushNamed(route);
-          }),
-    ),
-  );
+  _button(context, buttonName, double? fontSize, fontFamily, route, buttonColor,
+      textColor, buttonRadius) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+      child: Container(
+        width: widget.buttonWidth != null
+            ? widget.buttonWidth
+            : MediaQuery.of(context).size.width / 3,
+        height: widget.buttonHeight != null ? widget.buttonHeight : 60,
+        child: ElevatedButton(
+            child: Text(
+              buttonName.toUpperCase(),
+              style: TextStyle(
+                  color: textColor ?? Colors.black,
+                  fontSize: fontSize ?? 20,
+                  fontFamily: fontFamily,
+                  fontWeight: FontWeight.bold),
+            ),
+            style: ElevatedButton.styleFrom(
+                primary: buttonColor ?? Colors.white,
+                padding: EdgeInsets.symmetric(vertical: 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(buttonRadius ?? 40.0),
+                    side: BorderSide(color: Colors.transparent))),
+            onPressed: () {
+              Navigator.of(context).pushNamed(route);
+            }),
+      ),
+    );
+  }
 }

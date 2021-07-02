@@ -17,7 +17,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return MainMenu(
       bgImage: "mainmenu.jpeg",
-      bgm: "jetstream.mp3",
+      mainMenuBGM: "jetstream",
+      creditsButton: false,
+      center: true,
+      buttonWidth: 400,
+      buttonHeight: 80,
+      fontSize: 21,
+      buttonColor: Colors.white,
+      textColor: Colors.black,
+      buttonRadius: 7,
     );
   }
 }

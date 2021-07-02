@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class Buttons extends StatelessWidget {
   final route;
@@ -10,7 +9,10 @@ class Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (BuildContext context) {
-      if (Platform.isMacOS || Platform.isWindows || Platform.isLinux) {
+      if (UniversalPlatform.isMacOS ||
+          UniversalPlatform.isWindows ||
+          UniversalPlatform.isLinux ||
+          UniversalPlatform.isWeb) {
         return SafeArea(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,

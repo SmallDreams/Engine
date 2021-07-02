@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -47,18 +46,25 @@ class Bgm extends WidgetsBindingObserver {
   ///
   /// It is safe to call this function even when a current BGM track is
   /// playing.
-  ///
   Future<void> play(String filename, {double volume = 1.0}) async {
-    //AudioService service = Provider.of<AudioService>(context);
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('musicVolumeValue');
+    double? vol = prefs.getDouble('volValue');
+    print(vol);
     final currentPlayer = audioPlayer;
     if (currentPlayer != null && currentPlayer.state != PlayerState.STOPPED) {
       currentPlayer.stop();
     }
 
     isPlaying = true;
-    audioPlayer = await audioCache.loop(filename, volume: vol ?? 1.0);
+    if (filename.isNotEmpty) {
+      audioPlayer =
+          await audioCache.loop(filename + ".mp3", volume: vol ?? 1.0);
+    } else {
+      print("BGM continuation");
+      // String? notHome = prefs.getString("notHome");
+      // audioPlayer =
+      //     await audioCache.loop(notHome! + ".mp3", volume: vol ?? 1.0);
+    }
   }
 
   /// Stops the currently playing background music track (if any).
@@ -129,55 +135,5 @@ class Bgm extends WidgetsBindingObserver {
     } else {
       audioPlayer?.pause();
     }
-  }
-}
-
-class PlayDesktopAudio extends WidgetsBindingObserver {
-  Player? player;
-  bool isPlaying = false;
-
-  /// Plays and loops a background music file specified by [filename].
-  ///
-  /// The volume can be specified in the optional named parameter [volume]
-  /// where `0` means off and `1` means max.
-  ///
-  /// It is safe to call this function even when a current BGM track is
-  /// playing.
-  ///
-  /// For macOS use 'gameAudio.bgm'.
-  Future<void> play(String filename, {double volume = 1.0}) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('musicVolumeValue');
-    await player?.open(
-      Playlist(
-        playlistMode: PlaylistMode.loop,
-        medias: [
-          await Media.asset('assets/audio/' + filename),
-        ],
-      ),
-    );
-    await player?.setVolume(vol ?? 1.0);
-    isPlaying = true;
-  }
-
-  /// Stops the currently playing background music track (if any).
-  Future<void> stop() async {
-    isPlaying = false;
-    if (player != null) {
-      await player?.stop();
-    }
-  }
-
-  /// Pauses the currently playing background music track.
-  Future<void> pause() async {
-    if (player != null) {
-      isPlaying = false;
-      await player?.pause();
-    }
-  }
-
-  /// Sets the volume of the current audio instance.
-  Future<void> volume(volume) async {
-    await player?.setVolume(volume);
   }
 }

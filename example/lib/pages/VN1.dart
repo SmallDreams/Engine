@@ -1,17 +1,15 @@
-import 'package:example/constructor/vn_text.dart';
+import 'package:example/constructor/speech1.dart';
 import 'package:flutter/material.dart';
-import 'package:salem/components/visualnovel/components/vn_name_builder.dart';
 import 'package:salem/components/visualnovel/vn_scaffold.dart';
 
+// ignore: use_key_in_widget_constructors
 class VN1 extends StatefulWidget {
   @override
   _VNState createState() => _VNState();
 }
 
 class _VNState extends State<VN1> {
-  TextConstructor1 textSound = TextConstructor1();
-
-  final GlobalKey<_VNState> key = GlobalKey();
+  final textSound = TextConstructor1();
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +17,7 @@ class _VNState extends State<VN1> {
       textSound: textSound,
       route: "/1",
       nextRoute: "/mainmenu",
-      hasVoiceActing: false,
       bgImage: "battlegroupSilverDawn.png",
-      bgm: "thefleet.mp3",
-      nameBuilder:
-          // TODO: fix character name not updating!
-          VNNameBuilder(
-        characterCardOpacity: 0.8,
-        characterCardColor: Colors.white,
-      ),
     );
   }
 }
