@@ -15,12 +15,10 @@ dependencies:
   # core
   universal_platform: ">=1.0.0+1 <2.0.0"
   shared_preferences: ">=2.0.6 <3.0.0"
-  animated_text_kit: ^4.2.1
   
   # audio
-  dart_vlc: ^0.0.7
-  # todo: Potentially switch from audioplayers to just audio?
-  audioplayers: ^0.19.0
+  wavenet: ">=2.0.0 <3.0.0"
+  audioplayers: ^0.19.1
 
   # UI
   clay_containers: ^0.3.2
