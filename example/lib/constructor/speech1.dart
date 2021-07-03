@@ -69,17 +69,17 @@ class TextConstructor1 {
     Speech(
       characterName: mc,
       characterText: "…Okay.",
-      mcImage: "mc_neutral",
+      mcImage: "tom_neutral",
     ),
     Speech(
       characterName: mc,
       characterText: "HELLO WORLD",
-      mcImage: "transparent",
+      mcImage: "tom_neutral",
     ),
     Speech(
       characterName: mc,
       characterText: "This is a random text.",
-      mcImage: "transparent",
+      mcImage: "tom_neutral",
     ),
 
     Speech(
@@ -95,7 +95,7 @@ class TextConstructor1 {
         characterName: t,
         characterText:
             "Yesterday, the Affordable Care Act (ACA) nabbed its third 'You may pass Go' card from the Supreme Court. In a 7–2 vote, justices ruled that Texas and 17 other Republican-led states don't have the legal standing to challenge the law in federal court.",
-        sideCharImage: "tom_neutral"),
+        sideCharImage: "transparent"),
     Speech(
         characterName: t,
         characterText:

@@ -1,3 +1,6 @@
+## 0.0.3
+- More stuff
+
 ## 0.0.2
 - Added core support for visual novel
 
