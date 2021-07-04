@@ -13,18 +13,6 @@ A cross-platform visual novel game engine, developed in Flutter.
 
 # EXAMPLES
 
-## Fables of Desire
-
-
-<p float="left">
- <img src="https://user-images.githubusercontent.com/14951074/123841672-2184fd80-d910-11eb-916a-d10fc66df025.png" width="300">
- <img src="https://user-images.githubusercontent.com/14951074/123842131-ba1b7d80-d910-11eb-83c4-2d9985062bee.png" width="300">
- <img src="https://user-images.githubusercontent.com/14951074/123841685-25b11b00-d910-11eb-8b21-7129c77bcaa1.png" width="300">
- <img src="https://i.postimg.cc/3wJ10RTp/Bildschirmfoto-2021-06-17-um-09-42-46.png" width="300">
-</p>
-
----
-
 ## Dance of Love
 <p float="left">
   <img src="https://danceoflove.smalldreams.co/images/danceoflove/index4.png" width="200" /> 
