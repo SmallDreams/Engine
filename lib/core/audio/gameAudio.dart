@@ -3,6 +3,7 @@ import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/core/audio/bgm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class GameAudio {
   /// Access a shared instance of the [AudioCache] class.
@@ -59,16 +60,15 @@ class PlayAudio extends WidgetsBindingObserver {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     double? vol = prefs.getDouble('volValue');
 
-    player?.open(
+    await player?.open(
       new Playlist(
         playlistMode: PlaylistMode.loop,
         medias: [
-          Media.asset('assets/audio/' + filename + ".mp3"),
+          await Media.asset('assets/audio/' + filename + ".mp3"),
         ],
       ),
     );
-
-    player?.setVolume(vol ?? 1.0);
+    await player?.setVolume(vol ?? 1.0);
     isPlaying = true;
   }
 
@@ -76,7 +76,7 @@ class PlayAudio extends WidgetsBindingObserver {
   Future<void> stop() async {
     isPlaying = false;
     if (player != null) {
-      player?.stop();
+      await player?.stop();
     }
   }
 
@@ -93,12 +93,12 @@ class PlayAudio extends WidgetsBindingObserver {
   Future<void> pause() async {
     if (player != null) {
       isPlaying = false;
-      player?.pause();
+      await player?.pause();
     }
   }
 
   Future<void> volume(volume) async {
-    player?.setVolume(volume);
+    await player?.setVolume(volume);
   }
 
   // @override

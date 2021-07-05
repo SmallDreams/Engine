@@ -17,7 +17,10 @@ dependencies:
   shared_preferences: ">=2.0.6 <3.0.0"
   
   # audio
-  dart_vlc: 0.0.7
+  dart_vlc:
+    git:
+      url: git://github.com/alexmercerind/dart_vlc.git
+      ref: 83db3e11a871cdb20a66d38ced53f13953120ae7
   audioplayers: ">=0.19.1 <1.0.0"
 
 dev_dependencies:
