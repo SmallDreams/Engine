@@ -3,7 +3,6 @@ import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/core/audio/bgm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_platform/universal_platform.dart';
 
 class GameAudio {
   /// Access a shared instance of the [AudioCache] class.
@@ -59,29 +58,17 @@ class PlayAudio extends WidgetsBindingObserver {
   Future<void> play(String filename, {double volume = 1.0}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     double? vol = prefs.getDouble('volValue');
-    if (UniversalPlatform.isLinux) {
-      await player?.open(
-        new Playlist(
-          playlistMode: PlaylistMode.loop,
-          medias: [
-            await Media.network(
-                'https://edenhost.de/gameAudio/fablesofdesire/' +
-                    filename +
-                    ".mp3"),
-          ],
-        ),
-      );
-    } else {
-      await player?.open(
-        new Playlist(
-          playlistMode: PlaylistMode.loop,
-          medias: [
-            await Media.asset('assets/audio/' + filename + ".mp3"),
-          ],
-        ),
-      );
-    }
-    await player?.setVolume(vol ?? 1.0);
+
+    player?.open(
+      new Playlist(
+        playlistMode: PlaylistMode.loop,
+        medias: [
+          Media.asset('assets/audio/' + filename + ".mp3"),
+        ],
+      ),
+    );
+
+    player?.setVolume(vol ?? 1.0);
     isPlaying = true;
   }
 
@@ -89,7 +76,7 @@ class PlayAudio extends WidgetsBindingObserver {
   Future<void> stop() async {
     isPlaying = false;
     if (player != null) {
-      await player?.stop();
+      player?.stop();
     }
   }
 
@@ -106,12 +93,12 @@ class PlayAudio extends WidgetsBindingObserver {
   Future<void> pause() async {
     if (player != null) {
       isPlaying = false;
-      await player?.pause();
+      player?.pause();
     }
   }
 
   Future<void> volume(volume) async {
-    await player?.setVolume(volume);
+    player?.setVolume(volume);
   }
 
   // @override

@@ -17,11 +17,8 @@ dependencies:
   shared_preferences: ">=2.0.6 <3.0.0"
   
   # audio
-  wavenet: ">=2.0.0 <3.0.0"
+  dart_vlc: 0.0.7
   audioplayers: ">=0.19.1 <1.0.0"
-
-  # UI
-  clay_containers: ^0.3.2
 
 dev_dependencies:
   flutter_test:

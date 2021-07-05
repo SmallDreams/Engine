@@ -43,13 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  clay_containers:
-    dependency: "direct main"
-    description:
-      name: clay_containers
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.2"
   clock:
     dependency: transitive
     description:
@@ -72,7 +65,7 @@ packages:
     source: hosted
     version: "3.0.1"
   dart_vlc:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dart_vlc
       url: "https://pub.dartlang.org"
@@ -336,20 +329,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  wavenet:
-    dependency: "direct main"
-    description:
-      name: wavenet
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   win32:
     dependency: transitive
     description:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.4"
   xdg_directories:
     dependency: transitive
     description:
