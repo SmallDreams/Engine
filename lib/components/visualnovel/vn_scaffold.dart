@@ -172,7 +172,7 @@ class _VNState extends State<VNScaffold> {
               body: Stack(
                 children: [
                   BackgroundBuilder(
-                    image: "assets/images/bgs/" + widget.bgImage,
+                    image: widget.bgImage,
                   ),
                   AnimatedOpacity(
                     opacity: opacityIntro!,
@@ -193,7 +193,7 @@ class _VNState extends State<VNScaffold> {
                 body: Stack(
                   children: [
                     BackgroundBuilder(
-                      image: "assets/images/bgs/" + widget.bgImage,
+                      image: widget.bgImage,
                     ),
                     AnimatedOpacity(
                       opacity: opacity!,
@@ -253,7 +253,7 @@ class _VNState extends State<VNScaffold> {
                       });
                     },
                     child: VNConstructor(
-                      bgImage: "assets/images/bgs/" + widget.bgImage,
+                      bgImage: widget.bgImage,
                       characterName: widget.textSound.getCharacterName(),
                       characterText: widget.textSound.getCharacterText(),
                       n: widget.textSound.getNumber(),
