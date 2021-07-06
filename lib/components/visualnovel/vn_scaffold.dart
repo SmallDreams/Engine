@@ -19,7 +19,6 @@ class VNScaffold extends StatefulWidget {
   final Function? callback;
   final int? updatedNumber;
   final bgm;
-  final voice;
   VNScaffold({
     this.bgImage,
     this.textSound,
@@ -28,7 +27,6 @@ class VNScaffold extends StatefulWidget {
     this.callback,
     this.updatedNumber,
     this.bgm,
-    this.voice,
   });
   @override
   _VNState createState() => _VNState();
@@ -157,12 +155,13 @@ class _VNState extends State<VNScaffold> {
   var isPressed;
 
   void _playAudio() {
-    VoiceAudio.playVoice.play(widget.voice);
+    VoiceAudio.playVoice.play(widget.textSound.getVoice().toString());
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.voice != null && widget.voice.isNotEmpty) {
+    if (widget.textSound.getVoice() != null &&
+        widget.textSound.getVoice().isNotEmpty) {
       _playAudio();
     }
 
