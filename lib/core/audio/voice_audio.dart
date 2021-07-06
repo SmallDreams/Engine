@@ -82,7 +82,7 @@ class PlayVoice extends WidgetsBindingObserver {
     }
 
     isPlaying = true;
-    audioPlayer = await audioCache.play(filename, volume: 1.0);
+    audioPlayer = await audioCache.play(filename + ".mp3", volume: 1.0);
   }
 
   /// Stops the currently playing background music track (if any).
