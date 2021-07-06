@@ -87,11 +87,15 @@ class _VNConstructorState extends State<VNConstructor> {
         // Character Image here
         Builder(
           builder: (BuildContext context) {
-            if ((widget.characterName == "MC" && widget.mcImage != null) ||
-                widget.characterName == "Narrator") {
-              return ImageBuilderMC(image: widget.mcImage);
+            if (widget.mcImage != null || widget.sideCharImage != null) {
+              if (widget.characterName == "MC" ||
+                  widget.characterName == "Narrator") {
+                return ImageBuilderMC(image: widget.mcImage);
+              } else {
+                return ImageBuilder(image: widget.sideCharImage);
+              }
             } else {
-              return ImageBuilder(image: widget.sideCharImage);
+              return SizedBox.shrink();
             }
           },
         ),
