@@ -13,7 +13,8 @@ class GameAudio {
 
   /// Plays a single run of the given [file], with a given [volume].
   static Future<AudioPlayer> play(String file, {double volume = 1.0}) {
-    return audioCache.play(file, volume: volume, mode: PlayerMode.LOW_LATENCY);
+    return audioCache.play(file + ".mp3",
+        volume: volume, mode: PlayerMode.LOW_LATENCY);
   }
 
   static Future<void> stop() async {
