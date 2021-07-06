@@ -6,6 +6,7 @@ import 'package:salem/components/visualnovel/UI/background_builder.dart';
 import 'package:salem/components/visualnovel/vn_constructor.dart';
 import 'package:salem/core/audio/gameAudio.dart';
 import 'package:salem/core/audio/globalAudio.dart';
+import 'package:salem/core/audio/voice_audio.dart';
 import 'dart:async';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -152,8 +153,18 @@ class _VNState extends State<VNScaffold> {
   }
 
   var isPressed;
+
+  void _playAudio() {
+    VoiceAudio.playVoice.play(widget.textSound.getVoice().toString());
+    //player = await _audioCache.play(widget.s! + '.mp3');
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (widget.textSound.getVoice() != null) {
+      _playAudio();
+    }
+
     return WillPopScope(
       onWillPop: () => getOnWillPop(),
       child: Builder(
@@ -264,7 +275,6 @@ class _VNState extends State<VNScaffold> {
                       route: widget.route,
                       nextRoute: widget.nextRoute,
                       nextText: widget.textSound,
-                      voice: widget.textSound.getVoice(),
                     ),
                   ),
                 ),

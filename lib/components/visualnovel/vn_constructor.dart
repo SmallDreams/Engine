@@ -5,8 +5,6 @@ import 'package:salem/components/visualnovel/UI/background_builder.dart';
 import 'package:salem/components/visualnovel/UI/buttons.dart';
 import 'package:salem/components/visualnovel/components/textAnimation.dart';
 import 'package:salem/components/visualnovel/ui/vn_img_builder.dart';
-import 'package:salem/core/audio/globalAudio.dart';
-import 'package:salem/core/audio/voice_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -21,7 +19,6 @@ class VNConstructor extends StatefulWidget {
     this.route,
     this.nextRoute,
     this.nextText,
-    this.voice,
   });
 
   final String? characterName;
@@ -33,7 +30,6 @@ class VNConstructor extends StatefulWidget {
   final characterText;
   final route;
   final nextText;
-  final voice;
 
   @override
   _VNConstructorState createState() => _VNConstructorState();
@@ -79,16 +75,8 @@ class _VNConstructorState extends State<VNConstructor> {
     return speed;
   }
 
-  void _playAudio() {
-    VoiceAudio.playVoice.play(widget.voice);
-    //player = await _audioCache.play(widget.s! + '.mp3');
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (widget.voice != null) {
-      _playAudio();
-    }
     getSpeed();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
