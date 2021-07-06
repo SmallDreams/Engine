@@ -65,6 +65,8 @@ class _VNState extends State<VNScaffold> {
       try {
         if (widget.bgm.isNotEmpty) {
           GlobalAudio.playAudio.getBGM(widget.bgm.toString());
+        } else {
+          GlobalAudio.playAudio.getBGM(notHome!);
         }
       } catch (e) {
         //GlobalAudio.playAudio.getBGM(notHome ?? "");
@@ -125,6 +127,7 @@ class _VNState extends State<VNScaffold> {
         });
       } else {
         widget.textSound.nextQuestion();
+        VoiceAudio.playVoice.stop();
         if (widget.callback != null) {
           widget.callback!(widget.textSound.getNumber());
         }
@@ -147,6 +150,7 @@ class _VNState extends State<VNScaffold> {
         });
       } else {
         widget.textSound.nextQuestion();
+        VoiceAudio.playVoice.stop();
         if (widget.callback != null) {
           widget.callback!(widget.textSound.getNumber());
         }
@@ -237,6 +241,7 @@ class _VNState extends State<VNScaffold> {
                         setState(() {
                           if (widget.textSound.isFinished() != true) {
                             widget.textSound.nextQuestion();
+                            VoiceAudio.playVoice.stop();
                             if (widget.callback != null) {
                               widget.callback!(widget.textSound.getNumber());
                             }
@@ -261,6 +266,7 @@ class _VNState extends State<VNScaffold> {
                           });
                         } else {
                           widget.textSound.nextQuestion();
+                          VoiceAudio.playVoice.stop();
                           if (widget.callback != null) {
                             widget.callback!(widget.textSound.getNumber());
                           }
