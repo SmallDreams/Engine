@@ -79,7 +79,7 @@ class _VNConstructorState extends State<VNConstructor> {
   }
 
   void _playAudio() async {
-    if (widget.voice != null || widget.voice.isNotEmpty) {
+    if (widget.voice != null) {
       GlobalAudio.playAudio.getBGM(widget.voice);
     }
     //player = await _audioCache.play(widget.s! + '.mp3');
