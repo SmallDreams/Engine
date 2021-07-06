@@ -34,19 +34,6 @@ class _TextSpeedState extends State<TextSpeed> {
 
   int speed = 25;
 
-  List images = [
-    "icon_ground_scroll_06",
-    "icon_active_scroll_05",
-    "icon_active_scroll_04",
-  ];
-  @override
-  void didChangeDependencies() {
-    for (var i in images)
-      precacheImage(AssetImage("assets/images/gui/" + i + ".png"), context);
-
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -56,12 +43,13 @@ class _TextSpeedState extends State<TextSpeed> {
         child: Container(
           margin: EdgeInsets.only(bottom: 10),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30), color: Colors.white),
+            borderRadius: BorderRadius.circular(30),
+            color: Theme.of(context).cardColor,
+          ),
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Text(
-            "TEXT SPEED",
-            style: TextStyle(
-                fontFamily: "Mali", fontSize: 24, color: Colors.black),
+            "Text Speed",
+            style: TextStyle(fontSize: 18, fontFamily: "Arvo"),
           ),
         ),
       ),
@@ -72,21 +60,27 @@ class _TextSpeedState extends State<TextSpeed> {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: Colors.white.withOpacity(0.8),
+          color: Theme.of(context).cardColor,
         ),
         child: Row(
           children: <Widget>[
             Builder(
               builder: (context) {
                 if (speed == 0) {
-                  return Image.asset(
-                      "assets/images/gui/icon_ground_scroll_06.png");
+                  return Icon(
+                    Icons.pause,
+                    size: 35,
+                  );
                 } else if (speed <= 25) {
-                  return Image.asset(
-                      "assets/images/gui/icon_active_scroll_05.png");
+                  return Icon(
+                    Icons.fast_forward,
+                    size: 35,
+                  );
                 } else {
-                  return Image.asset(
-                      "assets/images/gui/icon_active_scroll_04.png");
+                  return Icon(
+                    Icons.play_arrow,
+                    size: 35,
+                  );
                 }
               },
             ),
@@ -104,9 +98,9 @@ class _TextSpeedState extends State<TextSpeed> {
             Flexible(
               child: SliderTheme(
                 data: SliderTheme.of(context).copyWith(
-                  activeTrackColor: Colors.lightGreen,
-                  inactiveTrackColor: Colors.grey,
-                  thumbColor: Colors.green,
+                  activeTrackColor: Theme.of(context).colorScheme.secondary,
+                  inactiveTrackColor: Colors.grey[300],
+                  thumbColor: Theme.of(context).colorScheme.secondary,
                   thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
                   overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0),
                 ),
