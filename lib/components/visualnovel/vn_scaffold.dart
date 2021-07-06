@@ -47,8 +47,7 @@ class _VNState extends State<VNScaffold> {
   @override
   void didChangeDependencies() {
     if (UniversalPlatform.isWindows ||
-        UniversalPlatform.isLinux &&
-            GameAudioDesktop.playAudio.isPlaying == false) {
+        UniversalPlatform.isLinux && GlobalAudio.playAudio.isPlaying != true) {
       super.didChangeDependencies();
       GameAudioDesktop.playAudio.player = Player(
         id: 0,
@@ -60,24 +59,15 @@ class _VNState extends State<VNScaffold> {
   @override
   void initState() {
     super.initState();
-    if (GlobalAudio.playAudio.isPlaying == false) {
+    if (GlobalAudio.playAudio.isPlaying != true) {
       try {
         if (widget.bgm.isNotEmpty) {
           GlobalAudio.playAudio.getBGM(widget.bgm.toString());
-        }
-      } catch (e) {
-        //GlobalAudio.playAudio.getBGM(notHome ?? "");
-      }
-    } else {
-      try {
-        if (widget.bgm.isNotEmpty) {
-          GlobalAudio.playAudio.stopAudio();
-          GlobalAudio.playAudio.getBGM(widget.bgm.toString());
-        } else {
+        } else if (notHome != null) {
           GlobalAudio.playAudio.getBGM(notHome!);
         }
       } catch (e) {
-        //GlobalAudio.playAudio.getBGM(notHome ?? "");
+        print(e);
       }
     }
 
