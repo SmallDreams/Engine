@@ -11,7 +11,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PrimaryRouteObserver extends RouteObserver {
   void saveLastRoute(Route? previousRoute, Route lastRoute) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (lastRoute.settings.name != null && lastRoute.settings.name != "/") {
+    if (lastRoute.settings.name != null &&
+        lastRoute.settings.name != "/" &&
+        lastRoute.settings.name != "/settings") {
       prefs.setString('last_route', lastRoute.settings.name!);
     }
     // else if (previousRoute != null && previousRoute.settings.name != "/") {
