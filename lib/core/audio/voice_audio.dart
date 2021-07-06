@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // class VoiceAudio {
 //   final musicName;
@@ -73,16 +74,23 @@ class PlayVoice extends WidgetsBindingObserver {
   /// playing.
   Future<void> play(String filename, {double volume = 1.0}) async {
     //AudioService service = Provider.of<AudioService>(context);
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // double? vol = prefs.getDouble('volValue');
-    // print(vol);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    double? vol = prefs.getDouble('voiceValue');
+    print(vol);
     final currentPlayer = audioPlayer;
     if (currentPlayer != null && currentPlayer.state != PlayerState.STOPPED) {
       currentPlayer.stop();
     }
 
-    isPlaying = true;
-    audioPlayer = await audioCache.play(filename + ".mp3", volume: 1.0);
+    if (isPlaying == false) {
+      isPlaying = true;
+      audioPlayer =
+          await audioCache.play(filename + ".mp3", volume: vol ?? 1.0);
+    } else {
+      currentPlayer!.stop();
+      audioPlayer =
+          await audioCache.play(filename + ".mp3", volume: vol ?? 1.0);
+    }
   }
 
   /// Stops the currently playing background music track (if any).
