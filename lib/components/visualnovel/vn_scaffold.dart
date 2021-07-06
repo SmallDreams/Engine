@@ -19,7 +19,7 @@ class VNScaffold extends StatefulWidget {
   final Function? callback;
   final int? updatedNumber;
   final bgm;
-  final voice;
+  final String? voice;
   VNScaffold({
     this.bgImage,
     this.textSound,
@@ -157,7 +157,7 @@ class _VNState extends State<VNScaffold> {
   var isPressed;
 
   void _playAudio() {
-    VoiceAudio.playVoice.play(widget.voice);
+    VoiceAudio.playVoice.play(widget.voice!);
     //player = await _audioCache.play(widget.s! + '.mp3');
   }
 
