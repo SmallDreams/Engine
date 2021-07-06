@@ -12,19 +12,19 @@ class ImageBuilder extends StatefulWidget {
 }
 
 class _ImageBuilderState extends State<ImageBuilder> {
-  getImg() {
-    if (widget.image != null) {
-      bool img =
-          File("assets/images/sprites/" + widget.image! + ".png").existsSync();
-      return img;
-    }
-  }
+  // getImg() {
+  //   if (widget.image != null) {
+  //     bool img =
+  //         File("assets/images/sprites/" + widget.image! + ".png").existsSync();
+  //     return img;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        if (getImg() == true && widget.image != null) {
+        if (widget.image != null && widget.image!.isNotEmpty) {
           return Align(
             alignment: Alignment.bottomCenter,
             child: Image.asset(
@@ -57,9 +57,7 @@ class _ImageBuilderMCState extends State<ImageBuilderMC> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Builder(builder: (context) {
-      bool img =
-          File("assets/images/sprites/" + widget.image! + ".png").existsSync();
-      if (img == true) {
+      if (widget.image != null || widget.image!.isNotEmpty) {
         return Builder(
           builder: (context) {
             if (height < 700) {
@@ -130,10 +128,8 @@ class _ImageBuilderMultipleState extends State<ImageBuilderMultiple> {
       children: <Widget>[
         Builder(
           builder: (context) {
-            bool img =
-                File("assets/images/sprites/" + widget.sideCharImage! + ".png")
-                    .existsSync();
-            if (img == true && widget.sideCharImage != null) {
+            if (widget.sideCharImage!.isNotEmpty &&
+                widget.sideCharImage != null) {
               return Align(
                 alignment: Alignment.bottomCenter,
                 child: Image.asset(
@@ -150,9 +146,7 @@ class _ImageBuilderMultipleState extends State<ImageBuilderMultiple> {
           },
         ),
         Builder(builder: (context) {
-          bool img = File("assets/images/sprites/" + widget.mcImage! + ".png")
-              .existsSync();
-          if (img == true && widget.mcImage != null) {
+          if (widget.mcImage!.isNotEmpty && widget.mcImage != null) {
             return Builder(
               builder: (context) {
                 if (height < 700) {
