@@ -3,15 +3,24 @@ import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/core/audio/bgm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_platform/universal_platform.dart';
 
 class GameAudio {
+  static bool isPlaying = false;
+  static AudioPlayer? audioPlayer;
+
   /// Access a shared instance of the [AudioCache] class.
   static AudioCache audioCache = AudioCache(prefix: 'assets/audio/');
 
   /// Plays a single run of the given [file], with a given [volume].
   static Future<AudioPlayer> play(String file, {double volume = 1.0}) {
     return audioCache.play(file, volume: volume, mode: PlayerMode.LOW_LATENCY);
+  }
+
+  static Future<void> stop() async {
+    isPlaying = false;
+    if (audioPlayer != null) {
+      await audioPlayer!.stop();
+    }
   }
 
   /// Plays, and keep looping the given [file]

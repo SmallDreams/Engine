@@ -6,6 +6,7 @@ import 'package:salem/components/visualnovel/UI/buttons.dart';
 import 'package:salem/components/visualnovel/components/textAnimation.dart';
 import 'package:salem/components/visualnovel/ui/vn_img_builder.dart';
 import 'package:salem/core/audio/globalAudio.dart';
+import 'package:salem/core/audio/voice_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -78,16 +79,16 @@ class _VNConstructorState extends State<VNConstructor> {
     return speed;
   }
 
-  void _playAudio() async {
-    if (widget.voice != null) {
-      GlobalAudio.playAudio.getBGM(widget.voice);
-    }
+  void _playAudio() {
+    VoiceAudio.getVoice.play(widget.voice);
     //player = await _audioCache.play(widget.s! + '.mp3');
   }
 
   @override
   Widget build(BuildContext context) {
-    _playAudio();
+    if (widget.voice != null) {
+      _playAudio();
+    }
     getSpeed();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
