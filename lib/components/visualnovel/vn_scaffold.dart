@@ -17,6 +17,7 @@ class VNScaffold extends StatefulWidget {
   final nextRoute;
   final Function? callback;
   final int? updatedNumber;
+  final bgm;
   VNScaffold({
     this.bgImage,
     this.textSound,
@@ -24,6 +25,7 @@ class VNScaffold extends StatefulWidget {
     this.nextRoute,
     this.callback,
     this.updatedNumber,
+    this.bgm,
   });
   @override
   _VNState createState() => _VNState();
@@ -60,17 +62,17 @@ class _VNState extends State<VNScaffold> {
 
     if (GlobalAudio.playAudio.isPlaying == false) {
       try {
-        if (widget.textSound.getBGM().isNotEmpty) {
-          GlobalAudio.playAudio.getBGM(widget.textSound.getBGM().toString());
+        if (widget.bgm.isNotEmpty) {
+          GlobalAudio.playAudio.getBGM(widget.bgm.toString());
         }
       } catch (e) {
         //GlobalAudio.playAudio.getBGM(notHome ?? "");
       }
     } else {
       try {
-        if (widget.textSound.getBGM().isNotEmpty) {
+        if (widget.bgm.isNotEmpty) {
           GlobalAudio.playAudio.stopAudio();
-          GlobalAudio.playAudio.getBGM(widget.textSound.getBGM().toString());
+          GlobalAudio.playAudio.getBGM(widget.bgm.toString());
         }
       } catch (e) {
         //GlobalAudio.playAudio.getBGM(notHome ?? "");
@@ -86,8 +88,8 @@ class _VNState extends State<VNScaffold> {
       sharedPreferences = sp;
       notHome = sharedPreferences!.getString("notHome");
       try {
-        if (widget.textSound.getBGM().isNotEmpty) {
-          notHome = widget.textSound.getBGM().toString();
+        if (widget.bgm.isNotEmpty) {
+          notHome = widget.bgm.toString();
         }
       } catch (e) {
         print("EMPTY");
@@ -262,6 +264,7 @@ class _VNState extends State<VNScaffold> {
                       route: widget.route,
                       nextRoute: widget.nextRoute,
                       nextText: widget.textSound,
+                      voice: widget.textSound.getVoice(),
                     ),
                   ),
                 ),
