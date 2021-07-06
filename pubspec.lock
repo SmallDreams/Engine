@@ -70,14 +70,7 @@ packages:
       name: dart_vlc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.8"
-  dart_vlc_ffi:
-    dependency: transitive
-    description:
-      name: dart_vlc_ffi
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.4"
+    version: "0.0.7"
   fake_async:
     dependency: transitive
     description:
@@ -342,7 +335,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.5"
   xdg_directories:
     dependency: transitive
     description:

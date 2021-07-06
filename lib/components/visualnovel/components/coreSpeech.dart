@@ -9,7 +9,6 @@ class Speech {
   final String? minorCharImage;
   final String? cgImg;
   final String? bgImage;
-  final String? bgmMusic;
   final nextScene;
 
   Speech({
@@ -21,7 +20,6 @@ class Speech {
     this.minorCharImage,
     this.cgImg,
     this.bgImage,
-    this.bgmMusic,
     this.nextScene,
   });
 }

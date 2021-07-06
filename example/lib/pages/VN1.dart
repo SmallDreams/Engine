@@ -16,8 +16,9 @@ class _VNState extends State<VN1> {
     return VNScaffold(
       textSound: textSound,
       route: "/1",
+      bgm: "storm",
       nextRoute: "/mainmenu",
-      bgImage: "battlegroupSilverDawn.png",
+      bgImage: "assets/images/bgs/lighthouse.jpg",
     );
   }
 }

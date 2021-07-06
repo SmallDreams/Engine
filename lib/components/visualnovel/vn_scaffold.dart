@@ -60,7 +60,6 @@ class _VNState extends State<VNScaffold> {
   @override
   void initState() {
     super.initState();
-    print(notHome!);
     if (GlobalAudio.playAudio.isPlaying == false) {
       try {
         if (widget.bgm.isNotEmpty) {

@@ -1,6 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 // class VoiceAudio {
 //   final musicName;
@@ -42,6 +44,7 @@ class PlayVoice extends WidgetsBindingObserver {
   late AudioCache audioCache;
   AudioPlayer? audioPlayer;
   bool isPlaying = false;
+  Player? player = new Player(id: 1);
 
   PlayVoice({AudioCache? audioCache}) : audioCache = audioCache ?? AudioCache();
 
@@ -76,7 +79,7 @@ class PlayVoice extends WidgetsBindingObserver {
     //AudioService service = Provider.of<AudioService>(context);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     double? vol = prefs.getDouble('voiceValue');
-    print(vol);
+
     final currentPlayer = audioPlayer;
     if (currentPlayer != null && currentPlayer.state != PlayerState.STOPPED) {
       currentPlayer.stop();
@@ -84,12 +87,36 @@ class PlayVoice extends WidgetsBindingObserver {
 
     if (isPlaying == false) {
       isPlaying = true;
-      audioPlayer =
-          await audioCache.play(filename + ".mp3", volume: vol ?? 1.0);
+      if (UniversalPlatform.isDesktopOrWeb) {
+        await player?.open(
+          new Playlist(
+            playlistMode: PlaylistMode.single,
+            medias: [
+              await Media.asset('assets/audio/' + filename + ".mp3"),
+            ],
+          ),
+        );
+        await player?.setVolume(vol ?? 1.0);
+      } else {
+        audioPlayer =
+            await audioCache.play(filename + ".mp3", volume: vol ?? 1.0);
+      }
     } else {
-      currentPlayer!.stop();
-      audioPlayer =
-          await audioCache.play(filename + ".mp3", volume: vol ?? 1.0);
+      currentPlayer?.stop();
+      if (UniversalPlatform.isDesktopOrWeb) {
+        await player?.open(
+          new Playlist(
+            playlistMode: PlaylistMode.single,
+            medias: [
+              await Media.asset('assets/audio/' + filename + ".mp3"),
+            ],
+          ),
+        );
+        await player?.setVolume(vol ?? 1.0);
+      } else {
+        audioPlayer =
+            await audioCache.play(filename + ".mp3", volume: vol ?? 1.0);
+      }
     }
   }
 

@@ -12,8 +12,8 @@ import 'package:salem/components/visualnovel/components/coreSpeech.dart';
   Color Map: https://pub.dev/documentation/simple_rich_text/latest/simple_rich_text/colorMap-constant.html
 */
 
-const mc = "MC";
-const t = "Side Character";
+const rosa = "Rosalind";
+const rob = "Robert";
 
 class TextConstructor1 {
   int textNumber = 0;
@@ -30,6 +30,10 @@ class TextConstructor1 {
 
   String? getCharacterName() {
     return textBank[textNumber].characterName;
+  }
+
+  String? getVoice() {
+    return textBank[textNumber].voice;
   }
 
   bool isFinished() {
@@ -56,10 +60,6 @@ class TextConstructor1 {
     textNumber = 0;
   }
 
-  String? getBGM() {
-    return "thefleet";
-  }
-
   String? getBgImage() {
     return "mininature_003_y_19201440";
   }
@@ -67,57 +67,121 @@ class TextConstructor1 {
   List<Speech> textBank = [
     // Name, Speech, Voice, Image
     Speech(
-      characterName: mc,
-      characterText: "…Okay.",
-      mcImage: "tom_neutral",
+      characterName: "CAPTION",
+      characterText: "1912, Coast of Portsmouth England",
     ),
     Speech(
-      characterName: mc,
-      characterText: "HELLO WORLD",
-      mcImage: "tom_neutral",
+      characterName: rob,
+      characterText: "Are you going to just sit there?",
+      voice: "speech/areyougoingtojustsitthere",
     ),
     Speech(
-      characterName: mc,
-      characterText: "This is a random text.",
-      mcImage: "tom_neutral",
+      characterName: rosa,
+      characterText: "As compared to what? Standing?",
+      voice: "speech/ascomparedtowhat",
     ),
 
     Speech(
-      characterName: mc,
-      characterText: "Some more random text.",
-      mcImage: "transparent",
+      characterName: rob,
+      characterText: "Not standing. Rowing.",
+      voice: "speech/notstanding",
     ),
     Speech(
-        characterName: t,
-        characterText: "This is char2 ",
-        mcImage: "transparent"),
+      characterName: rosa,
+      characterText: "Rowing. I hadn't planned on it.",
+      voice: "speech/rowingIhadnt",
+    ),
     Speech(
-        characterName: t,
-        characterText:
-            "Yesterday, the Affordable Care Act (ACA) nabbed its third 'You may pass Go' card from the Supreme Court. In a 7–2 vote, justices ruled that Texas and 17 other Republican-led states don't have the legal standing to challenge the law in federal court.",
-        sideCharImage: "transparent"),
+      characterName: rob,
+      characterText: "So you expect me to shoulder the burden?",
+    ),
     Speech(
-        characterName: t,
-        characterText:
-            "The ACA, aka 'Obamacare', is a controversial healthcare bill enacted in 2010. It's known for adding protections for individuals with preexisting conditions, allowing young adults to remain on their parents' plan until age 26, and making preventative services (including birth control on private plans) free.",
-        sideCharImage: "tom_neutral"),
+      characterName: rosa,
+      characterText: "No. But I do expect you to do all the rowing.",
+    ),
     Speech(
-        characterName: t,
-        characterText:
-            "With their 6–3 majority on the court, some conservatives hoped this case might finally find the fatal chink in the ACA's legal armor. Although they fell short again, each major legal challenge threatens serious disruption to the healthcare industry and the 31+ million Americans who get their insurance through the ACA.",
-        sideCharImage: "transparent"),
+      characterName: rob,
+      characterText: "And why is that?",
+    ),
     Speech(
-        characterName: "BOY",
-        characterText:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        sideCharImage: "hidetake_neutral"),
+      characterName: rosa,
+      characterText: "Coming here was /your/ idea.",
+    ),
     Speech(
-        characterName: "GIRL",
-        characterText:
-            """This is considered an error condition because it indicates that there is content that cannot be
-seen. If the content is legitimately bigger than the available space, consider clipping it with a
-ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
-like a ListView.""",
-        sideCharImage: "hidetake_neutral"),
+      characterName: rob,
+      characterText: "My idea?",
+    ),
+    Speech(
+      characterName: rosa,
+      characterText:
+          "I made it very clear that I don't believe in the exercise.",
+    ),
+    Speech(
+      characterName: rob,
+      characterText: "The rowing?",
+    ),
+    Speech(
+      characterName: rosa,
+      characterText: "No. I imagine that's wonderful exercise.",
+    ),
+    Speech(
+      characterName: rob,
+      characterText: "Then what?",
+    ),
+    Speech(
+      characterName: rosa,
+      characterText: "The entire thought experiment.",
+    ),
+    Speech(
+      characterName: rob,
+      characterText: "One goes into an experiment knowing one could fail.",
+    ),
+    Speech(
+      characterName: rosa,
+      characterText:
+          "But one does not undertake an experiment knowing one HAS failed.",
+    ),
+    Speech(
+      characterName: rob,
+      characterText: "Can we get back to the rowing?",
+    ),
+    Speech(
+      characterName: rosa,
+      characterText: "I suggest you do, or we're never going to get there.",
+    ),
+    Speech(
+      characterName: rob,
+      characterText:
+          "No, I mean I'd greatly appreciate it if you would assist.",
+    ),
+    Speech(
+      characterName: rosa,
+      characterText:
+          "Perhaps you should ask him. I imagine he has a greater interest in getting there than I do.",
+    ),
+    Speech(
+      characterName: rob,
+      characterText: "I suppose he does...but there's no point in asking.",
+    ),
+    Speech(
+      characterName: rosa,
+      characterText: "Why not?",
+    ),
+    Speech(
+      characterName: rob,
+      characterText: "Because he /doesn't/ row.",
+    ),
+    Speech(
+      characterName: rosa,
+      characterText: "He doesn't *ROW*?",
+    ),
+    Speech(
+      characterName: rob,
+      characterText: "No. He *DOESN'T* row.",
+    ),
+    Speech(
+      characterName: rosa,
+      characterText: "Ah. I see what you mean. We've arrived.",
+    ),
   ];
 }
