@@ -87,7 +87,7 @@ class PlayVoice extends WidgetsBindingObserver {
 
     if (isPlaying == false) {
       isPlaying = true;
-      if (UniversalPlatform.isDesktopOrWeb) {
+      if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
         await player?.open(
           new Playlist(
             playlistMode: PlaylistMode.single,
@@ -103,7 +103,7 @@ class PlayVoice extends WidgetsBindingObserver {
       }
     } else {
       currentPlayer?.stop();
-      if (UniversalPlatform.isDesktopOrWeb) {
+      if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
         await player?.open(
           new Playlist(
             playlistMode: PlaylistMode.single,
