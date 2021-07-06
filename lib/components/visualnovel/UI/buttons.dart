@@ -53,53 +53,46 @@ class SettingsClip extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return InkWell(
-          // todo: add settings (page)
-          // onTap: () => Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //           builder: (context) => Settings(
-          //                 route: route,
-          //               )),
-          //     ),
+          onTap: () => Navigator.of(context).pushNamed("/settings"),
           child: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          Stack(
+            alignment: Alignment.center,
             children: <Widget>[
-              Container(
-                color: Colors.transparent,
-                padding: const EdgeInsets.all(1),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Image.asset(
-                    "assets/images/gui/more.png",
-                    fit: BoxFit.cover,
-                    errorBuilder: (BuildContext context, Object exception,
-                        StackTrace? stackTrace) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.transparent),
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.white,
-                        ),
-                        padding: EdgeInsets.all(5),
-                        child: Text(
-                          "Settings 〣",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "BottleParty",
-                              fontSize: 18,
-                              letterSpacing: .2),
-                        ),
-                      );
-                    },
+              Stack(
+                children: <Widget>[
+                  Container(
+                    color: Colors.transparent,
+                    padding: const EdgeInsets.all(1),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image.asset(
+                        "assets/images/gui/more.png",
+                        fit: BoxFit.cover,
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace? stackTrace) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.transparent),
+                              borderRadius: BorderRadius.circular(50),
+                              color: Colors.white,
+                            ),
+                            padding: EdgeInsets.all(5),
+                            child: Text(
+                              "Settings 〣",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: "BottleParty",
+                                  fontSize: 18,
+                                  letterSpacing: .2),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
-          ),
-        ],
-      ));
+          ));
     });
   }
 }

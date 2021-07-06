@@ -102,7 +102,11 @@ class _ImageBuilderMCState extends State<ImageBuilderMC> {
         );
       } else {
         return Container(
-          child: Text("Here should be a Sprite!"),
+          color: Colors.transparent,
+          child: Text(
+            "Here should be a Sprite!",
+            style: TextStyle(color: Colors.transparent),
+          ),
         );
       }
     });
