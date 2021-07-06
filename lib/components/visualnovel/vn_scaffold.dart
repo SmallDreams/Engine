@@ -73,7 +73,7 @@ class _VNState extends State<VNScaffold> {
       try {
         if (widget.bgm.isNotEmpty) {
           GlobalAudio.playAudio.stopAudio();
-          GlobalAudio.playAudio.getBGM(widget.bgm.toString());
+          GlobalAudio.playAudio.getBGM(notHome!);
         }
       } catch (e) {
         //GlobalAudio.playAudio.getBGM(notHome ?? "");
