@@ -3,22 +3,17 @@ import 'package:salem/core/persist/constants/get_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PersistNavigation {
-  /// Saves and loads the last route saved into cache.
   static Future<void> initSplash(context, primary) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? lastRoute = prefs.getString('last_route');
-    String? previousRoute = prefs.getString('previous_route');
-    if (lastRoute != null && lastRoute != "/") {
+    if (lastRoute != null && lastRoute != "/" && lastRoute != "/settings") {
       GetRoutes.getLastRoute(context, lastRoute);
-    } else if (previousRoute != null && previousRoute != "/") {
-      GetRoutes.getPreviousRoute(context, previousRoute);
     } else {
       GetRoutes.getPrimaryRoute(context, primary);
     }
   }
 }
 
-// TODO: Implement
 class SplashScreenScaffold extends StatefulWidget {
   final mainMenuRoute;
   final splashloadingscreen;
