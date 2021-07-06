@@ -80,7 +80,7 @@ class _VNConstructorState extends State<VNConstructor> {
   }
 
   void _playAudio() {
-    VoiceAudio.getVoice.play(widget.voice);
+    VoiceAudio.playVoice.play(widget.voice);
     //player = await _audioCache.play(widget.s! + '.mp3');
   }
 
