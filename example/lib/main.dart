@@ -1,6 +1,6 @@
 import 'package:example/routes/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:salem/components/global/main_menu.dart';
+import 'package:salem/components/global/mainMenu.dart';
 
 void main() {
   runApp(Routes());

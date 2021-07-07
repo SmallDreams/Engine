@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -104,7 +102,7 @@ class Bgm extends WidgetsBindingObserver {
   /// Pre-fetch an audio and store it in the cache.
   ///
   /// Alias of `audioCache.loadAsFile();`.
-  Future<File> loadAsFile(String file) => audioCache.loadAsFile(file);
+  //Future<File> loadAsFile(String file) => audioCache.loadAsFile(file);
 
   /// Pre-fetch a list of audios and store them in the cache.
   ///

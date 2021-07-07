@@ -1,11 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:salem/components/visualnovel/UI/background_builder.dart';
 import 'package:salem/components/visualnovel/UI/buttons.dart';
 import 'package:salem/components/visualnovel/components/textAnimation.dart';
 import 'package:salem/components/visualnovel/ui/vn_img_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_io/io.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class VNConstructor extends StatefulWidget {
@@ -174,84 +173,84 @@ class _VNConstructorState extends State<VNConstructor> {
                           //     BoxConstraints(minWidth: 100, minHeight: 100),
                           width: MediaQuery.of(context).size.width / 2.05,
                           child: Builder(builder: (context) {
-                            bool textbox = File("assets/images/gui/textbox.png")
-                                .existsSync();
-                            if (textbox == true) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/gui/textbox.png'),
-                                      fit: BoxFit.fill,
-                                    ),
-                                    color: Colors.white.withOpacity(0),
-                                    border: Border.all(
-                                      color: Colors.black.withOpacity(0),
-                                    ),
-                                    borderRadius: new BorderRadius.only(
-                                      topLeft: const Radius.circular(0.0),
-                                      topRight: const Radius.circular(0.0),
-                                      bottomRight: const Radius.circular(0.0),
-                                    )),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: width * 0.03,
-                                      vertical: height * 0.025),
-                                  child: AnimatedTextKit(
-                                    animatedTexts: [
-                                      TyperAnimatedText(
-                                        widget.characterText,
-                                        textAlign: TextAlign.left,
-                                        textStyle: TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: "Mali",
-                                            fontSize: 21),
-                                        speed:
-                                            Duration(milliseconds: speed ?? 25),
-                                      ),
-                                    ],
-                                    displayFullTextOnTap: true,
-                                    isRepeatingAnimation: false,
-                                    key: ValueKey(widget.n),
+                            // bool textbox = File("assets/images/gui/textbox.png")
+                            //     .existsSync();
+                            // if (textbox == true) {
+                            //   return Container(
+                            //     decoration: BoxDecoration(
+                            //         image: DecorationImage(
+                            //           image: AssetImage(
+                            //               'assets/images/gui/textbox.png'),
+                            //           fit: BoxFit.fill,
+                            //         ),
+                            //         color: Colors.white.withOpacity(0),
+                            //         border: Border.all(
+                            //           color: Colors.black.withOpacity(0),
+                            //         ),
+                            //         borderRadius: new BorderRadius.only(
+                            //           topLeft: const Radius.circular(0.0),
+                            //           topRight: const Radius.circular(0.0),
+                            //           bottomRight: const Radius.circular(0.0),
+                            //         )),
+                            //     child: Padding(
+                            //       padding: EdgeInsets.symmetric(
+                            //           horizontal: width * 0.03,
+                            //           vertical: height * 0.025),
+                            //       child: AnimatedTextKit(
+                            //         animatedTexts: [
+                            //           TyperAnimatedText(
+                            //             widget.characterText,
+                            //             textAlign: TextAlign.left,
+                            //             textStyle: TextStyle(
+                            //                 color: Colors.black,
+                            //                 fontFamily: "Mali",
+                            //                 fontSize: 21),
+                            //             speed:
+                            //                 Duration(milliseconds: speed ?? 25),
+                            //           ),
+                            //         ],
+                            //         displayFullTextOnTap: true,
+                            //         isRepeatingAnimation: false,
+                            //         key: ValueKey(widget.n),
+                            //       ),
+                            //     ),
+                            //   );
+                            // } else {
+                            return Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.8),
+                                  border: Border.all(
+                                    color: Colors.black.withOpacity(0),
                                   ),
-                                ),
-                              );
-                            } else {
-                              return Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.8),
-                                    border: Border.all(
-                                      color: Colors.black.withOpacity(0),
+                                  borderRadius: new BorderRadius.only(
+                                    topLeft: const Radius.circular(0.0),
+                                    topRight: const Radius.circular(0.0),
+                                    bottomRight: const Radius.circular(0.0),
+                                  )),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.03,
+                                    vertical: height * 0.025),
+                                child: AnimatedTextKit(
+                                  animatedTexts: [
+                                    TyperAnimatedText(
+                                      widget.characterText,
+                                      textAlign: TextAlign.left,
+                                      textStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: "Mali",
+                                          fontSize: 21),
+                                      speed:
+                                          Duration(milliseconds: speed ?? 25),
                                     ),
-                                    borderRadius: new BorderRadius.only(
-                                      topLeft: const Radius.circular(0.0),
-                                      topRight: const Radius.circular(0.0),
-                                      bottomRight: const Radius.circular(0.0),
-                                    )),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: width * 0.03,
-                                      vertical: height * 0.025),
-                                  child: AnimatedTextKit(
-                                    animatedTexts: [
-                                      TyperAnimatedText(
-                                        widget.characterText,
-                                        textAlign: TextAlign.left,
-                                        textStyle: TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: "Mali",
-                                            fontSize: 21),
-                                        speed:
-                                            Duration(milliseconds: speed ?? 25),
-                                      ),
-                                    ],
-                                    displayFullTextOnTap: true,
-                                    isRepeatingAnimation: false,
-                                    key: ValueKey(widget.n),
-                                  ),
+                                  ],
+                                  displayFullTextOnTap: true,
+                                  isRepeatingAnimation: false,
+                                  key: ValueKey(widget.n),
                                 ),
-                              );
-                            }
+                              ),
+                            );
+                            //   }
                           }),
                         ),
                       ],
