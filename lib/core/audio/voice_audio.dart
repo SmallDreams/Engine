@@ -88,15 +88,15 @@ class PlayVoice extends WidgetsBindingObserver {
     if (isPlaying == false) {
       isPlaying = true;
       if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-        await player?.open(
+        player?.open(
           new Playlist(
             playlistMode: PlaylistMode.single,
             medias: [
-              await Media.asset('assets/audio/' + filename + ".mp3"),
+              Media.asset('assets/audio/' + filename + ".mp3"),
             ],
           ),
         );
-        await player?.setVolume(vol ?? 1.0);
+        player?.setVolume(vol ?? 1.0);
       } else {
         audioPlayer =
             await audioCache.play(filename + ".mp3", volume: vol ?? 1.0);
@@ -104,15 +104,15 @@ class PlayVoice extends WidgetsBindingObserver {
     } else {
       currentPlayer?.stop();
       if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-        await player?.open(
+        player?.open(
           new Playlist(
             playlistMode: PlaylistMode.single,
             medias: [
-              await Media.asset('assets/audio/' + filename + ".mp3"),
+              Media.asset('assets/audio/' + filename + ".mp3"),
             ],
           ),
         );
-        await player?.setVolume(vol ?? 1.0);
+        player?.setVolume(vol ?? 1.0);
       } else {
         audioPlayer =
             await audioCache.play(filename + ".mp3", volume: vol ?? 1.0);

@@ -70,15 +70,15 @@ class PlayAudio extends WidgetsBindingObserver {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     double? vol = prefs.getDouble('volValue');
 
-    await player?.open(
+    player?.open(
       new Playlist(
         playlistMode: PlaylistMode.loop,
         medias: [
-          await Media.asset('assets/audio/' + filename + ".mp3"),
+          Media.asset('assets/audio/' + filename + ".mp3"),
         ],
       ),
     );
-    await player?.setVolume(vol ?? 1.0);
+    player?.setVolume(vol ?? 1.0);
     isPlaying = true;
   }
 
@@ -86,7 +86,7 @@ class PlayAudio extends WidgetsBindingObserver {
   Future<void> stop() async {
     isPlaying = false;
     if (player != null) {
-      await player?.stop();
+      player?.stop();
     }
   }
 
@@ -103,12 +103,12 @@ class PlayAudio extends WidgetsBindingObserver {
   Future<void> pause() async {
     if (player != null) {
       isPlaying = false;
-      await player?.pause();
+      player?.pause();
     }
   }
 
   Future<void> volume(volume) async {
-    await player?.setVolume(volume);
+    player?.setVolume(volume);
   }
 
   // @override

@@ -282,6 +282,7 @@ class _BaseScreenState extends State<MainMenu> {
             onPressed: () {
               if (route == "/1") {
                 GlobalAudio.playAudio.stopAudio();
+                GlobalAudio.playAudio.isPlaying = false;
               }
               Navigator.of(context).pushNamed(route);
             }),

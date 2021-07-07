@@ -46,8 +46,7 @@ class _VNState extends State<VNScaffold> {
 
   @override
   void didChangeDependencies() {
-    if (UniversalPlatform.isWindows ||
-        UniversalPlatform.isLinux && GlobalAudio.playAudio.isPlaying != true) {
+    if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
       super.didChangeDependencies();
       GameAudioDesktop.playAudio.player = Player(
         id: 0,
@@ -59,15 +58,15 @@ class _VNState extends State<VNScaffold> {
   @override
   void initState() {
     super.initState();
-    if (GlobalAudio.playAudio.isPlaying != true) {
-      try {
-        if (widget.bgm.isNotEmpty) {
-          GlobalAudio.playAudio.getBGM(widget.bgm.toString());
-        } else if (notHome != null) {
-          GlobalAudio.playAudio.getBGM(notHome!);
-        }
-      } catch (e) {
-        print(e);
+    if (GlobalAudio.playAudio.isPlaying == false) {
+      if (widget.bgm.isNotEmpty) {
+        GlobalAudio.playAudio.getBGM(widget.bgm.toString());
+      } else if (notHome != null) {
+        GlobalAudio.playAudio.getBGM(notHome!);
+      }
+    } else {
+      if (notHome != null) {
+        GlobalAudio.playAudio.getBGM(notHome!);
       }
     }
 
@@ -222,7 +221,6 @@ class _VNState extends State<VNScaffold> {
                     onLongPressStart: (_) async {
                       isPressed = true;
                       do {
-                        //print('long pressing');
                         setState(() {
                           if (widget.textSound.isFinished() != true) {
                             widget.textSound.nextQuestion();

@@ -1,8 +1,10 @@
 import 'package:example/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/components/global/mainMenu.dart';
+import 'package:dart_vlc/dart_vlc.dart';
 
 void main() {
+  DartVLC.initialize();
   runApp(Routes());
 }
 
