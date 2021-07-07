@@ -74,38 +74,46 @@ class TextConstructor1 {
       characterName: rob,
       characterText: "Are you going to just sit there?",
       voice: "speech/areyougoingtojustsitthere",
+      sideCharImage: "rob",
     ),
     Speech(
       characterName: rosa,
       characterText: "As compared to what? Standing?",
       voice: "speech/ascomparedtowhat",
+      sideCharImage: "rosa",
     ),
 
     Speech(
       characterName: rob,
       characterText: "Not standing. Rowing.",
       voice: "speech/notstanding",
+      sideCharImage: "rob",
     ),
     Speech(
       characterName: rosa,
       characterText: "Rowing. I hadn't planned on it.",
       voice: "speech/rowingIhadnt",
+      sideCharImage: "rosa",
     ),
     Speech(
       characterName: rob,
       characterText: "So you expect me to shoulder the burden?",
+      sideCharImage: "rob",
     ),
     Speech(
       characterName: rosa,
       characterText: "No. But I do expect you to do all the rowing.",
+      sideCharImage: "rosa",
     ),
     Speech(
       characterName: rob,
       characterText: "And why is that?",
+      sideCharImage: "rob",
     ),
     Speech(
       characterName: rosa,
       characterText: "Coming here was /your/ idea.",
+      sideCharImage: "rosa",
     ),
     Speech(
       characterName: rob,
@@ -115,6 +123,7 @@ class TextConstructor1 {
       characterName: rosa,
       characterText:
           "I made it very clear that I don't believe in the exercise.",
+      sideCharImage: "rosa",
     ),
     Speech(
       characterName: rob,
@@ -134,12 +143,12 @@ class TextConstructor1 {
     ),
     Speech(
       characterName: rob,
-      characterText: "One goes into an experiment knowing one could fail.",
+      characterText: "One goes into an experiment knowing one /could/ fail.",
     ),
     Speech(
       characterName: rosa,
       characterText:
-          "But one does not undertake an experiment knowing one HAS failed.",
+          "But one does not undertake an experiment knowing one *HAS* failed.",
     ),
     Speech(
       characterName: rob,
@@ -181,7 +190,7 @@ class TextConstructor1 {
     ),
     Speech(
       characterName: rosa,
-      characterText: "Ah. I see what you mean. We've arrived.",
+      characterText: "Ah. I /see/ what you mean. We've arrived.",
     ),
   ];
 }

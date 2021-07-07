@@ -255,8 +255,8 @@ class _BaseScreenState extends State<MainMenu> {
     print("Not allowed.");
   }
 
-  _button(context, buttonName, double? fontSize, fontFamily, route, buttonColor,
-      textColor, buttonRadius) {
+  _button(context, buttonName, double? fontSize, fontFamily, String route,
+      buttonColor, textColor, buttonRadius) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
       child: Container(
@@ -280,6 +280,9 @@ class _BaseScreenState extends State<MainMenu> {
                     borderRadius: BorderRadius.circular(buttonRadius ?? 40.0),
                     side: BorderSide(color: Colors.transparent))),
             onPressed: () {
+              if (route == "/1") {
+                GlobalAudio.playAudio.stopAudio();
+              }
               Navigator.of(context).pushNamed(route);
             }),
       ),

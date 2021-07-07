@@ -22,6 +22,7 @@ flutter:
   uses-material-design: true
   assets:
    - assets/images/
+   - assets/images/sprites/
    - assets/images/bgs/
    - assets/audio/
    - assets/audio/speech/
