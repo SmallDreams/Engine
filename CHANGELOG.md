@@ -1,3 +1,8 @@
+## 0.0.4
+- Fixed Audio
+- Added support for Rive Animations
+- Some refactoring and cleanup
+
 ## 0.0.3
 - More stuff
 
