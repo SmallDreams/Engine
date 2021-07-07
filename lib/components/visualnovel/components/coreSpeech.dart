@@ -10,6 +10,8 @@ class Speech {
   final String? cgImg;
   final String? bgImage;
   final nextScene;
+  final hasAnimation;
+  final animationName;
 
   Speech({
     this.characterName,
@@ -21,5 +23,7 @@ class Speech {
     this.cgImg,
     this.bgImage,
     this.nextScene,
+    this.hasAnimation = false,
+    this.animationName = "idle",
   });
 }

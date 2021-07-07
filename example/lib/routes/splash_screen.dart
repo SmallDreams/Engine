@@ -23,6 +23,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SplashLoadingScreen(
+      hasAnimation: true,
+      riveAnimation: "intro",
       bgColor: Colors.black,
       opacity: opacity,
       imgDuration: 250,

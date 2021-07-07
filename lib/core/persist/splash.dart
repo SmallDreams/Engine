@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salem/core/persist/constants/get_routes.dart';
+import 'package:salem/core/persist/rive_splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PersistNavigation {
@@ -17,9 +18,11 @@ class PersistNavigation {
 class SplashScreenScaffold extends StatefulWidget {
   final mainMenuRoute;
   final splashloadingscreen;
+  final hasAnimation;
   SplashScreenScaffold({
     required this.mainMenuRoute,
     required this.splashloadingscreen,
+    this.hasAnimation,
   });
   @override
   _State createState() => _State();
@@ -51,45 +54,63 @@ class SplashLoadingScreen extends StatelessWidget {
 
   /// 'splashImage' defines the image which should be shown on the splash screen.
   final splashImage;
-  SplashLoadingScreen(
-      {this.bgColor, this.opacity, this.imgDuration, this.splashImage});
+
+  final hasAnimation;
+
+  final riveAnimation;
+  SplashLoadingScreen({
+    this.bgColor,
+    this.opacity,
+    this.imgDuration,
+    this.splashImage,
+    this.hasAnimation = false,
+    this.riveAnimation,
+  });
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: bgColor,
-      body: Center(
-        child: Container(
-          child: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                    child: Container(
-                      child: Column(
-                        children: <Widget>[
-                          AnimatedOpacity(
-                            opacity: opacity,
-                            duration: Duration(milliseconds: imgDuration),
-                            child: Center(
-                              child: Image.asset(
-                                splashImage,
-                                fit: BoxFit.cover,
-                                width: MediaQuery.of(context).size.width / 3,
+    if (hasAnimation == true) {
+      return RiveSplashScreen.navigate(
+        name: "assets/images/" + riveAnimation + ".riv",
+        until: () => Future.delayed(Duration(seconds: 2)),
+        startAnimation: 'Landing',
+      );
+    } else {
+      return Scaffold(
+        backgroundColor: bgColor,
+        body: Center(
+          child: Container(
+            child: SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            AnimatedOpacity(
+                              opacity: opacity,
+                              duration: Duration(milliseconds: imgDuration),
+                              child: Center(
+                                child: Image.asset(
+                                  splashImage,
+                                  fit: BoxFit.cover,
+                                  width: MediaQuery.of(context).size.width / 3,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 }

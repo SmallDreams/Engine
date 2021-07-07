@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:salem/components/visualnovel/UI/background_builder.dart';
-import 'package:salem/components/visualnovel/UI/buttons.dart';
+import 'package:salem/components/visualnovel/UserInterface/background_builder.dart';
+import 'package:salem/components/visualnovel/UserInterface/buttons.dart';
+import 'package:salem/components/visualnovel/UserInterface/vn_img_builder.dart';
 import 'package:salem/components/visualnovel/components/textAnimation.dart';
-import 'package:salem/components/visualnovel/ui/vn_img_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_io/io.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class VNConstructor extends StatefulWidget {
@@ -18,6 +17,8 @@ class VNConstructor extends StatefulWidget {
     this.route,
     this.nextRoute,
     this.nextText,
+    this.hasAnimation,
+    this.animationName,
   });
 
   final String? characterName;
@@ -29,6 +30,8 @@ class VNConstructor extends StatefulWidget {
   final characterText;
   final route;
   final nextText;
+  final bool? hasAnimation;
+  final animationName;
 
   @override
   _VNConstructorState createState() => _VNConstructorState();
@@ -91,7 +94,11 @@ class _VNConstructorState extends State<VNConstructor> {
                   widget.characterName == "Narrator") {
                 return ImageBuilderMC(image: widget.mcImage);
               } else {
-                return ImageBuilder(image: widget.sideCharImage);
+                return ImageBuilder(
+                  image: widget.sideCharImage,
+                  hasAnimation: widget.hasAnimation ?? false,
+                  animationName: widget.animationName ?? "idle",
+                );
               }
             } else {
               return SizedBox.shrink();

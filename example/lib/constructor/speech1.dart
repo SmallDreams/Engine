@@ -60,8 +60,12 @@ class TextConstructor1 {
     textNumber = 0;
   }
 
-  String? getBgImage() {
-    return "mininature_003_y_19201440";
+  bool? hasAnimation() {
+    return textBank[textNumber].hasAnimation;
+  }
+
+  String? animationName() {
+    return textBank[textNumber].animationName;
   }
 
   List<Speech> textBank = [
@@ -118,6 +122,9 @@ class TextConstructor1 {
     Speech(
       characterName: rob,
       characterText: "My idea?",
+      sideCharImage: "bear",
+      hasAnimation: true,
+      animationName: "idle",
     ),
     Speech(
       characterName: rosa,
@@ -128,6 +135,9 @@ class TextConstructor1 {
     Speech(
       characterName: rob,
       characterText: "The rowing?",
+      sideCharImage: "bear",
+      hasAnimation: true,
+      animationName: "fail",
     ),
     Speech(
       characterName: rosa,
@@ -136,6 +146,9 @@ class TextConstructor1 {
     Speech(
       characterName: rob,
       characterText: "Then what?",
+      sideCharImage: "bear",
+      hasAnimation: true,
+      animationName: "success",
     ),
     Speech(
       characterName: rosa,

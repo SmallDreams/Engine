@@ -2,7 +2,7 @@ import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/components/global/logicalKeyboard.dart';
 import 'package:salem/components/global/onWillPop.dart';
-import 'package:salem/components/visualnovel/UI/background_builder.dart';
+import 'package:salem/components/visualnovel/UserInterface/background_builder.dart';
 import 'package:salem/components/visualnovel/vn_constructor.dart';
 import 'package:salem/core/audio/gameAudio.dart';
 import 'package:salem/core/audio/globalAudio.dart';
@@ -266,6 +266,8 @@ class _VNState extends State<VNScaffold> {
                       route: widget.route,
                       nextRoute: widget.nextRoute,
                       nextText: widget.textSound,
+                      hasAnimation: widget.textSound.hasAnimation(),
+                      animationName: widget.textSound.animationName(),
                     ),
                   ),
                 ),

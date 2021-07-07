@@ -21,6 +21,10 @@ dependencies:
   dart_vlc: 0.0.7
   audioplayers: ">=0.19.1 <1.0.0"
 
+  # UI
+  rive: ">=0.7.22 <1.0.0"
+  rive_loading: ^0.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

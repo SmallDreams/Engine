@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:rive/rive.dart';
 
 class ImageBuilder extends StatefulWidget {
-  ImageBuilder({Key? key, this.image}) : super(key: key);
-
-  final String? image;
+  final image;
+  final bool? hasAnimation;
+  final animationName;
+  ImageBuilder({
+    Key? key,
+    this.image,
+    this.hasAnimation,
+    this.animationName,
+  }) : super(key: key);
 
   @override
   _ImageBuilderState createState() => _ImageBuilderState();
@@ -17,20 +24,42 @@ class _ImageBuilderState extends State<ImageBuilder> {
   //     return img;
   //   }
   // }
+  late RiveAnimationController _controller;
+  @override
+  void initState() {
+    print(widget.animationName);
+    super.initState();
+    _controller = SimpleAnimation(
+      widget.animationName,
+      autoplay: true,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
         if (widget.image != null && widget.image!.isNotEmpty) {
-          return Align(
-            alignment: Alignment.bottomCenter,
-            child: Image.asset(
-              "assets/images/sprites/" + widget.image! + ".png",
-              fit: BoxFit.cover,
-              height: MediaQuery.of(context).size.height / 1.2,
-            ),
-          );
+          if (widget.hasAnimation == true) {
+            return Align(
+              alignment: Alignment.bottomCenter,
+              child: RiveAnimation.asset(
+                "assets/images/sprites/" + widget.image! + ".riv",
+                fit: BoxFit.contain,
+                controllers: [_controller],
+                //height: MediaQuery.of(context).size.height / 1.2,
+              ),
+            );
+          } else {
+            return Align(
+              alignment: Alignment.bottomCenter,
+              child: Image.asset(
+                "assets/images/sprites/" + widget.image! + ".png",
+                fit: BoxFit.cover,
+                height: MediaQuery.of(context).size.height / 1.2,
+              ),
+            );
+          }
         } else {
           return Container(
             child: Text("Here should be a Sprite!"),
