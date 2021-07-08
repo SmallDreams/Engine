@@ -3,17 +3,27 @@ A cross-platform visual novel game engine, developed in Flutter.
 
 ---
 
-# WIP! DO NOT USE IN PRODUCTION!
+## WIP! DO NOT USE IN PRODUCTION!
 
----
+[![pub package](https://img.shields.io/pub/v/salem.svg)](https://pub.dartlang.org/packages/salem)
 ![CI/CD](https://github.com/SmallDreams/Engine/actions/workflows/ci.yml/badge.svg?branch=develop)
 [![Documentation Status](https://readthedocs.org/projects/salem-engine/badge/?version=latest)](https://salem-engine.readthedocs.io/en/latest/?badge=latest)
 
 ---
 
-# EXAMPLES
+## Supported platforms
+- 🟢 Android
+- 🟢 iOS/iPadOS
+- 🟢 macOS
+- 🟢 Windows
+- 🟢 Linux
+- 🔴 Web
 
-## Dance of Love
+---
+
+## EXAMPLES
+
+### Dance of Love
 <p float="left">
   <img src="https://danceoflove.smalldreams.co/images/danceoflove/index4.png" width="200" /> 
   <img src="https://blog.jonafeucht.de/wp-content/uploads/2021/04/Apple-iPhone-11-Pro-Max-Screenshot-5.png" width="200" />
