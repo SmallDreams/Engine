@@ -12,12 +12,12 @@ A cross-platform visual novel game engine, developed in Flutter.
 ---
 
 ## Supported platforms
-- 🟢 Android
-- 🟢 iOS/iPadOS
-- 🟢 macOS
-- 🟢 Windows
-- 🟢 Linux
-- 🔴 Web
+- ✅ Android
+- ✅ iOS/iPadOS
+- ✅ macOS
+- ✅ Windows
+- ✅ Linux
+- ❌ Web
 
 ---
 
