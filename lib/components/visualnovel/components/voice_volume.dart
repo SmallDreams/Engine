@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salem/core/audio/voice_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class VoiceVolume extends StatefulWidget {
   @override
@@ -87,17 +88,18 @@ class _TextSpeedState extends State<VoiceVolume> {
                   value: vol ?? 1.0,
                   onChanged: (volume) {
                     setState(() {
-                      // if (UniversalPlatform.isWindows ||
-                      //     UniversalPlatform.isLinux) {
-                      //   GameAudioDesktop.playAudio.player?.setVolume(volume);
-                      // } else {
-                      VoiceAudio.playVoice.audioPlayer?.setVolume(volume);
-                      if (vol == 0) {
-                        VoiceAudio.playVoice.pause();
+                      if (UniversalPlatform.isWindows ||
+                          UniversalPlatform.isLinux) {
+                        VoiceAudioDesktop.playVoiceDesktop.player
+                            ?.setVolume(volume);
                       } else {
-                        VoiceAudio.playVoice.resume();
+                        VoiceAudio.playVoice.audioPlayer?.setVolume(volume);
+                        if (vol == 0) {
+                          VoiceAudio.playVoice.pause();
+                        } else {
+                          VoiceAudio.playVoice.resume();
+                        }
                       }
-
                       vol = volume;
                       saveVolumeState(volume);
                     });
