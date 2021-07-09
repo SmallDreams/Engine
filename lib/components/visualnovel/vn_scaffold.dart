@@ -182,8 +182,16 @@ class _VNState extends State<VNScaffold> {
     return widget.speechList[textNumber].mcImage;
   }
 
-  String? getSideCharImage() {
-    return widget.speechList[textNumber].sideCharImage;
+  String? getCenterCharacterImage() {
+    return widget.speechList[textNumber].centerCharacterImage;
+  }
+
+  String? getLeftCharacterImage() {
+    return widget.speechList[textNumber].leftCharacterImage;
+  }
+
+  String? getRightCharacterImage() {
+    return widget.speechList[textNumber].rightCharacterImage;
   }
 
   void reset() {
@@ -309,7 +317,9 @@ class _VNState extends State<VNScaffold> {
                       characterText: getCharacterText(),
                       n: getNumber(),
                       mcImage: getMCImage(),
-                      sideCharImage: getSideCharImage(),
+                      centerCharacterImage: getCenterCharacterImage(),
+                      leftCharacterImage: getLeftCharacterImage(),
+                      rightCharacterImage: getRightCharacterImage(),
                       route: widget.route,
                       nextRoute: widget.nextRoute,
                       hasAnimation: hasAnimation(),

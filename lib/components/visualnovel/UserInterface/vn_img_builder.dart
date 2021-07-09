@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 class ImageBuilder extends StatefulWidget {
-  final image;
+  final centerImage;
   final bool? hasAnimation;
   final animationName;
   ImageBuilder({
     Key? key,
-    this.image,
+    this.centerImage,
     this.hasAnimation,
     this.animationName,
   }) : super(key: key);
@@ -39,12 +39,12 @@ class _ImageBuilderState extends State<ImageBuilder> {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        if (widget.image != null && widget.image!.isNotEmpty) {
+        if (widget.centerImage != null && widget.centerImage!.isNotEmpty) {
           if (widget.hasAnimation == true) {
             return Align(
               alignment: Alignment.bottomCenter,
               child: RiveAnimation.asset(
-                "assets/images/sprites/" + widget.image! + ".riv",
+                "assets/images/sprites/" + widget.centerImage! + ".riv",
                 fit: BoxFit.contain,
                 controllers: [_controller],
                 //height: MediaQuery.of(context).size.height / 1.2,
@@ -54,7 +54,7 @@ class _ImageBuilderState extends State<ImageBuilder> {
             return Align(
               alignment: Alignment.bottomCenter,
               child: Image.asset(
-                "assets/images/sprites/" + widget.image! + ".png",
+                "assets/images/sprites/" + widget.centerImage! + ".png",
                 fit: BoxFit.cover,
                 height: MediaQuery.of(context).size.height / 1.2,
               ),

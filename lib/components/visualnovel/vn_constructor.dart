@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:salem/components/visualnovel/UserInterface/background_builder.dart';
 import 'package:salem/components/visualnovel/UserInterface/buttons.dart';
 import 'package:salem/components/visualnovel/UserInterface/vn_img_builder.dart';
-import 'package:salem/components/visualnovel/components/textAnimation.dart';
+import 'package:salem/components/visualnovel/components/text_animation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -13,7 +13,9 @@ class VNConstructor extends StatefulWidget {
     this.characterText,
     this.n,
     this.mcImage,
-    this.sideCharImage,
+    this.centerCharacterImage,
+    this.leftCharacterImage,
+    this.rightCharacterImage,
     this.route,
     this.nextRoute,
     this.hasAnimation,
@@ -23,7 +25,9 @@ class VNConstructor extends StatefulWidget {
   final String? characterName;
   final bgImage;
   final String? mcImage;
-  final String? sideCharImage;
+  final String? centerCharacterImage;
+  final String? leftCharacterImage;
+  final String? rightCharacterImage;
   final int? n;
   final nextRoute;
   final characterText;
@@ -87,13 +91,16 @@ class _VNConstructorState extends State<VNConstructor> {
         // Character Image here
         Builder(
           builder: (BuildContext context) {
-            if (widget.mcImage != null || widget.sideCharImage != null) {
+            if (widget.mcImage != null ||
+                widget.centerCharacterImage != null ||
+                widget.leftCharacterImage != null ||
+                widget.rightCharacterImage != null) {
               if (widget.characterName == "MC" ||
                   widget.characterName == "Narrator") {
                 return ImageBuilderMC(image: widget.mcImage);
               } else {
                 return ImageBuilder(
-                  image: widget.sideCharImage,
+                  centerImage: widget.centerCharacterImage,
                   hasAnimation: widget.hasAnimation ?? false,
                   animationName: widget.animationName ?? "idle",
                 );
