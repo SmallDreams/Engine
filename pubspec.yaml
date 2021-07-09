@@ -25,6 +25,10 @@ dependencies:
   rive: ">=0.7.22 <1.0.0"
   rive_loading: ">=0.1.0 <1.0.0"
 
+  # Translation
+  # easy_localization: ">=3.0.0 <4.0.0"
+  # easy_localization_loader: ">=1.0.0 <2.0.0"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -13,7 +13,7 @@ class _VNState extends State<VN1> {
 
   @override
   Widget build(BuildContext context) {
-    return VNScaffold(
+    return VNScreen(
       speechList: canBeAnything,
       route: "/1",
       bgm: "storm",

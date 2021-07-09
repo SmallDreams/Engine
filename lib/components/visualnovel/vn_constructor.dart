@@ -11,6 +11,7 @@ class VNConstructor extends StatefulWidget {
     this.bgImage,
     this.characterName,
     this.characterText,
+    this.cT,
     this.n,
     this.mcImage,
     this.centerCharacterImage,
@@ -31,6 +32,7 @@ class VNConstructor extends StatefulWidget {
   final int? n;
   final nextRoute;
   final characterText;
+  final cT;
   final route;
   final bool? hasAnimation;
   final animationName;
@@ -240,27 +242,50 @@ class _VNConstructorState extends State<VNConstructor> {
                                     bottomRight: const Radius.circular(0.0),
                                   )),
                               child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.03,
-                                    vertical: height * 0.025),
-                                child: AnimatedTextKit(
-                                  animatedTexts: [
-                                    TyperAnimatedText(
-                                      widget.characterText,
-                                      textAlign: TextAlign.left,
-                                      textStyle: TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: "Mali",
-                                          fontSize: 21),
-                                      speed:
-                                          Duration(milliseconds: speed ?? 25),
-                                    ),
-                                  ],
-                                  displayFullTextOnTap: true,
-                                  isRepeatingAnimation: false,
-                                  key: ValueKey(widget.n),
-                                ),
-                              ),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.03,
+                                      vertical: height * 0.025),
+                                  child: Builder(
+                                    builder: (context) {
+                                      if (widget.characterText != null) {
+                                        return AnimatedTextKit(
+                                          animatedTexts: [
+                                            TyperAnimatedText(
+                                              widget.characterText,
+                                              textAlign: TextAlign.left,
+                                              textStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontFamily: "Mali",
+                                                  fontSize: 21),
+                                              speed: Duration(
+                                                  milliseconds: speed ?? 25),
+                                            ),
+                                          ],
+                                          displayFullTextOnTap: true,
+                                          isRepeatingAnimation: false,
+                                          key: ValueKey(widget.n),
+                                        );
+                                      } else {
+                                        return AnimatedTextKit(
+                                          animatedTexts: [
+                                            TyperAnimatedText(
+                                              widget.cT,
+                                              textAlign: TextAlign.left,
+                                              textStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontFamily: "Mali",
+                                                  fontSize: 21),
+                                              speed: Duration(
+                                                  milliseconds: speed ?? 25),
+                                            ),
+                                          ],
+                                          displayFullTextOnTap: true,
+                                          isRepeatingAnimation: false,
+                                          key: ValueKey(widget.n),
+                                        );
+                                      }
+                                    },
+                                  )),
                             );
                             //   }
                           }),

@@ -10,7 +10,7 @@ import 'dart:async';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class VNScaffold extends StatefulWidget {
+class VNScreen extends StatefulWidget {
   final bgImage;
   final speechList;
   final route;
@@ -18,7 +18,7 @@ class VNScaffold extends StatefulWidget {
   final Function? callback;
   final int? updatedNumber;
   final bgm;
-  VNScaffold({
+  VNScreen({
     this.bgImage,
     this.speechList,
     this.route,
@@ -31,7 +31,7 @@ class VNScaffold extends StatefulWidget {
   _VNState createState() => _VNState();
 }
 
-class _VNState extends State<VNScaffold> {
+class _VNState extends State<VNScreen> {
   var introFade = true;
   var switchFade = false;
   double? opacity = 0.0;
@@ -155,6 +155,10 @@ class _VNState extends State<VNScaffold> {
 
   String? getCharacterText() {
     return widget.speechList[textNumber].characterText;
+  }
+
+  String? getCT() {
+    return widget.speechList[textNumber].cT;
   }
 
   String? getCharacterName() {
@@ -315,6 +319,7 @@ class _VNState extends State<VNScaffold> {
                       bgImage: widget.bgImage,
                       characterName: getCharacterName(),
                       characterText: getCharacterText(),
+                      cT: getCT(),
                       n: getNumber(),
                       mcImage: getMCImage(),
                       centerCharacterImage: getCenterCharacterImage(),

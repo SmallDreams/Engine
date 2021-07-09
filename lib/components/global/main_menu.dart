@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-class MainMenu extends StatefulWidget {
+class SalemMainMenu extends StatefulWidget {
   final bgImage;
   final mainMenuBGM;
   bool button;
@@ -30,7 +30,7 @@ class MainMenu extends StatefulWidget {
   final textColor;
   double? buttonRadius;
 
-  MainMenu({
+  SalemMainMenu({
     this.topLeft = false,
     this.centerLeft = false,
     this.bottomLeft = false,
@@ -58,8 +58,7 @@ class MainMenu extends StatefulWidget {
   _BaseScreenState createState() => _BaseScreenState();
 }
 
-/// The main widget state.
-class _BaseScreenState extends State<MainMenu> {
+class _BaseScreenState extends State<SalemMainMenu> {
   SharedPreferences? sharedPreferences;
   String? getPersistBGM;
   @override

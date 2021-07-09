@@ -167,7 +167,7 @@ class TextConstructor {
     ),
     Speech(
       characterName: rob,
-      characterText: "No. He *DOESN'T* row.",
+      cT: "No. He *DOESN'T* row.",
       voice: "speech/nohedoesentrow",
     ),
     Speech(

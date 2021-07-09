@@ -12,6 +12,7 @@ class Speech {
   /// const t = "Tom";
   /// characterName: t,
   final String? characterName;
+  final String? cN;
 
   /// 'characterText' defines the written text which the character says.
   ///
@@ -19,6 +20,7 @@ class Speech {
   /// characterText: "This is a example.",
   // todo: add docs for translation
   final String? characterText;
+  final String? cT;
 
   /// 'voice' defines the file name of the spoken audio, which you defined in the assets.
   ///
@@ -47,7 +49,9 @@ class Speech {
 
   Speech({
     this.characterName,
+    this.cN,
     this.characterText,
+    this.cT,
     this.voice,
     this.mcImage,
     this.centerCharacterImage,
