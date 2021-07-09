@@ -88,7 +88,7 @@ class _BaseScreenState extends State<MainMenu> {
   void didChangeDependencies() {
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
       super.didChangeDependencies();
-      GameAudioDesktop.playAudio.player = Player(
+      GameAudioDesktop.playBGMDesktop.player = Player(
         id: 0,
       );
     }

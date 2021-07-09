@@ -1,6 +1,6 @@
 import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
-import 'package:salem/components/global/logicalKeyboard.dart';
+import 'package:salem/components/global/logical_keyboard.dart';
 import 'package:salem/components/global/onWillPop.dart';
 import 'package:salem/components/visualnovel/UserInterface/background_builder.dart';
 import 'package:salem/components/visualnovel/vn_constructor.dart';
@@ -47,7 +47,7 @@ class _VNState extends State<VNScaffold> {
   void didChangeDependencies() {
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
       super.didChangeDependencies();
-      GameAudioDesktop.playAudio.player = Player(
+      GameAudioDesktop.playBGMDesktop.player = Player(
         id: 0,
       );
     }

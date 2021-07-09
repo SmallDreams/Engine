@@ -18,18 +18,18 @@ class PlayAudio with WidgetsBindingObserver {
   Future<void> getBGM(String musicName) async {
     isPlaying = true;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      if (GameAudioDesktop.playAudio.isPlaying == false) {
-        GameAudioDesktop.playAudio.play(musicName);
+      if (GameAudioDesktop.playBGMDesktop.isPlaying == false) {
+        GameAudioDesktop.playBGMDesktop.play(musicName);
       } else {
-        GameAudioDesktop.playAudio.stop();
-        GameAudioDesktop.playAudio.play(musicName);
+        GameAudioDesktop.playBGMDesktop.stop();
+        GameAudioDesktop.playBGMDesktop.play(musicName);
       }
     } else {
-      if (GameAudio.bgm.isPlaying == false) {
-        GameAudio.bgm.play(musicName);
+      if (GameAudio.playBGM.isPlaying == false) {
+        GameAudio.playBGM.play(musicName);
       } else {
-        GameAudio.bgm.stop();
-        GameAudio.bgm.play(musicName);
+        GameAudio.playBGM.stop();
+        GameAudio.playBGM.play(musicName);
       }
     }
   }
@@ -56,9 +56,9 @@ class PlayAudio with WidgetsBindingObserver {
   Future<void> stopAudio() async {
     //isPlaying = false;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      GameAudioDesktop.playAudio.stop();
+      GameAudioDesktop.playBGMDesktop.stop();
     } else {
-      GameAudio.bgm.stop();
+      GameAudio.playBGM.stop();
     }
   }
 

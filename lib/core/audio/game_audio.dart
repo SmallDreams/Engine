@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
-import 'package:salem/core/audio/bgm.dart';
+import 'package:salem/core/audio/background_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GameAudio {
@@ -48,11 +48,11 @@ class GameAudio {
   /// Access a shared instance of the [Bgm] class.
   ///
   /// This will use the same global audio cache from [FlameAudio].
-  static late final Bgm bgm = Bgm(audioCache: audioCache);
+  static late final Bgm playBGM = Bgm(audioCache: audioCache);
 }
 
 class GameAudioDesktop {
-  static late final PlayAudio playAudio = PlayAudio();
+  static late final PlayAudio playBGMDesktop = PlayAudio();
 }
 
 class PlayAudio extends WidgetsBindingObserver {

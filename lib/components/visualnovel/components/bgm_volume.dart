@@ -90,13 +90,14 @@ class _TextSpeedState extends State<BGMVolume> {
                     setState(() {
                       if (UniversalPlatform.isWindows ||
                           UniversalPlatform.isLinux) {
-                        GameAudioDesktop.playAudio.player?.setVolume(volume);
+                        GameAudioDesktop.playBGMDesktop.player
+                            ?.setVolume(volume);
                       } else {
-                        GameAudio.bgm.audioPlayer!.setVolume(volume);
+                        GameAudio.playBGM.audioPlayer!.setVolume(volume);
                         if (vol == 0) {
-                          GameAudio.bgm.pause();
+                          GameAudio.playBGM.pause();
                         } else {
-                          GameAudio.bgm.resume();
+                          GameAudio.playBGM.resume();
                         }
                       }
                       vol = volume;

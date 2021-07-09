@@ -1,9 +1,9 @@
 import 'package:example/main.dart';
-import 'package:example/pages/VN1.dart';
+import 'package:example/pages/vn1.dart';
 import 'package:example/routes/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/core/persist/route_observer.dart';
-import 'package:salem/components/global/undefinedView.dart';
+import 'package:salem/components/global/undefined_view.dart';
 
 // ignore: use_key_in_widget_constructors
 class Routes extends StatelessWidget {
