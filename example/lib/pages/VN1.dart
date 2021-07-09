@@ -1,4 +1,4 @@
-import 'package:example/constructor/speech1.dart';
+import 'package:example/constructor/speech_list.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/components/visualnovel/vn_scaffold.dart';
 
@@ -9,12 +9,12 @@ class VN1 extends StatefulWidget {
 }
 
 class _VNState extends State<VN1> {
-  final textSound = TextConstructor1();
+  final canBeAnything = TextConstructor().firstSpeechList;
 
   @override
   Widget build(BuildContext context) {
     return VNScaffold(
-      textSound: textSound,
+      speechList: canBeAnything,
       route: "/1",
       bgm: "storm",
       nextRoute: "/mainmenu",

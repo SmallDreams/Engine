@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:salem/core/audio/gameAudio.dart';
+import 'package:salem/core/audio/game_audio.dart';
 import 'package:salem/core/audio/voice_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -59,6 +59,15 @@ class PlayAudio with WidgetsBindingObserver {
       GameAudioDesktop.playAudio.stop();
     } else {
       GameAudio.bgm.stop();
+    }
+  }
+
+  Future<void> stopVoiceAudio() async {
+    //isPlaying = false;
+    if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
+      VoiceAudioDesktop.playVoiceDesktop.stop();
+    } else {
+      VoiceAudio.playVoice.stop();
     }
   }
 

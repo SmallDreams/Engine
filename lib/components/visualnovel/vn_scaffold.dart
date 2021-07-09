@@ -4,15 +4,15 @@ import 'package:salem/components/global/logicalKeyboard.dart';
 import 'package:salem/components/global/onWillPop.dart';
 import 'package:salem/components/visualnovel/UserInterface/background_builder.dart';
 import 'package:salem/components/visualnovel/vn_constructor.dart';
-import 'package:salem/core/audio/gameAudio.dart';
-import 'package:salem/core/audio/globalAudio.dart';
+import 'package:salem/core/audio/game_audio.dart';
+import 'package:salem/core/audio/global_audio.dart';
 import 'dart:async';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VNScaffold extends StatefulWidget {
   final bgImage;
-  final textSound;
+  final speechList;
   final route;
   final nextRoute;
   final Function? callback;
@@ -20,7 +20,7 @@ class VNScaffold extends StatefulWidget {
   final bgm;
   VNScaffold({
     this.bgImage,
-    this.textSound,
+    this.speechList,
     this.route,
     this.nextRoute,
     this.callback,
@@ -99,7 +99,7 @@ class _VNState extends State<VNScaffold> {
 
   void _incrementCounter() {
     setState(() {
-      if (widget.textSound.isFinished() == true) {
+      if (isFinished() == true) {
         Future.delayed(Duration(seconds: 2), () {
           Navigator.of(context).pushNamed(widget.nextRoute);
         });
@@ -111,9 +111,9 @@ class _VNState extends State<VNScaffold> {
           });
         });
       } else {
-        widget.textSound.nextQuestion();
+        nextSpeech();
         if (widget.callback != null) {
-          widget.callback!(widget.textSound.getNumber());
+          widget.callback!(getNumber());
         }
       }
     });
@@ -121,7 +121,7 @@ class _VNState extends State<VNScaffold> {
 
   void _decrementCounter() {
     setState(() {
-      if (widget.textSound.isFinished() == true) {
+      if (isFinished() == true) {
         Future.delayed(Duration(seconds: 2), () {
           Navigator.of(context).pushNamed(widget.nextRoute);
         });
@@ -133,24 +133,74 @@ class _VNState extends State<VNScaffold> {
           });
         });
       } else {
-        widget.textSound.nextQuestion();
+        nextSpeech();
         if (widget.callback != null) {
-          widget.callback!(widget.textSound.getNumber());
+          widget.callback!(getNumber());
         }
       }
     });
   }
 
   var isPressed;
-
+  int textNumber = 0;
   void _playAudio() {
-    GlobalAudio.playAudio.getVoice(widget.textSound.getVoice().toString());
+    GlobalAudio.playAudio.getVoice(getVoice().toString());
+  }
+
+  void nextSpeech() {
+    if (textNumber < widget.speechList.length - 1) {
+      textNumber++;
+    }
+  }
+
+  String? getCharacterText() {
+    return widget.speechList[textNumber].characterText;
+  }
+
+  String? getCharacterName() {
+    return widget.speechList[textNumber].characterName;
+  }
+
+  String? getVoice() {
+    return widget.speechList[textNumber].voice;
+  }
+
+  bool? isFinished() {
+    if (textNumber >= widget.speechList.length - 1) {
+      GlobalAudio.playAudio.stopVoiceAudio();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getNumber() {
+    return textNumber;
+  }
+
+  String? getMCImage() {
+    return widget.speechList[textNumber].mcImage;
+  }
+
+  String? getSideCharImage() {
+    return widget.speechList[textNumber].sideCharImage;
+  }
+
+  void reset() {
+    textNumber = 0;
+  }
+
+  bool? hasAnimation() {
+    return widget.speechList[textNumber].hasAnimation;
+  }
+
+  String? animationName() {
+    return widget.speechList[textNumber].animationName;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.textSound.getVoice() != null &&
-        widget.textSound.getVoice().isNotEmpty) {
+    if (getVoice() != null && getVoice()!.isNotEmpty) {
       _playAudio();
     }
 
@@ -221,10 +271,10 @@ class _VNState extends State<VNScaffold> {
                       isPressed = true;
                       do {
                         setState(() {
-                          if (widget.textSound.isFinished() != true) {
-                            widget.textSound.nextQuestion();
+                          if (isFinished() != true) {
+                            nextSpeech();
                             if (widget.callback != null) {
-                              widget.callback!(widget.textSound.getNumber());
+                              widget.callback!(getNumber());
                             }
                           }
                         });
@@ -234,7 +284,7 @@ class _VNState extends State<VNScaffold> {
                     onLongPressEnd: (_) => setState(() => isPressed = false),
                     onTap: () {
                       setState(() {
-                        if (widget.textSound.isFinished() == true) {
+                        if (isFinished() == true) {
                           Future.delayed(Duration(seconds: 2), () {
                             Navigator.of(context).pushNamed(widget.nextRoute);
                           });
@@ -246,25 +296,24 @@ class _VNState extends State<VNScaffold> {
                             });
                           });
                         } else {
-                          widget.textSound.nextQuestion();
+                          nextSpeech();
                           if (widget.callback != null) {
-                            widget.callback!(widget.textSound.getNumber());
+                            widget.callback!(getNumber());
                           }
                         }
                       });
                     },
                     child: VNConstructor(
                       bgImage: widget.bgImage,
-                      characterName: widget.textSound.getCharacterName(),
-                      characterText: widget.textSound.getCharacterText(),
-                      n: widget.textSound.getNumber(),
-                      mcImage: widget.textSound.getMCImage(),
-                      sideCharImage: widget.textSound.getSideCharImage(),
+                      characterName: getCharacterName(),
+                      characterText: getCharacterText(),
+                      n: getNumber(),
+                      mcImage: getMCImage(),
+                      sideCharImage: getSideCharImage(),
                       route: widget.route,
                       nextRoute: widget.nextRoute,
-                      nextText: widget.textSound,
-                      hasAnimation: widget.textSound.hasAnimation(),
-                      animationName: widget.textSound.animationName(),
+                      hasAnimation: hasAnimation(),
+                      animationName: animationName(),
                     ),
                   ),
                 ),

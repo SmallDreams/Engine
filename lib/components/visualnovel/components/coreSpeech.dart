@@ -24,6 +24,6 @@ class Speech {
     this.bgImage,
     this.nextScene,
     this.hasAnimation = false,
-    this.animationName = "idle",
+    this.animationName,
   });
 }

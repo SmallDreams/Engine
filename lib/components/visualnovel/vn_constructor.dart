@@ -16,7 +16,6 @@ class VNConstructor extends StatefulWidget {
     this.sideCharImage,
     this.route,
     this.nextRoute,
-    this.nextText,
     this.hasAnimation,
     this.animationName,
   });
@@ -29,7 +28,6 @@ class VNConstructor extends StatefulWidget {
   final nextRoute;
   final characterText;
   final route;
-  final nextText;
   final bool? hasAnimation;
   final animationName;
 
