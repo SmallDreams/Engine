@@ -37,8 +37,13 @@ class Speech {
   final String? cgImg;
   final String? bgImage;
   final nextScene;
-  final hasAnimation;
+  final bool? hasAnimation;
   final animationName;
+  final linearJump;
+  final bool? hasChoice;
+  final firstChoice;
+  final secondChoice;
+  final thirdChoice;
 
   Speech({
     this.characterName,
@@ -53,5 +58,10 @@ class Speech {
     this.nextScene,
     this.hasAnimation = false,
     this.animationName,
+    this.linearJump,
+    this.hasChoice = false,
+    this.firstChoice,
+    this.secondChoice,
+    this.thirdChoice,
   });
 }

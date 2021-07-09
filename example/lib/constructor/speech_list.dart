@@ -175,6 +175,12 @@ class TextConstructor {
       characterText: "Ah. I /see/ what you mean. We've arrived.",
       voice: "speech/ahisee",
     ),
+    Speech(
+      hasChoice: true,
+      firstChoice: "/choice1",
+      secondChoice: "/choice2",
+      thirdChoice: "/mainmenu",
+    ),
   ];
   List<Speech> secondSpeechList = [
     Speech(
