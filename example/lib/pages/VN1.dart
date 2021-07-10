@@ -1,6 +1,6 @@
 import 'package:example/constructor/speech_list.dart';
 import 'package:flutter/material.dart';
-import 'package:salem/components/visualnovel/vn_scaffold.dart';
+import 'package:salem/salem.dart';
 
 // ignore: use_key_in_widget_constructors
 class VN1 extends StatefulWidget {

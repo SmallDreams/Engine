@@ -1,6 +1,6 @@
 // ignore: use_key_in_widget_constructors
 import 'package:flutter/material.dart';
-import 'package:salem/components/global/main_menu.dart';
+import 'package:salem/salem.dart';
 
 class MainMenu extends StatefulWidget {
   @override
