@@ -58,7 +58,7 @@ class _VNState extends State<VNScreen> {
   void initState() {
     super.initState();
     if (GlobalAudio.playAudio.isPlaying == false) {
-      if (widget.bgm.isNotEmpty) {
+      if (widget.bgm != null) {
         GlobalAudio.playAudio.getBGM(widget.bgm.toString());
       } else if (notHome != null) {
         GlobalAudio.playAudio.getBGM(notHome!);
@@ -166,7 +166,9 @@ class _VNState extends State<VNScreen> {
   }
 
   String? getVoice() {
-    return widget.speechList[textNumber].voice;
+    if (widget.speechList != null) {
+      return widget.speechList[textNumber].voice;
+    }
   }
 
   bool? isFinished() {
@@ -220,120 +222,138 @@ class _VNState extends State<VNScreen> {
       onWillPop: () => getOnWillPop(),
       child: Builder(
         builder: (context) {
-          if (this.mounted && introFade == true) {
-            Future.delayed(Duration(milliseconds: 1200), () {
-              setState(() {
-                introFade = false;
-              });
-            });
-            Future.delayed(Duration(milliseconds: 300), () {
-              setState(() {
-                opacityIntro = 0.0;
-              });
-            });
+          if (widget.speechList == null || widget.speechList.isEmpty) {
             return Scaffold(
-              backgroundColor: Colors.black,
-              body: Stack(
-                children: [
-                  BackgroundBuilder(
-                    image: widget.bgImage,
-                  ),
-                  AnimatedOpacity(
-                    opacity: opacityIntro!,
-                    duration: Duration(milliseconds: 300),
-                    child: Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
+              backgroundColor: Colors.red,
+              body: Center(
+                child: Text(
+                  "Error!\nPlease ensure that you added the correct 'speechList'.",
+                  textAlign: TextAlign.center,
+                ),
               ),
             );
           } else {
-            if (switchFade != false) {
-              return Scaffold(
-                backgroundColor: Colors.black,
-                body: Stack(
-                  children: [
-                    BackgroundBuilder(
-                      image: widget.bgImage,
+            return Builder(
+              builder: (context) {
+                if (this.mounted && introFade == true) {
+                  Future.delayed(Duration(milliseconds: 1200), () {
+                    setState(() {
+                      introFade = false;
+                    });
+                  });
+                  Future.delayed(Duration(milliseconds: 300), () {
+                    setState(() {
+                      opacityIntro = 0.0;
+                    });
+                  });
+                  return Scaffold(
+                    backgroundColor: Colors.black,
+                    body: Stack(
+                      children: [
+                        BackgroundBuilder(
+                          image: widget.bgImage,
+                        ),
+                        AnimatedOpacity(
+                          opacity: opacityIntro!,
+                          duration: Duration(milliseconds: 300),
+                          child: Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
-                    AnimatedOpacity(
-                      opacity: opacity!,
-                      duration: Duration(milliseconds: 300),
-                      child: Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        color: Colors.black,
+                  );
+                } else {
+                  if (switchFade != false) {
+                    return Scaffold(
+                      backgroundColor: Colors.black,
+                      body: Stack(
+                        children: [
+                          BackgroundBuilder(
+                            image: widget.bgImage,
+                          ),
+                          AnimatedOpacity(
+                            opacity: opacity!,
+                            duration: Duration(milliseconds: 300),
+                            child: Container(
+                              width: double.infinity,
+                              height: double.infinity,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-              );
-            } else {
-              return CounterShortcuts(
-                onIncrementDetected: _incrementCounter,
-                onDecrementDetected: _decrementCounter,
-                child: Scaffold(
-                  resizeToAvoidBottomInset: false,
-                  backgroundColor: Colors.black,
-                  body: GestureDetector(
-                    onLongPressStart: (_) async {
-                      isPressed = true;
-                      do {
-                        setState(() {
-                          if (isFinished() != true) {
-                            nextSpeech();
-                            if (widget.callback != null) {
-                              widget.callback!(getNumber());
-                            }
-                          }
-                        });
-                        await Future.delayed(Duration(milliseconds: 100));
-                      } while (isPressed);
-                    },
-                    onLongPressEnd: (_) => setState(() => isPressed = false),
-                    onTap: () {
-                      setState(() {
-                        if (isFinished() == true) {
-                          Future.delayed(Duration(seconds: 2), () {
-                            Navigator.of(context).pushNamed(widget.nextRoute);
-                          });
-
-                          switchFade = true;
-                          Future.delayed(Duration(milliseconds: 300), () {
+                    );
+                  } else {
+                    return CounterShortcuts(
+                      onIncrementDetected: _incrementCounter,
+                      onDecrementDetected: _decrementCounter,
+                      child: Scaffold(
+                        resizeToAvoidBottomInset: false,
+                        backgroundColor: Colors.black,
+                        body: GestureDetector(
+                          onLongPressStart: (_) async {
+                            isPressed = true;
+                            do {
+                              setState(() {
+                                if (isFinished() != true) {
+                                  nextSpeech();
+                                  if (widget.callback != null) {
+                                    widget.callback!(getNumber());
+                                  }
+                                }
+                              });
+                              await Future.delayed(Duration(milliseconds: 100));
+                            } while (isPressed);
+                          },
+                          onLongPressEnd: (_) =>
+                              setState(() => isPressed = false),
+                          onTap: () {
                             setState(() {
-                              opacity = 1.0;
+                              if (isFinished() == true) {
+                                Future.delayed(Duration(seconds: 2), () {
+                                  Navigator.of(context)
+                                      .pushNamed(widget.nextRoute);
+                                });
+
+                                switchFade = true;
+                                Future.delayed(Duration(milliseconds: 300), () {
+                                  setState(() {
+                                    opacity = 1.0;
+                                  });
+                                });
+                              } else {
+                                nextSpeech();
+                                if (widget.callback != null) {
+                                  widget.callback!(getNumber());
+                                }
+                              }
                             });
-                          });
-                        } else {
-                          nextSpeech();
-                          if (widget.callback != null) {
-                            widget.callback!(getNumber());
-                          }
-                        }
-                      });
-                    },
-                    child: VNConstructor(
-                      bgImage: widget.bgImage,
-                      characterName: getCharacterName(),
-                      characterText: getCharacterText(),
-                      cT: getCT(),
-                      n: getNumber(),
-                      mcImage: getMCImage(),
-                      centerCharacterImage: getCenterCharacterImage(),
-                      leftCharacterImage: getLeftCharacterImage(),
-                      rightCharacterImage: getRightCharacterImage(),
-                      route: widget.route,
-                      nextRoute: widget.nextRoute,
-                      hasAnimation: hasAnimation(),
-                      animationName: animationName(),
-                    ),
-                  ),
-                ),
-              );
-            }
+                          },
+                          child: VNConstructor(
+                            bgImage: widget.bgImage,
+                            characterName: getCharacterName(),
+                            characterText: getCharacterText(),
+                            cT: getCT(),
+                            n: getNumber(),
+                            mcImage: getMCImage(),
+                            centerCharacterImage: getCenterCharacterImage(),
+                            leftCharacterImage: getLeftCharacterImage(),
+                            rightCharacterImage: getRightCharacterImage(),
+                            route: widget.route,
+                            nextRoute: widget.nextRoute,
+                            hasAnimation: hasAnimation(),
+                            animationName: animationName(),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                }
+              },
+            );
           }
         },
       ),
