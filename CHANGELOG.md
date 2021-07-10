@@ -1,7 +1,12 @@
+## 0.0.5
+- Made changes for a better user experience.
+- Added the ability to `jump` to the next scene.
+- 
+
 ## 0.0.4
-- Fixed Audio
-- Added support for Rive Animations
-- Some refactoring and cleanup
+- Fixed Audio.
+- Added support for Rive Animations.
+- Some refactoring and cleanup.
 
 ## 0.0.3
 - More stuff

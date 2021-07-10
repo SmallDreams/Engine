@@ -1,8 +1,8 @@
 import 'package:example/routes/core/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:dart_vlc/dart_vlc.dart';
+import 'package:salem/salem.dart';
 
 void main() {
-  DartVLC.initialize();
+  Salem.initialize();
   runApp(Routes());
 }

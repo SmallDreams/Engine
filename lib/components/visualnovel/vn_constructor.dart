@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:salem/components/visualnovel/UserInterface/background_builder.dart';
-import 'package:salem/components/visualnovel/UserInterface/buttons.dart';
-import 'package:salem/components/visualnovel/UserInterface/vn_img_builder.dart';
+import 'package:salem/components/visualnovel/gui/name_box.dart';
+import 'package:salem/components/visualnovel/user_interface/background_builder.dart';
+import 'package:salem/components/visualnovel/user_interface/buttons.dart';
+import 'package:salem/components/visualnovel/user_interface/vn_img_builder.dart';
 import 'package:salem/components/visualnovel/components/text_animation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -45,16 +46,9 @@ class _VNConstructorState extends State<VNConstructor> {
   bool? isNoti = true;
   int? speed = 25;
 
-  String? _name;
-
   @override
   void initState() {
     super.initState();
-    SharedPreferences.getInstance().then((prefValue) => {
-          setState(() {
-            _name = prefValue.getString('name') ?? 'MC';
-          })
-        });
   }
 
   Future<Null> getSharedPrefs() async {
@@ -125,58 +119,8 @@ class _VNConstructorState extends State<VNConstructor> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Builder(
-                      builder: (context) {
-                        if (widget.characterName == "MC" ||
-                            widget.characterName == "Narrator") {
-                          return Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.7),
-                                  border: Border.all(
-                                    color: Colors.transparent,
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20))),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 2, horizontal: 15),
-                                child: Text(
-                                  "$_name",
-                                  style: TextStyle(
-                                    fontFamily: "IndieFlower",
-                                    fontSize: 32,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        } else {
-                          return Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.7),
-                                border: Border.all(
-                                  color: Colors.transparent,
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 2, horizontal: 15),
-                              child: Text(
-                                widget.characterName!,
-                                style: TextStyle(
-                                  fontFamily: "IndieFlower",
-                                  fontSize: 32,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                      },
+                    NameBox(
+                      characterName: widget.characterName,
                     ),
                     Stack(
                       alignment: Alignment.centerLeft,
@@ -251,7 +195,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                         return AnimatedTextKit(
                                           animatedTexts: [
                                             TyperAnimatedText(
-                                              widget.characterText,
+                                              widget.characterText ?? "···",
                                               textAlign: TextAlign.left,
                                               textStyle: TextStyle(
                                                   color: Colors.black,
@@ -269,7 +213,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                         return AnimatedTextKit(
                                           animatedTexts: [
                                             TyperAnimatedText(
-                                              widget.cT,
+                                              widget.cT ?? "···",
                                               textAlign: TextAlign.left,
                                               textStyle: TextStyle(
                                                   color: Colors.black,
@@ -311,54 +255,8 @@ class _VNConstructorState extends State<VNConstructor> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Builder(
-                        builder: (context) {
-                          if (widget.characterName == "MC") {
-                            return Opacity(
-                              opacity: 0.8,
-                              child: Card(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 2, horizontal: 15),
-                                  child: Text(
-                                    "$_name",
-                                    style: TextStyle(
-                                      fontFamily: "IndieFlower",
-                                      fontSize: 19,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          } else {
-                            return Opacity(
-                              opacity: 0.8,
-                              child: Card(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 2, horizontal: 15),
-                                  child: Text(
-                                    widget.characterName!,
-                                    style: TextStyle(
-                                      fontFamily: "IndieFlower",
-                                      fontSize: 19,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }
-                        },
+                      NameBox(
+                        characterName: widget.characterName,
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(
@@ -408,7 +306,8 @@ class _VNConstructorState extends State<VNConstructor> {
                                                 child: AnimatedTextKit(
                                                   animatedTexts: [
                                                     TyperAnimatedText(
-                                                      widget.characterText,
+                                                      widget.characterText ??
+                                                          "···",
                                                       textAlign: TextAlign.left,
                                                       textStyle: TextStyle(
                                                           color: Colors.black,
@@ -456,7 +355,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                           child: AnimatedTextKit(
                                             animatedTexts: [
                                               TyperAnimatedText(
-                                                widget.characterText,
+                                                widget.characterText ?? "···",
                                                 textAlign: TextAlign.left,
                                                 textStyle: TextStyle(
                                                     color: Colors.black,

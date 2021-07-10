@@ -9,7 +9,7 @@ class VN1 extends StatefulWidget {
 }
 
 class _VNState extends State<VN1> {
-  final canBeAnything = TextConstructor().firstSpeechList;
+  final canBeAnything = firstSpeechList;
 
   @override
   Widget build(BuildContext context) {
