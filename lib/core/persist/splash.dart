@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:salem/core/persist/constants/get_routes.dart';
-import 'package:salem/core/persist/rive_splash.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+part of salem_engine;
 
 class PersistNavigation {
   static Future<void> initSplash(context, primary) async {
