@@ -28,6 +28,8 @@ part 'core/audio/global_audio.dart';
 part 'core/persist/route_observer.dart';
 part 'core/persist/splash.dart';
 part 'core/persist/rive_splash.dart';
+part 'components/chat/chat_scaffold.dart';
+part 'components/chat/models/core_speech.dart';
 
 abstract class Salem {
   static Future<void> initialize() async {
@@ -35,7 +37,7 @@ abstract class Salem {
     if (UniversalPlatform.isWindows ||
         UniversalPlatform.isLinux ||
         UniversalPlatform.isMacOS) {
-      await DesktopWindow.setMinWindowSize(Size(1000, 500));
+      await DesktopWindow.setMinWindowSize(Size(1000, 600));
       await DesktopWindow.setMaxWindowSize(Size.infinite);
     }
     if (UniversalPlatform.isWeb) {

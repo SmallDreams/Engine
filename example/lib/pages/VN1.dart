@@ -3,12 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:salem/salem.dart';
 
 // ignore: use_key_in_widget_constructors
-class VN1 extends StatefulWidget {
-  @override
-  _VNState createState() => _VNState();
-}
-
-class _VNState extends State<VN1> {
+class VN1 extends StatelessWidget {
   final canBeAnything = firstSpeechList;
 
   @override
@@ -17,7 +12,7 @@ class _VNState extends State<VN1> {
       speechList: canBeAnything,
       route: "/1",
       bgm: "storm",
-      nextRoute: "/mainmenu",
+      nextRoute: "/chatscreen",
       bgImage: "assets/images/bgs/lighthouse.jpg",
     );
   }

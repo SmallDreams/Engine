@@ -1,3 +1,4 @@
+import 'package:example/pages/chat_screen.dart';
 import 'package:example/pages/vn1.dart';
 import 'package:example/routes/core/splash_screen.dart';
 import 'package:example/routes/main_menu.dart';
@@ -31,9 +32,9 @@ class Routes extends StatelessWidget {
         '/1': (_) {
           return VN1();
         },
-        // '/2': (_) {
-        //   return VN2();
-        // },
+        '/chatscreen': (_) {
+          return Chat();
+        },
       },
     );
   }

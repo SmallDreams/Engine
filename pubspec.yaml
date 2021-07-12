@@ -17,6 +17,7 @@ dependencies:
   universal_platform: ">=1.0.0+1 <2.0.0"
   universal_io: ">=2.0.4 <3.0.0"
   shared_preferences: ">=2.0.6 <3.0.0"
+  dash_chat: ^1.1.16
   
   # audio
   dart_vlc: ">=0.0.9 <1.0.0"
