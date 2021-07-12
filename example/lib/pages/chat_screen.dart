@@ -6,7 +6,7 @@ class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final m = messages;
-    return SalemChat(
+    return SalemChatScreen(
       messages: m,
       route: "/chatscreen",
       nextRoute: "/mainmenu",

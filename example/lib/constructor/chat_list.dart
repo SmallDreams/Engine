@@ -1,8 +1,14 @@
 import 'package:salem/salem.dart';
 
 List<ChatMessage> messages = [
-  ChatMessage(messageContent: "Hi Connery", messageType: "receiver"),
-  ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
+  ChatMessage(
+    messageContent: "Hi Connery",
+    messageType: "receiver",
+  ),
+  ChatMessage(
+    messageContent: "How have you been?",
+    messageType: "receiver",
+  ),
   ChatMessage(
     messageContent: "Hey Henry, I am doing fine dude. wbu?",
     messageType: "sender",

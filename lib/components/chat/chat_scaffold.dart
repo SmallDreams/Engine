@@ -1,10 +1,10 @@
 part of salem_engine;
 
-class SalemChat extends StatefulWidget {
+class SalemChatScreen extends StatefulWidget {
   final messages;
   final route;
   final nextRoute;
-  SalemChat({
+  SalemChatScreen({
     required this.route,
     required this.messages,
     required this.nextRoute,
@@ -13,18 +13,20 @@ class SalemChat extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<SalemChat> {
+class _ChatScreenState extends State<SalemChatScreen> {
   int value = 1;
-
+  int start = 5;
   _addItem() {
     setState(() {
-      print(isFinished());
       if (isFinished() == true) {
         Navigator.of(context).pushNamed(widget.nextRoute);
       } else {
         if (value < widget.messages.length) {
           value = value + 1;
-          print(value);
+        }
+        if (start == 0) {
+          start = 5;
+          print(start);
         }
       }
     });
@@ -38,6 +40,13 @@ class _ChatScreenState extends State<SalemChat> {
     }
   }
 
+  callback(updateTimer) {
+    setState(() {
+      start = updateTimer;
+    });
+  }
+
+  final _key = UniqueKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,12 +110,17 @@ class _ChatScreenState extends State<SalemChat> {
       body: Stack(
         children: <Widget>[
           ListView.builder(
-              itemCount: this.value,
-              shrinkWrap: true,
-              padding: EdgeInsets.only(top: 10, bottom: 10),
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) =>
-                  this._buildRow(index, widget.messages)),
+            itemCount: this.value,
+            shrinkWrap: true,
+            padding: EdgeInsets.only(top: 10, bottom: 10),
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) => BuildRow(
+              callback: this.callback,
+              messages: widget.messages,
+              index: index,
+              key: _key,
+            ),
+          ),
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
@@ -147,13 +161,13 @@ class _ChatScreenState extends State<SalemChat> {
                     width: 15,
                   ),
                   FloatingActionButton(
-                    onPressed: _addItem,
+                    onPressed: start == 0 ? _addItem : null,
                     child: Icon(
                       Icons.send,
                       color: Colors.white,
                       size: 18,
                     ),
-                    backgroundColor: Colors.blue,
+                    backgroundColor: start == 0 ? Colors.blue : Colors.black,
                     elevation: 0,
                   ),
                 ],
@@ -164,25 +178,81 @@ class _ChatScreenState extends State<SalemChat> {
       ),
     );
   }
+}
 
-  _buildRow(int index, messages) {
+class BuildRow extends StatefulWidget {
+  final messages;
+  final index;
+  final Function callback;
+
+  @override
+  _BuildRowState createState() => _BuildRowState();
+
+  BuildRow({
+    this.messages,
+    this.index,
+    required this.callback,
+    key,
+  }) : super(key: key);
+}
+
+class _BuildRowState extends State<BuildRow> {
+  late Timer _timer;
+  int _start = 4;
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  startTimer() {
+    Future.delayed(const Duration(seconds: 4), () {
+      setState(() {
+        _start = 0;
+        widget.callback(_start);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
       child: Align(
-        alignment: (messages[index].messageType == "receiver"
+        alignment: (widget.messages[widget.index].messageType == "receiver"
             ? Alignment.topLeft
             : Alignment.topRight),
         child: Container(
           decoration: BoxDecoration(
-            color: (messages[index].messageType == "receiver"
+            color: (widget.messages[widget.index].messageType == "receiver"
                 ? Colors.grey.shade200
                 : Colors.blue[200]),
           ),
           padding: EdgeInsets.all(16),
-          child: Text(
-            messages[index].messageContent,
-            style: TextStyle(fontSize: 15),
-          ),
+          child: widget.messages[widget.index].isVisible == false &&
+                  widget.messages[widget.index].messageType == "receiver"
+              ? Builder(
+                  builder: (context) {
+                    if (_start > 0) {
+                      return TextCardBubble();
+                    } else {
+                      return Text(
+                        widget.messages[widget.index].messageContent,
+                        style: TextStyle(fontSize: 15),
+                      );
+                    }
+                  },
+                )
+              : Text(
+                  widget.messages[widget.index].messageContent,
+                  style: TextStyle(fontSize: 15),
+                ),
         ),
       ),
     );

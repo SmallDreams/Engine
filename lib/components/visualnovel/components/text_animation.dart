@@ -48,6 +48,16 @@ abstract class AnimatedText {
   /// [textStyle], but you can specify the [data].
   Widget textWidget(String data) => Builder(
         builder: (context) {
+          // if (data.contains(" ·  ·  · ")) {
+          //   return SimpleRichText(
+          //     data,
+          //     logIt: false,
+          //     style: textStyle,
+          //     textAlign: textAlign,
+          //     textOverflow: TextOverflow.ellipsis,
+          //     maxLines: 1,
+          //   );
+          // } else {
           if (data.isNotEmpty) {
             return SimpleRichText(
               "\n› " + data + "\n",
@@ -56,8 +66,6 @@ abstract class AnimatedText {
               textAlign: textAlign,
               textOverflow: TextOverflow.ellipsis,
               maxLines: 5,
-              // pre: TextSpan(text: 'PRE', style: TextStyle(color: Colors.purple)),
-              // post: TextSpan(text: 'POST', style: TextStyle(color: Colors.purple)),
             );
           } else {
             return SimpleRichText(
@@ -288,7 +296,9 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
 
     _currentAnimatedText.initAnimation(_controller);
 
-    _controller.forward();
+    _controller
+      ..addStatusListener(_animationEndCallback)
+      ..forward();
   }
 
   void _setPause() {
@@ -299,6 +309,14 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
 
     // Handle onNextBeforePause callback
     widget.onNextBeforePause?.call(_index, isLast);
+  }
+
+  void _animationEndCallback(AnimationStatus state) {
+    if (state == AnimationStatus.completed) {
+      _setPause();
+      assert(null == _timer || !_timer!.isActive);
+      _timer = Timer(widget.pause, _nextAnimation);
+    }
   }
 
   void _onTap() {
