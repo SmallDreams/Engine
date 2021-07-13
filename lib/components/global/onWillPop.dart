@@ -1,0 +1,3 @@
+getOnWillPop() {
+  print("Not allowed.");
+}
