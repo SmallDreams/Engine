@@ -1,4 +1,9 @@
-part of salem_engine;
+import 'package:dart_vlc/dart_vlc.dart';
+import 'package:flutter/material.dart';
+import 'package:salem/core/audio/game_audio.dart';
+import 'package:salem/core/audio/global_audio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class SalemMainMenu extends StatefulWidget {
   final bgImage;

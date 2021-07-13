@@ -1,4 +1,7 @@
-part of salem_engine;
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:salem/components/chat/models/chat_bubble.dart';
 
 class SalemChatScreen extends StatefulWidget {
   final messages;
@@ -16,10 +19,12 @@ class SalemChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<SalemChatScreen> {
   int value = 1;
   int start = 5;
+  var isContinue = false;
   _addItem() {
     setState(() {
       if (isFinished() == true) {
-        Navigator.of(context).pushNamed(widget.nextRoute);
+        isContinue = true;
+        start = 10;
       } else {
         if (value < widget.messages.length) {
           value = value + 1;
@@ -149,14 +154,31 @@ class _ChatScreenState extends State<SalemChatScreen> {
                   SizedBox(
                     width: 15,
                   ),
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                          hintText: "Write message...",
-                          hintStyle: TextStyle(color: Colors.black54),
-                          border: InputBorder.none),
-                    ),
-                  ),
+                  isContinue == false
+                      ? Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                                hintText: "Write message...",
+                                hintStyle: TextStyle(color: Colors.black54),
+                                border: InputBorder.none),
+                          ),
+                        )
+                      : Expanded(
+                          child: InkWell(
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(widget.nextRoute),
+                            child: Container(
+                              color: Colors.black,
+                              height: 30,
+                              child: Center(
+                                child: Text(
+                                  "Continue",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                   SizedBox(
                     width: 15,
                   ),

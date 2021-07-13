@@ -1,3 +1,3 @@
-import 'package:salem/components/visualnovel/gui/name_box.dart';
+import 'package:salem/salem.dart';
 
 final namebox = NameBox(font: "");

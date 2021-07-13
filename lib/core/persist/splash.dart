@@ -1,4 +1,7 @@
-part of salem_engine;
+import 'package:flutter/material.dart';
+import 'package:salem/core/persist/constants/get_routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'rive_splash.dart';
 
 class PersistNavigation {
   static Future<void> initSplash(context, primary) async {
@@ -12,11 +15,11 @@ class PersistNavigation {
   }
 }
 
-class SplashScreenScaffold extends StatefulWidget {
+class SalemSplashScreen extends StatefulWidget {
   final mainMenuRoute;
   final splashloadingscreen;
   final hasAnimation;
-  SplashScreenScaffold({
+  SalemSplashScreen({
     required this.mainMenuRoute,
     required this.splashloadingscreen,
     this.hasAnimation,
@@ -25,7 +28,7 @@ class SplashScreenScaffold extends StatefulWidget {
   _State createState() => _State();
 }
 
-class _State extends State<SplashScreenScaffold> {
+class _State extends State<SalemSplashScreen> {
   @override
   void initState() {
     super.initState();

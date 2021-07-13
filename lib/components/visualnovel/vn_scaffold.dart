@@ -1,4 +1,13 @@
-part of salem_engine;
+import 'package:dart_vlc/dart_vlc.dart';
+import 'package:flutter/material.dart';
+import 'package:salem/components/global/logical_keyboard.dart';
+import 'package:salem/components/global/onWillPop.dart';
+import 'package:salem/components/visualnovel/user_interface/background_builder.dart';
+import 'package:salem/core/audio/game_audio.dart';
+import 'package:salem/core/audio/global_audio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'vn_constructor.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class VNScreen extends StatefulWidget {
   final bgImage;

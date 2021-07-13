@@ -1,6 +1,6 @@
 name: salem
 description: SALEM - A cross-platform visual novel game engine, developed in Flutter.
-version: 0.0.5
+version: 0.0.6-pre.1
 homepage: https://github.com/SmallDreams/Engine
 repository: https://github.com/SmallDreams/Engine
 
@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
   
   # core
-  dartdoc: any
   universal_platform: ">=1.0.0+1 <2.0.0"
   universal_io: ">=2.0.4 <3.0.0"
   shared_preferences: ">=2.0.6 <3.0.0"

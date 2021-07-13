@@ -1,4 +1,5 @@
-part of salem_engine;
+import 'package:flutter/material.dart';
+import 'package:rive_loading/rive_loading.dart';
 
 class RiveSplashScreen extends StatelessWidget {
   final String name;

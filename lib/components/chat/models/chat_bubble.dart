@@ -1,6 +1,6 @@
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
-import 'package:salem/components/visualnovel/components/text_animation.dart';
+import 'package:salem/components/visualnovel/models/text_animation.dart';
 
 class TextCardBubble extends StatefulWidget {
   @override

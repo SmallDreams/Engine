@@ -1,12 +1,13 @@
-part of salem_engine;
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-//
-// Saves previous route as also last route
-// Example:
-// If pushNamed "/page1" -> saves page1 into cache
-// If pushNamed -> materialroute, still saves last pushNamed
-//
-
+/// The primary route observer.
+///
+/// Saves previous route into cache.
+/// Example:
+/// If pushNamed "/page1" -> saves page1 into cache.
+/// If pushNamed -> materialroute, does not save the materialroute.
+///
 class PrimaryRouteObserver extends RouteObserver {
   void saveLastRoute(Route? previousRoute, Route lastRoute) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();

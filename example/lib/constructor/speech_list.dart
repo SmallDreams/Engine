@@ -1,4 +1,4 @@
-import 'package:salem/components/visualnovel/components/core_speech.dart';
+import 'package:salem/salem.dart';
 
 /* 
   API REFERENCE: https://pub.dev/documentation/simple_rich_text/latest/simple_rich_text/SimpleRichText-class.html
@@ -15,165 +15,165 @@ import 'package:salem/components/visualnovel/components/core_speech.dart';
 const rosa = "Rosa";
 const rob = "Robert";
 
-List<Speech> firstSpeechList = [
-  Speech(),
-  Speech(
+List<SalemSpeech> firstSpeechList = [
+  SalemSpeech(),
+  SalemSpeech(
     characterName: "CAPTION",
     characterText: "1912, Coast of Portsmouth England",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "Are you going to just sit there?",
-    voice: "speech/areyougoingtojustsitthere",
+    voice: "Speech/areyougoingtojustsitthere",
     centerCharacterImage: "rob",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "As compared to what? Standing?",
-    voice: "speech/ascomparedtowhat",
+    voice: "Speech/ascomparedtowhat",
     centerCharacterImage: "rosa",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "Not standing. Rowing.",
-    voice: "speech/notstanding",
+    voice: "Speech/notstanding",
     centerCharacterImage: "rob",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "Rowing. I hadn't planned on it.",
-    voice: "speech/rowingIhadnt",
+    voice: "Speech/rowingIhadnt",
     centerCharacterImage: "rosa",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "So you expect me to shoulder the burden?",
     centerCharacterImage: "rob",
-    voice: "speech/soyouexpect",
+    voice: "Speech/soyouexpect",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "No. But I do expect you to do all the rowing.",
     centerCharacterImage: "rosa",
-    voice: "speech/nobut",
+    voice: "Speech/nobut",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "And why is that?",
     centerCharacterImage: "rob",
-    voice: "speech/andwhyisthat",
+    voice: "Speech/andwhyisthat",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "Coming here was /your/ idea.",
     centerCharacterImage: "rosa",
-    voice: "speech/comingherewasyouridea",
+    voice: "Speech/comingherewasyouridea",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "My idea?",
     centerCharacterImage: "bear",
     hasAnimation: true,
     animationName: "idle",
-    voice: "speech/myidea",
+    voice: "Speech/myidea",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "I made it very clear that I don't believe in the exercise.",
     centerCharacterImage: "rosa",
-    voice: "speech/imadeitveryclear",
+    voice: "Speech/imadeitveryclear",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "The rowing?",
     centerCharacterImage: "bear",
     hasAnimation: true,
-    voice: "speech/therowing",
+    voice: "Speech/therowing",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "No. I imagine that's wonderful exercise.",
-    voice: "speech/noiimagethats",
+    voice: "Speech/noiimagethats",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "Then what?",
     centerCharacterImage: "bear",
     hasAnimation: true,
     animationName: "success",
-    voice: "speech/thenwhat",
+    voice: "Speech/thenwhat",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "The entire thought experiment.",
-    voice: "speech/theentirethought",
+    voice: "Speech/theentirethought",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "One goes into an experiment knowing one /could/ fail.",
-    voice: "speech/onegoesinto",
+    voice: "Speech/onegoesinto",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText:
         "But one does not undertake an experiment knowing one *HAS* failed.",
-    voice: "speech/butonedoesnot",
+    voice: "Speech/butonedoesnot",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "Can we get back to the rowing?",
-    voice: "speech/canwegetback",
+    voice: "Speech/canwegetback",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "I suggest you do, or we're never going to get there.",
-    voice: "speech/isuggestyoudo",
+    voice: "Speech/isuggestyoudo",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "No, I mean I'd greatly appreciate it if you would assist.",
-    voice: "speech/noimeanidgreatly",
+    voice: "Speech/noimeanidgreatly",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText:
         "Perhaps you should ask him. I imagine he has a greater interest in getting there than I do.",
-    voice: "speech/perhapsyoushouldaskhim",
+    voice: "Speech/perhapsyoushouldaskhim",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "I suppose he does...but there's no point in asking.",
-    voice: "speech/isupposehedoes",
+    voice: "Speech/isupposehedoes",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "Why not?",
-    voice: "speech/whynot",
+    voice: "Speech/whynot",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "Because he /doesn't/ row.",
-    voice: "speech/becausehedosentrow",
+    voice: "Speech/becausehedosentrow",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "He doesn't *ROW*?",
-    voice: "speech/hedoesentrow",
+    voice: "Speech/hedoesentrow",
     leftCharacterImage: "rob",
     centerCharacterImage: "rob",
     rightCharacterImage: "rosa",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     cT: "No. He *DOESN'T* row.",
-    voice: "speech/nohedoesentrow",
+    voice: "Speech/nohedoesentrow",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "Ah. I /see/ what you mean. We've arrived.",
-    voice: "speech/ahisee",
+    voice: "Speech/ahisee",
   ),
-  Speech(
+  SalemSpeech(
     hasChoice: true,
     firstChoice: "/choice1",
     secondChoice: "/choice2",
@@ -181,159 +181,159 @@ List<Speech> firstSpeechList = [
   ),
 ];
 
-List<Speech> secondSpeechList = [
-  Speech(
+List<SalemSpeech> secondSpeechList = [
+  SalemSpeech(
     characterName: "CAPTION",
     characterText: "1912, Coast of Portsmouth England",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "Are you going to just sit there?",
-    voice: "speech/areyougoingtojustsitthere",
+    voice: "Speech/areyougoingtojustsitthere",
     centerCharacterImage: "rob",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "As compared to what? Standing?",
-    voice: "speech/ascomparedtowhat",
+    voice: "Speech/ascomparedtowhat",
     centerCharacterImage: "rosa",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "Not standing. Rowing.",
-    voice: "speech/notstanding",
+    voice: "Speech/notstanding",
     centerCharacterImage: "rob",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "Rowing. I hadn't planned on it.",
-    voice: "speech/rowingIhadnt",
+    voice: "Speech/rowingIhadnt",
     centerCharacterImage: "rosa",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "So you expect me to shoulder the burden?",
     centerCharacterImage: "rob",
-    voice: "speech/soyouexpect",
+    voice: "Speech/soyouexpect",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "No. But I do expect you to do all the rowing.",
     centerCharacterImage: "rosa",
-    voice: "speech/nobut",
+    voice: "Speech/nobut",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "And why is that?",
     centerCharacterImage: "rob",
-    voice: "speech/andwhyisthat",
+    voice: "Speech/andwhyisthat",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "Coming here was /your/ idea.",
     centerCharacterImage: "rosa",
-    voice: "speech/comingherewasyouridea",
+    voice: "Speech/comingherewasyouridea",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "My idea?",
     centerCharacterImage: "bear",
     hasAnimation: true,
     animationName: "idle",
-    voice: "speech/myidea",
+    voice: "Speech/myidea",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "I made it very clear that I don't believe in the exercise.",
     centerCharacterImage: "rosa",
-    voice: "speech/imadeitveryclear",
+    voice: "Speech/imadeitveryclear",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "The rowing?",
     centerCharacterImage: "bear",
     hasAnimation: true,
     animationName: "fail",
-    voice: "speech/therowing",
+    voice: "Speech/therowing",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "No. I imagine that's wonderful exercise.",
-    voice: "speech/noiimagethats",
+    voice: "Speech/noiimagethats",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "Then what?",
     centerCharacterImage: "bear",
     hasAnimation: true,
     animationName: "success",
-    voice: "speech/thenwhat",
+    voice: "Speech/thenwhat",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "The entire thought experiment.",
-    voice: "speech/theentirethought",
+    voice: "Speech/theentirethought",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "One goes into an experiment knowing one /could/ fail.",
-    voice: "speech/onegoesinto",
+    voice: "Speech/onegoesinto",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText:
         "But one does not undertake an experiment knowing one *HAS* failed.",
-    voice: "speech/butonedoesnot",
+    voice: "Speech/butonedoesnot",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "Can we get back to the rowing?",
-    voice: "speech/canwegetback",
+    voice: "Speech/canwegetback",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "I suggest you do, or we're never going to get there.",
-    voice: "speech/isuggestyoudo",
+    voice: "Speech/isuggestyoudo",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "No, I mean I'd greatly appreciate it if you would assist.",
-    voice: "speech/noimeanidgreatly",
+    voice: "Speech/noimeanidgreatly",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText:
         "Perhaps you should ask him. I imagine he has a greater interest in getting there than I do.",
-    voice: "speech/perhapsyoushouldaskhim",
+    voice: "Speech/perhapsyoushouldaskhim",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "I suppose he does...but there's no point in asking.",
-    voice: "speech/isupposehedoes",
+    voice: "Speech/isupposehedoes",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "Why not?",
-    voice: "speech/whynot",
+    voice: "Speech/whynot",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "Because he /doesn't/ row.",
-    voice: "speech/becausehedosentrow",
+    voice: "Speech/becausehedosentrow",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "He doesn't *ROW*?",
-    voice: "speech/hedoesentrow",
+    voice: "Speech/hedoesentrow",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rob,
     characterText: "No. He *DOESN'T* row.",
-    voice: "speech/nohedoesentrow",
+    voice: "Speech/nohedoesentrow",
   ),
-  Speech(
+  SalemSpeech(
     characterName: rosa,
     characterText: "Ah. I /see/ what you mean. We've arrived.",
-    voice: "speech/ahisee",
+    voice: "Speech/ahisee",
   ),
 ];

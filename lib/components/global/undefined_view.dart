@@ -1,4 +1,4 @@
-part of salem_engine;
+import 'package:flutter/material.dart';
 
 class UndefinedView extends StatelessWidget {
   final error;

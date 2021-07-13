@@ -1,6 +1,16 @@
 // Copyright (c) 2021 The SmallDreams Authors.
 
-class Speech {
+/// The core constructor for all visual novel speech.
+///
+/// Formating
+/// Format Character       Format Effect          Example
+/// asterisk (*)      =    bold             =     "this is *bold*"
+/// slash (/)         =    italics          =     "this is /italicized/"
+/// underscore (_)    =    underline        =     "this is _underlined_"
+/// Coloring
+/// {color:INSERTCOLOR} =  "this makes the name {color:blue}bob blue"
+/// Color Map: https://pub.dev/documentation/simple_rich_text/latest/simple_rich_text/colorMap-constant.html
+class SalemSpeech {
   /// 'characterName' defines the name for all characters
   ///
   /// Example:
@@ -47,7 +57,7 @@ class Speech {
   final secondChoice;
   final thirdChoice;
 
-  Speech({
+  SalemSpeech({
     this.characterName,
     this.cN,
     this.characterText,

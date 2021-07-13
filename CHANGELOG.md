@@ -1,7 +1,10 @@
+## 0.0.6-pre 1
+- test
+
 ## 0.0.5
 - Made changes for a better user experience.
 - Added the ability to `jump` to the next scene.
-- 
+- Added core chat implementation.
 
 ## 0.0.4
 - Fixed Audio.
