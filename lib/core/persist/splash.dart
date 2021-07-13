@@ -1,26 +1,7 @@
-import 'package:dart_vlc/dart_vlc.dart';
-import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/core/persist/constants/get_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_platform/universal_platform.dart';
 import 'rive_splash.dart';
-
-abstract class Salem {
-  static Future<void> initialize() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    if (UniversalPlatform.isWindows ||
-        UniversalPlatform.isLinux ||
-        UniversalPlatform.isMacOS) {
-      await DesktopWindow.setMinWindowSize(Size(1000, 600));
-      await DesktopWindow.setMaxWindowSize(Size.infinite);
-    } else {}
-    if (UniversalPlatform.isWeb) {
-    } else {
-      DartVLC.initialize();
-    }
-  }
-}
 
 class PersistNavigation {
   static Future<void> initSplash(context, primary) async {

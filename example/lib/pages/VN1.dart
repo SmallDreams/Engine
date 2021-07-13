@@ -1,4 +1,4 @@
-import 'package:example/constructor/speech_list.dart';
+import 'package:salem_example/constructor/speech_list.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/salem.dart';
 

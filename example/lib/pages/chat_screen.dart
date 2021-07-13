@@ -1,4 +1,4 @@
-import 'package:example/constructor/chat_list.dart';
+import 'package:salem_example/constructor/chat_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:salem/salem.dart';
 

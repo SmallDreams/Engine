@@ -1,7 +1,7 @@
-import 'package:example/pages/chat_screen.dart';
-import 'package:example/pages/vn1.dart';
-import 'package:example/routes/core/splash_screen.dart';
-import 'package:example/routes/main_menu.dart';
+import 'package:salem_example/pages/chat_screen.dart';
+import 'package:salem_example/pages/vn1.dart';
+import 'package:salem_example/routes/core/splash_screen.dart';
+import 'package:salem_example/routes/main_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/salem.dart';
 
