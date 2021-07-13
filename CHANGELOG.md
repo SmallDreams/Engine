@@ -1,5 +1,6 @@
-## 0.0.6-pre.7
-- test
+## 0.0.6
+- Fixed platform support
+- Some more fixes and changes
 
 ## 0.0.5
 - Made changes for a better user experience.
