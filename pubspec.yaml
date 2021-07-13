@@ -49,3 +49,5 @@ flutter:
         pluginClass: SalemPlugin
       windows:
         pluginClass: SalemPlugin
+      linux:
+        pluginClass: SalemPlugin
