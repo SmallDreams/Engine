@@ -56,7 +56,7 @@ class _ImageBuilderState extends State<ImageBuilder> {
               child: Image.asset(
                 "assets/images/sprites/" + widget.centerImage! + ".png",
                 fit: BoxFit.cover,
-                height: MediaQuery.of(context).size.height * 1.4,
+                height: MediaQuery.of(context).size.height * 1.5,
               ),
             );
           }
@@ -166,7 +166,7 @@ class _ImageBuilderMultipleState extends State<ImageBuilderMultiple> {
                 child: Image.asset(
                   "assets/images/sprites/" + widget.sideCharImage! + ".png",
                   fit: BoxFit.cover,
-                  height: MediaQuery.of(context).size.height / 1.2,
+                  height: MediaQuery.of(context).size.height * 1.5,
                 ),
               );
             } else {
