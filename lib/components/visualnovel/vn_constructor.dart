@@ -199,10 +199,6 @@ class _VNConstructorState extends State<VNConstructor> {
               return Stack(
                 fit: StackFit.expand,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, bottom: 15),
-                    child: Buttons(route: widget.route),
-                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -211,9 +207,6 @@ class _VNConstructorState extends State<VNConstructor> {
                         characterName: widget.characterName,
                       ),
                       Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal:
-                                MediaQuery.of(context).size.width / 4.4),
                         child: Column(
                           children: [
                             Stack(alignment: Alignment.centerLeft, children: <
@@ -223,7 +216,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                     const EdgeInsets.symmetric(vertical: 10),
                                 // constraints:
                                 //     BoxConstraints(minWidth: 100, minHeight: 100),
-                                width: MediaQuery.of(context).size.width / 2,
+                                width: MediaQuery.of(context).size.width / 1.2,
                                 child: Builder(
                                   builder: (context) {
                                     if (widget.characterName == "MC" ||
@@ -243,29 +236,24 @@ class _VNConstructorState extends State<VNConstructor> {
                                           children: [
                                             Opacity(
                                               opacity: 1,
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: width * 0.02,
-                                                    vertical: height * 0.025),
-                                                child: AnimatedTextKit(
-                                                  animatedTexts: [
-                                                    TyperAnimatedText(
-                                                      widget.characterText ??
-                                                          "···",
-                                                      textAlign: TextAlign.left,
-                                                      textStyle: TextStyle(
-                                                          color: Colors.black,
-                                                          fontFamily: "Mali",
-                                                          fontSize: 18),
-                                                      speed: Duration(
-                                                          milliseconds:
-                                                              speed ?? 25),
-                                                    ),
-                                                  ],
-                                                  displayFullTextOnTap: true,
-                                                  isRepeatingAnimation: false,
-                                                  key: ValueKey(widget.n),
-                                                ),
+                                              child: AnimatedTextKit(
+                                                animatedTexts: [
+                                                  TyperAnimatedText(
+                                                    widget.characterText ??
+                                                        "···",
+                                                    textAlign: TextAlign.left,
+                                                    textStyle: TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily: "Mali",
+                                                        fontSize: 18),
+                                                    speed: Duration(
+                                                        milliseconds:
+                                                            speed ?? 25),
+                                                  ),
+                                                ],
+                                                displayFullTextOnTap: true,
+                                                isRepeatingAnimation: false,
+                                                key: ValueKey(widget.n),
                                               ),
                                             ),
                                           ],
@@ -283,66 +271,33 @@ class _VNConstructorState extends State<VNConstructor> {
                                             borderRadius:
                                                 const BorderRadius.all(
                                                     Radius.circular(20))),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: width * 0.02,
-                                              vertical: height * 0.025),
-                                          child: AnimatedTextKit(
-                                            animatedTexts: [
-                                              TyperAnimatedText(
-                                                widget.characterText ?? "···",
-                                                textAlign: TextAlign.left,
-                                                textStyle: TextStyle(
-                                                    color: Colors.black,
-                                                    fontFamily: "Mali",
-                                                    fontSize: 18),
-                                                speed: Duration(
-                                                    milliseconds: speed ?? 25),
-                                              ),
-                                            ],
-                                            displayFullTextOnTap: true,
-                                            isRepeatingAnimation: false,
-                                            key: ValueKey(widget.n),
-                                          ),
+                                        child: AnimatedTextKit(
+                                          animatedTexts: [
+                                            TyperAnimatedText(
+                                              widget.characterText ?? "···",
+                                              textAlign: TextAlign.left,
+                                              textStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontFamily: "Mali",
+                                                  fontSize: 18),
+                                              speed: Duration(
+                                                  milliseconds: speed ?? 25),
+                                            ),
+                                          ],
+                                          displayFullTextOnTap: true,
+                                          isRepeatingAnimation: false,
+                                          key: ValueKey(widget.n),
                                         ),
                                       );
                                     }
                                   },
                                 ),
-
-                                // FittedBox(
-                                //   fit: BoxFit.fitHeight,
-                                //   child: Stack(
-                                //     children: <Widget>[
-                                //       Container(
-                                //         color: Colors.transparent,
-                                //         padding: EdgeInsets.symmetric(
-                                //             vertical: 15, horizontal: 70),
-                                //         child: AnimatedTextKit(
-                                //           animatedTexts: [
-                                //             TyperAnimatedText(
-                                //               widget.q!,
-                                //               textAlign: TextAlign.left,
-                                //               textStyle: TextStyle(
-                                //                   color: Colors.black,
-                                //                   fontFamily: "Aleo",
-                                //                   fontSize: 18),
-                                //               speed: Duration(milliseconds: isFinished ? 0 : speed!),),
-                                //             ),
-                                //           ],
-                                //           displayFullTextOnTap: true,
-                                //           isRepeatingAnimation: false,
-                                //           key: ValueKey(widget.n),
-                                //         ),
-                                //       ),
-                                //     ],
-                                //   ),
-                                // ),
                               ),
                             ]),
                           ],
                         ),
                       ),
+                      Buttons(route: widget.route),
                     ],
                   )
                 ],

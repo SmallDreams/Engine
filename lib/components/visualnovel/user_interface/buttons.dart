@@ -27,19 +27,17 @@ class Buttons extends StatelessWidget {
           ),
         );
       } else {
-        return SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.start,
+        return Column(children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               skipClip(context, nextRoute),
-              const SizedBox(
-                width: 7,
-              ),
               SettingsClip(route: route),
             ],
           ),
-        );
+          SizedBox(height: 21),
+        ]);
       }
     });
   }
@@ -75,14 +73,19 @@ class SettingsClip extends StatelessWidget {
                               borderRadius: BorderRadius.circular(50),
                               color: Colors.white,
                             ),
-                            padding: EdgeInsets.all(5),
-                            child: Text(
-                              "Settings 〣",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: "BottleParty",
-                                  fontSize: 18,
-                                  letterSpacing: .2),
+                            padding: const EdgeInsets.all(5),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Settings",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: "BottleParty",
+                                      fontSize: 18,
+                                      letterSpacing: .2),
+                                ),
+                                const Icon(Icons.settings, size: 18),
+                              ],
                             ),
                           );
                         },
