@@ -51,6 +51,29 @@ class _ImageBuilderState extends State<ImageBuilder> {
               ),
             );
           } else {
+            return ListView(
+              key: UniqueKey(),
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Image.asset(
+                      "assets/images/sprites/" + widget.centerImage! + ".png",
+                      fit: BoxFit.cover,
+                      height: MediaQuery.of(context).size.height * 1.5,
+                    )
+                  ],
+                )
+              ],
+            );
+          }
+          /* else {
             return Align(
               alignment: Alignment.bottomCenter,
               child: Image.asset(
@@ -59,7 +82,7 @@ class _ImageBuilderState extends State<ImageBuilder> {
                 height: MediaQuery.of(context).size.height * 1.5,
               ),
             );
-          }
+          }*/
         } else {
           return Container(
             child: Text("Here should be a Sprite!"),
