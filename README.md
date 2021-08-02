@@ -1,5 +1,5 @@
 # <b>SALEM ENGINE</b>
-A cross-platform visual novel game engine, developed in Flutter.
+A lightweight cross-platform visual novel game engine, developed in Flutter.
 
 ---
 

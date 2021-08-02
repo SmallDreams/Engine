@@ -11,7 +11,7 @@ class Routes extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Example',
+      title: 'Salem Example',
       //initialRoute: '/',
       navigatorObservers: <NavigatorObserver>[
         PrimaryRouteObserver(),

@@ -126,65 +126,17 @@ class _VNConstructorState extends State<VNConstructor> {
                       alignment: Alignment.centerLeft,
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          // constraints:
-                          //     BoxConstraints(minWidth: 100, minHeight: 100),
+                          padding: const EdgeInsets.symmetric(vertical: 10),
                           width: MediaQuery.of(context).size.width / 2.05,
                           child: Builder(builder: (context) {
-                            // bool textbox = File("assets/images/gui/textbox.png")
-                            //     .existsSync();
-                            // if (textbox == true) {
-                            //   return Container(
-                            //     decoration: BoxDecoration(
-                            //         image: DecorationImage(
-                            //           image: AssetImage(
-                            //               'assets/images/gui/textbox.png'),
-                            //           fit: BoxFit.fill,
-                            //         ),
-                            //         color: Colors.white.withOpacity(0),
-                            //         border: Border.all(
-                            //           color: Colors.black.withOpacity(0),
-                            //         ),
-                            //         borderRadius: new BorderRadius.only(
-                            //           topLeft: const Radius.circular(0.0),
-                            //           topRight: const Radius.circular(0.0),
-                            //           bottomRight: const Radius.circular(0.0),
-                            //         )),
-                            //     child: Padding(
-                            //       padding: EdgeInsets.symmetric(
-                            //           horizontal: width * 0.03,
-                            //           vertical: height * 0.025),
-                            //       child: AnimatedTextKit(
-                            //         animatedTexts: [
-                            //           TyperAnimatedText(
-                            //             widget.characterText,
-                            //             textAlign: TextAlign.left,
-                            //             textStyle: TextStyle(
-                            //                 color: Colors.black,
-                            //                 fontFamily: "Mali",
-                            //                 fontSize: 21),
-                            //             speed:
-                            //                 Duration(milliseconds: speed ?? 25),
-                            //           ),
-                            //         ],
-                            //         displayFullTextOnTap: true,
-                            //         isRepeatingAnimation: false,
-                            //         key: ValueKey(widget.n),
-                            //       ),
-                            //     ),
-                            //   );
-                            // } else {
                             return Container(
                               decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(0.8),
                                   border: Border.all(
                                     color: Colors.black.withOpacity(0),
                                   ),
-                                  borderRadius: new BorderRadius.only(
-                                    topLeft: const Radius.circular(0.0),
-                                    topRight: const Radius.circular(0.0),
-                                    bottomRight: const Radius.circular(0.0),
-                                  )),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20))),
                               child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: width * 0.03,
@@ -248,7 +200,7 @@ class _VNConstructorState extends State<VNConstructor> {
                 fit: StackFit.expand,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(left: 10, bottom: 15),
+                    padding: const EdgeInsets.only(left: 10, bottom: 15),
                     child: Buttons(route: widget.route),
                   ),
                   Column(
@@ -267,7 +219,8 @@ class _VNConstructorState extends State<VNConstructor> {
                             Stack(alignment: Alignment.centerLeft, children: <
                                 Widget>[
                               Container(
-                                padding: EdgeInsets.symmetric(vertical: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
                                 // constraints:
                                 //     BoxConstraints(minWidth: 100, minHeight: 100),
                                 width: MediaQuery.of(context).size.width / 2,
@@ -277,31 +230,22 @@ class _VNConstructorState extends State<VNConstructor> {
                                         widget.characterName == "Narrator") {
                                       return Container(
                                         decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/images/gui/textbox_scroll_03.png'),
-                                              fit: BoxFit.fill,
-                                            ),
-                                            color: Colors.white.withOpacity(0),
+                                            color:
+                                                Colors.white.withOpacity(0.8),
                                             border: Border.all(
                                               color:
-                                                  Colors.white.withOpacity(0),
+                                                  Colors.black.withOpacity(0),
                                             ),
-                                            borderRadius: new BorderRadius.only(
-                                              topLeft:
-                                                  const Radius.circular(0.0),
-                                              topRight:
-                                                  const Radius.circular(0.0),
-                                              bottomLeft:
-                                                  const Radius.circular(0.0),
-                                            )),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(20))),
                                         child: Stack(
                                           children: [
                                             Opacity(
                                               opacity: 1,
                                               child: Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                    horizontal: width * 0.03,
+                                                    horizontal: width * 0.02,
                                                     vertical: height * 0.025),
                                                 child: AnimatedTextKit(
                                                   animatedTexts: [
@@ -330,27 +274,18 @@ class _VNConstructorState extends State<VNConstructor> {
                                     } else {
                                       return Container(
                                         decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/images/gui/textbox_scroll_03.png'),
-                                              fit: BoxFit.fill,
-                                            ),
-                                            color: Colors.white.withOpacity(0),
+                                            color:
+                                                Colors.white.withOpacity(0.8),
                                             border: Border.all(
                                               color:
                                                   Colors.black.withOpacity(0),
                                             ),
-                                            borderRadius: new BorderRadius.only(
-                                              topLeft:
-                                                  const Radius.circular(0.0),
-                                              topRight:
-                                                  const Radius.circular(0.0),
-                                              bottomRight:
-                                                  const Radius.circular(0.0),
-                                            )),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(20))),
                                         child: Padding(
                                           padding: EdgeInsets.symmetric(
-                                              horizontal: width * 0.03,
+                                              horizontal: width * 0.02,
                                               vertical: height * 0.025),
                                           child: AnimatedTextKit(
                                             animatedTexts: [

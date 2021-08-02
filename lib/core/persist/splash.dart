@@ -16,9 +16,9 @@ class PersistNavigation {
 }
 
 class SalemSplashScreen extends StatefulWidget {
-  final mainMenuRoute;
-  final splashloadingscreen;
-  final hasAnimation;
+  final String mainMenuRoute;
+  final dynamic splashloadingscreen;
+  final String? hasAnimation;
   SalemSplashScreen({
     required this.mainMenuRoute,
     required this.splashloadingscreen,

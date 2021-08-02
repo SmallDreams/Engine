@@ -28,7 +28,7 @@ class Buttons extends StatelessWidget {
         );
       } else {
         return SafeArea(
-          child: Row(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
