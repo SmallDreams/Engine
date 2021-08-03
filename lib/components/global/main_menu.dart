@@ -1,5 +1,6 @@
 import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
+import 'package:salem/components/visualnovel/user_interface/buttons.dart';
 import 'package:salem/core/audio/game_audio.dart';
 import 'package:salem/core/audio/global_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -284,8 +285,12 @@ class _BaseScreenState extends State<SalemMainMenu> {
                 GlobalAudio.playAudio.stopAudio();
                 GlobalAudio.playAudio.isPlaying = false;
               }
-
-              Navigator.of(context).pushNamed(route);
+              if (route == "/settings") {
+                Navigator.of(context)
+                    .pushNamed(route, arguments: ScreenArguments("/home"));
+              } else {
+                Navigator.of(context).pushNamed(route);
+              }
             }),
       ),
     );
