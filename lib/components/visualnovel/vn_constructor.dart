@@ -102,7 +102,7 @@ class _VNConstructorState extends State<VNConstructor> {
                 );
               }
             } else {
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             }
           },
         ),
@@ -114,7 +114,7 @@ class _VNConstructorState extends State<VNConstructor> {
                 UniversalPlatform.isLinux ||
                 UniversalPlatform.isWeb) {
               return Padding(
-                padding: EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(bottom: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -149,7 +149,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                             TyperAnimatedText(
                                               widget.characterText ?? "···",
                                               textAlign: TextAlign.left,
-                                              textStyle: TextStyle(
+                                              textStyle: const TextStyle(
                                                   color: Colors.black,
                                                   fontFamily: "Mali",
                                                   fontSize: 21),
@@ -167,7 +167,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                             TyperAnimatedText(
                                               widget.cT ?? "···",
                                               textAlign: TextAlign.left,
-                                              textStyle: TextStyle(
+                                              textStyle: const TextStyle(
                                                   color: Colors.black,
                                                   fontFamily: "Mali",
                                                   fontSize: 21),
@@ -206,43 +206,40 @@ class _VNConstructorState extends State<VNConstructor> {
                       NameBox(
                         characterName: widget.characterName,
                       ),
-                      Container(
-                        child: Column(
-                          children: [
-                            Stack(alignment: Alignment.centerLeft, children: <
-                                Widget>[
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                // constraints:
-                                //     BoxConstraints(minWidth: 100, minHeight: 100),
-                                width: MediaQuery.of(context).size.width / 1.2,
-                                child: Builder(
-                                  builder: (context) {
-                                    if (widget.characterName == "MC" ||
-                                        widget.characterName == "Narrator") {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                            color:
-                                                Colors.white.withOpacity(0.8),
-                                            border: Border.all(
-                                              color:
-                                                  Colors.black.withOpacity(0),
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(20))),
-                                        child: Stack(
-                                          children: [
-                                            Opacity(
-                                              opacity: 1,
+                      Column(
+                        children: [
+                          Stack(alignment: Alignment.centerLeft, children: <
+                              Widget>[
+                            Container(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              child: Builder(
+                                builder: (context) {
+                                  if (widget.characterName == "MC" ||
+                                      widget.characterName == "Narrator") {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.8),
+                                          border: Border.all(
+                                            color: Colors.black.withOpacity(0),
+                                          ),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20))),
+                                      child: Stack(
+                                        children: [
+                                          Opacity(
+                                            opacity: 1,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: width * 0.03,
+                                                  vertical: height * 0.025),
                                               child: AnimatedTextKit(
                                                 animatedTexts: [
                                                   TyperAnimatedText(
                                                     widget.characterText ??
                                                         "···",
                                                     textAlign: TextAlign.left,
-                                                    textStyle: TextStyle(
+                                                    textStyle: const TextStyle(
                                                         color: Colors.black,
                                                         fontFamily: "Mali",
                                                         fontSize: 18),
@@ -256,46 +253,43 @@ class _VNConstructorState extends State<VNConstructor> {
                                                 key: ValueKey(widget.n),
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      );
-                                    } else {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                            color:
-                                                Colors.white.withOpacity(0.8),
-                                            border: Border.all(
-                                              color:
-                                                  Colors.black.withOpacity(0),
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(20))),
-                                        child: AnimatedTextKit(
-                                          animatedTexts: [
-                                            TyperAnimatedText(
-                                              widget.characterText ?? "···",
-                                              textAlign: TextAlign.left,
-                                              textStyle: TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: "Mali",
-                                                  fontSize: 18),
-                                              speed: Duration(
-                                                  milliseconds: speed ?? 25),
-                                            ),
-                                          ],
-                                          displayFullTextOnTap: true,
-                                          isRepeatingAnimation: false,
-                                          key: ValueKey(widget.n),
-                                        ),
-                                      );
-                                    }
-                                  },
-                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  } else {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.8),
+                                          border: Border.all(
+                                            color: Colors.black.withOpacity(0),
+                                          ),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20))),
+                                      child: AnimatedTextKit(
+                                        animatedTexts: [
+                                          TyperAnimatedText(
+                                            widget.characterText ?? "···",
+                                            textAlign: TextAlign.left,
+                                            textStyle: const TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: "Mali",
+                                                fontSize: 18),
+                                            speed: Duration(
+                                                milliseconds: speed ?? 25),
+                                          ),
+                                        ],
+                                        displayFullTextOnTap: true,
+                                        isRepeatingAnimation: false,
+                                        key: ValueKey(widget.n),
+                                      ),
+                                    );
+                                  }
+                                },
                               ),
-                            ]),
-                          ],
-                        ),
+                            ),
+                          ]),
+                        ],
                       ),
                       Buttons(route: widget.route),
                     ],

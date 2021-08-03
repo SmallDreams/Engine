@@ -36,7 +36,7 @@ class Buttons extends StatelessWidget {
               SettingsClip(route: route),
             ],
           ),
-          SizedBox(height: 21),
+          const SizedBox(height: 50),
         ]);
       }
     });
@@ -75,7 +75,7 @@ class SettingsClip extends StatelessWidget {
                             ),
                             padding: const EdgeInsets.all(5),
                             child: Row(
-                              children: [
+                              children: const [
                                 Text(
                                   "Settings",
                                   style: TextStyle(
@@ -84,7 +84,11 @@ class SettingsClip extends StatelessWidget {
                                       fontSize: 18,
                                       letterSpacing: .2),
                                 ),
-                                const Icon(Icons.settings, size: 18),
+                                Icon(
+                                  Icons.settings,
+                                  size: 18,
+                                  color: Colors.black,
+                                ),
                               ],
                             ),
                           );
