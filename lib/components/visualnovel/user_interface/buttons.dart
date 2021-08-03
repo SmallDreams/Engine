@@ -51,7 +51,8 @@ class SettingsClip extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return InkWell(
-          onTap: () => Navigator.of(context).pushNamed("/settings"),
+          onTap: () => Navigator.of(context)
+              .pushNamed("/settings", arguments: ScreenArguments(route)),
           child: Stack(
             alignment: Alignment.center,
             children: <Widget>[
@@ -102,6 +103,12 @@ class SettingsClip extends StatelessWidget {
           ));
     });
   }
+}
+
+class ScreenArguments {
+  final String route;
+
+  ScreenArguments(this.route);
 }
 
 dynamic skipClip(context, nextRoute) {
