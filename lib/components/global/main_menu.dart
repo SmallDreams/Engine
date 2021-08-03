@@ -284,9 +284,7 @@ class _BaseScreenState extends State<SalemMainMenu> {
                 GlobalAudio.playAudio.stopAudio();
                 GlobalAudio.playAudio.isPlaying = false;
               }
-              if (route == "/settings") {
-                route = "/home";
-              }
+
               Navigator.of(context).pushNamed(route);
             }),
       ),
