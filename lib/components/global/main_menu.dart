@@ -8,6 +8,7 @@ import 'package:universal_platform/universal_platform.dart';
 class SalemMainMenu extends StatefulWidget {
   final bgImage;
   final mainMenuBGM;
+  final fontFamily;
   bool button;
   bool startButton;
   bool loadButton;
@@ -30,6 +31,7 @@ class SalemMainMenu extends StatefulWidget {
   double? buttonRadius;
 
   SalemMainMenu({
+    this.fontFamily,
     this.topLeft = false,
     this.centerLeft = false,
     this.bottomLeft = false,
@@ -157,7 +159,7 @@ class _BaseScreenState extends State<SalemMainMenu> {
                                 context,
                                 "Start",
                                 widget.fontSize,
-                                "FONT",
+                                widget.fontFamily,
                                 "/1",
                                 widget.buttonColor,
                                 widget.textColor,
@@ -169,7 +171,7 @@ class _BaseScreenState extends State<SalemMainMenu> {
                                 context,
                                 "Load",
                                 widget.fontSize,
-                                "FONT",
+                                widget.fontFamily,
                                 "/loadgame",
                                 widget.buttonColor,
                                 widget.textColor,
@@ -181,7 +183,7 @@ class _BaseScreenState extends State<SalemMainMenu> {
                                 context,
                                 "Settings",
                                 widget.fontSize,
-                                "FONT",
+                                widget.fontFamily,
                                 "/settings",
                                 widget.buttonColor,
                                 widget.textColor,
@@ -193,7 +195,7 @@ class _BaseScreenState extends State<SalemMainMenu> {
                                 context,
                                 "Credits",
                                 widget.fontSize,
-                                "",
+                                widget.fontFamily,
                                 "/credits",
                                 widget.buttonColor,
                                 widget.textColor,
@@ -281,6 +283,9 @@ class _BaseScreenState extends State<SalemMainMenu> {
               if (route == "/1") {
                 GlobalAudio.playAudio.stopAudio();
                 GlobalAudio.playAudio.isPlaying = false;
+              }
+              if (route == "/settings") {
+                route = "/home";
               }
               Navigator.of(context).pushNamed(route);
             }),
