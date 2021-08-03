@@ -20,8 +20,8 @@ class VNScreen extends StatefulWidget {
   VNScreen({
     this.bgImage,
     this.speechList,
-    this.route,
-    this.nextRoute,
+    required this.route,
+    required this.nextRoute,
     this.callback,
     this.updatedNumber,
     this.bgm,

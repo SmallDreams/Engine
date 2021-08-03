@@ -18,8 +18,8 @@ class VNConstructor extends StatefulWidget {
     this.centerCharacterImage,
     this.leftCharacterImage,
     this.rightCharacterImage,
-    this.route,
-    this.nextRoute,
+    required this.route,
+    required this.nextRoute,
     this.hasAnimation,
     this.animationName,
   });
@@ -291,7 +291,10 @@ class _VNConstructorState extends State<VNConstructor> {
                           ]),
                         ],
                       ),
-                      Buttons(route: widget.route),
+                      Buttons(
+                        route: widget.route,
+                        nextRoute: widget.nextRoute,
+                      ),
                     ],
                   )
                 ],
