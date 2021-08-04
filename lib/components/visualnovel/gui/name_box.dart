@@ -62,7 +62,7 @@ class _NameBoxState extends State<NameBox> {
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 2, horizontal: 15),
+              padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 15),
               child: Text(
                 widget.characterName ?? "Character Name",
                 style: TextStyle(

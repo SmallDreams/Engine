@@ -12,9 +12,12 @@ class AmbienceAudio {
   static AudioCache audioCache = AudioCache(prefix: 'assets/audio/ambience/');
 
   /// Plays a single run of the given [file], with a given [volume].
-  static Future<AudioPlayer> play(String file, {double volume = 1.0}) {
+  static Future<AudioPlayer> play(String file) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    double? vol = prefs.getDouble('sfxValue');
+
     return audioCache.play(file + ".mp3",
-        volume: volume, mode: PlayerMode.LOW_LATENCY);
+        volume: vol ?? 1.0, mode: PlayerMode.LOW_LATENCY);
   }
 
   static Future<void> stop() async {

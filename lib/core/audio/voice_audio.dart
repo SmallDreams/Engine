@@ -214,7 +214,7 @@ class PlayVoiceDesktop extends WidgetsBindingObserver {
       isPlaying = true;
 
       player?.open(
-        new Playlist(
+        Playlist(
           playlistMode: PlaylistMode.single,
           medias: [
             Media.asset('assets/audio/' + filename + ".mp3"),
@@ -226,7 +226,7 @@ class PlayVoiceDesktop extends WidgetsBindingObserver {
       currentPlayer?.stop();
 
       player?.open(
-        new Playlist(
+        Playlist(
           playlistMode: PlaylistMode.single,
           medias: [
             Media.asset('assets/audio/' + filename + ".mp3"),
