@@ -3,14 +3,14 @@ import 'package:salem/core/audio/ambience_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-class BGMVolume extends StatefulWidget {
-  const BGMVolume({Key? key}) : super(key: key);
+class SFXVolume extends StatefulWidget {
+  const SFXVolume({Key? key}) : super(key: key);
 
   @override
-  _TextSpeedState createState() => _TextSpeedState();
+  _SFXVolumeState createState() => _SFXVolumeState();
 }
 
-class _TextSpeedState extends State<BGMVolume> {
+class _SFXVolumeState extends State<SFXVolume> {
   @override
   void initState() {
     super.initState();
