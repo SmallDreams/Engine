@@ -279,8 +279,8 @@ class _VNConstructorState extends State<VNConstructor> {
                                             opacity: 1,
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: width * 0.03,
-                                                  vertical: height * 0.025),
+                                                  horizontal: width * 0.035,
+                                                  vertical: height * 0.005),
                                               child: AnimatedTextKit(
                                                 animatedTexts: [
                                                   TyperAnimatedText(
