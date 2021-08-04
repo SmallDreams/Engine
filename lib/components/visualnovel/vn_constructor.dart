@@ -22,10 +22,12 @@ class VNConstructor extends StatefulWidget {
     required this.nextRoute,
     this.hasAnimation,
     this.animationName,
+    this.vnFont,
   });
 
   final String? characterName;
   final bgImage;
+  final String? vnFont;
   final String? mcImage;
   final String? centerCharacterImage;
   final String? leftCharacterImage;
@@ -149,9 +151,9 @@ class _VNConstructorState extends State<VNConstructor> {
                                             TyperAnimatedText(
                                               widget.characterText ?? "···",
                                               textAlign: TextAlign.left,
-                                              textStyle: const TextStyle(
+                                              textStyle: TextStyle(
                                                   color: Colors.black,
-                                                  fontFamily: "Mali",
+                                                  fontFamily: widget.vnFont,
                                                   fontSize: 21),
                                               speed: Duration(
                                                   milliseconds: speed ?? 25),
@@ -167,9 +169,9 @@ class _VNConstructorState extends State<VNConstructor> {
                                             TyperAnimatedText(
                                               widget.cT ?? "···",
                                               textAlign: TextAlign.left,
-                                              textStyle: const TextStyle(
+                                              textStyle: TextStyle(
                                                   color: Colors.black,
-                                                  fontFamily: "Mali",
+                                                  fontFamily: widget.vnFont,
                                                   fontSize: 21),
                                               speed: Duration(
                                                   milliseconds: speed ?? 25),
@@ -239,9 +241,10 @@ class _VNConstructorState extends State<VNConstructor> {
                                                     widget.characterText ??
                                                         "···",
                                                     textAlign: TextAlign.left,
-                                                    textStyle: const TextStyle(
+                                                    textStyle: TextStyle(
                                                         color: Colors.black,
-                                                        fontFamily: "Mali",
+                                                        fontFamily:
+                                                            widget.vnFont,
                                                         fontSize: 18),
                                                     speed: Duration(
                                                         milliseconds:
@@ -266,22 +269,37 @@ class _VNConstructorState extends State<VNConstructor> {
                                           ),
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(20))),
-                                      child: AnimatedTextKit(
-                                        animatedTexts: [
-                                          TyperAnimatedText(
-                                            widget.characterText ?? "···",
-                                            textAlign: TextAlign.left,
-                                            textStyle: const TextStyle(
-                                                color: Colors.black,
-                                                fontFamily: "Mali",
-                                                fontSize: 18),
-                                            speed: Duration(
-                                                milliseconds: speed ?? 25),
+                                      child: Stack(
+                                        children: [
+                                          Opacity(
+                                            opacity: 1,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: width * 0.03,
+                                                  vertical: height * 0.025),
+                                              child: AnimatedTextKit(
+                                                animatedTexts: [
+                                                  TyperAnimatedText(
+                                                    widget.characterText ??
+                                                        "···",
+                                                    textAlign: TextAlign.left,
+                                                    textStyle: TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily:
+                                                            widget.vnFont,
+                                                        fontSize: 18),
+                                                    speed: Duration(
+                                                        milliseconds:
+                                                            speed ?? 25),
+                                                  ),
+                                                ],
+                                                displayFullTextOnTap: true,
+                                                isRepeatingAnimation: false,
+                                                key: ValueKey(widget.n),
+                                              ),
+                                            ),
                                           ),
                                         ],
-                                        displayFullTextOnTap: true,
-                                        isRepeatingAnimation: false,
-                                        key: ValueKey(widget.n),
                                       ),
                                     );
                                   }
