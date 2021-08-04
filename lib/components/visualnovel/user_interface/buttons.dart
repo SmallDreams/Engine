@@ -36,7 +36,7 @@ class Buttons extends StatelessWidget {
               SettingsClip(route: route),
             ],
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 250),
         ]);
       }
     });
