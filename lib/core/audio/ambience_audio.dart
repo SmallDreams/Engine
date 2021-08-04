@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:salem/core/audio/background_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class GameAudio {
+class AmbienceAudio {
   static bool isPlaying = false;
   static AudioPlayer? audioPlayer;
 
   /// Access a shared instance of the [AudioCache] class.
-  static AudioCache audioCache = AudioCache(prefix: 'assets/audio/');
+  static AudioCache audioCache = AudioCache(prefix: 'assets/audio/ambience/');
 
   /// Plays a single run of the given [file], with a given [volume].
   static Future<AudioPlayer> play(String file, {double volume = 1.0}) {
@@ -51,7 +51,7 @@ class GameAudio {
   static late final Bgm playBGM = Bgm(audioCache: audioCache);
 }
 
-class GameAudioDesktop {
+class AmbienceAudioDesktop {
   static late final PlayAudio playBGMDesktop = PlayAudio();
 }
 
@@ -68,13 +68,13 @@ class PlayAudio extends WidgetsBindingObserver {
   /// playing.
   Future<void> play(String filename, {double volume = 1.0}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('volValue');
+    double? vol = prefs.getDouble('sfxValue');
 
     player?.open(
       Playlist(
         playlistMode: PlaylistMode.loop,
         medias: [
-          Media.asset('assets/audio/' + filename + ".mp3"),
+          Media.asset('assets/audio/ambience/' + filename + ".mp3"),
         ],
       ),
     );

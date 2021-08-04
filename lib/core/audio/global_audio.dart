@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salem/core/audio/ambience_audio.dart';
 import 'package:salem/core/audio/game_audio.dart';
 import 'package:salem/core/audio/voice_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,6 +50,25 @@ class PlayAudio with WidgetsBindingObserver {
       } else {
         VoiceAudio.playVoice.stop();
         VoiceAudio.playVoice.play(musicName);
+      }
+    }
+  }
+
+  Future<void> getAmbience(String musicName) async {
+    isPlaying = true;
+    if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
+      if (AmbienceAudioDesktop.playBGMDesktop.isPlaying == false) {
+        AmbienceAudioDesktop.playBGMDesktop.play(musicName);
+      } else {
+        AmbienceAudioDesktop.playBGMDesktop.stop();
+        AmbienceAudioDesktop.playBGMDesktop.play(musicName);
+      }
+    } else {
+      if (AmbienceAudio.playBGM.isPlaying == false) {
+        AmbienceAudio.playBGM.play(musicName);
+      } else {
+        AmbienceAudio.playBGM.stop();
+        AmbienceAudio.playBGM.play(musicName);
       }
     }
   }

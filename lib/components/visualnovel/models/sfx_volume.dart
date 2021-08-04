@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:salem/core/audio/game_audio.dart';
+import 'package:salem/core/audio/ambience_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -25,12 +25,12 @@ class _TextSpeedState extends State<BGMVolume> {
 
   saveVolumeState(value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setDouble('volValue', value);
+    prefs.setDouble('sfxValue', value);
   }
 
   getVolumeState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('volValue');
+    double? vol = prefs.getDouble('sfxValue');
 
     return vol!;
   }
@@ -92,14 +92,14 @@ class _TextSpeedState extends State<BGMVolume> {
                     setState(() {
                       if (UniversalPlatform.isWindows ||
                           UniversalPlatform.isLinux) {
-                        GameAudioDesktop.playBGMDesktop.player
+                        AmbienceAudioDesktop.playBGMDesktop.player
                             ?.setVolume(volume);
                       } else {
-                        GameAudio.playBGM.audioPlayer!.setVolume(volume);
+                        AmbienceAudio.playBGM.audioPlayer!.setVolume(volume);
                         if (vol == 0) {
-                          GameAudio.playBGM.pause();
+                          AmbienceAudio.playBGM.pause();
                         } else {
-                          GameAudio.playBGM.resume();
+                          AmbienceAudio.playBGM.resume();
                         }
                       }
                       vol = volume;

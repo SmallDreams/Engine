@@ -222,7 +222,7 @@ class _VNState extends State<VNScreen> {
       child: Builder(
         builder: (context) {
           if (widget.speechList == null || widget.speechList.isEmpty) {
-            return Scaffold(
+            return const Scaffold(
               backgroundColor: Colors.red,
               body: Center(
                 child: Text(
@@ -304,7 +304,8 @@ class _VNState extends State<VNScreen> {
                                   }
                                 }
                               });
-                              await Future.delayed(Duration(milliseconds: 100));
+                              await Future.delayed(
+                                  const Duration(milliseconds: 100));
                             } while (isPressed);
                           },
                           onLongPressEnd: (_) =>
@@ -312,13 +313,14 @@ class _VNState extends State<VNScreen> {
                           onTap: () {
                             setState(() {
                               if (isFinished() == true) {
-                                Future.delayed(Duration(seconds: 2), () {
+                                Future.delayed(const Duration(seconds: 2), () {
                                   Navigator.of(context)
                                       .pushNamed(widget.nextRoute);
                                 });
 
                                 switchFade = true;
-                                Future.delayed(Duration(milliseconds: 300), () {
+                                Future.delayed(
+                                    const Duration(milliseconds: 300), () {
                                   setState(() {
                                     opacity = 1.0;
                                   });
