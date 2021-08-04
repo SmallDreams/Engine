@@ -36,7 +36,7 @@ class Buttons extends StatelessWidget {
               SettingsClip(route: route),
             ],
           ),
-          const SizedBox(height: 250),
+          const SizedBox(height: 140),
         ]);
       }
     });
@@ -82,7 +82,7 @@ class SettingsClip extends StatelessWidget {
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontFamily: "BottleParty",
-                                      fontSize: 18,
+                                      fontSize: 21,
                                       letterSpacing: .2),
                                 ),
                                 Icon(
@@ -138,13 +138,13 @@ dynamic skipClip(context, nextRoute) {
                             borderRadius: BorderRadius.circular(50),
                             color: Colors.white,
                           ),
-                          padding: EdgeInsets.all(5),
-                          child: Text(
+                          padding: const EdgeInsets.all(5),
+                          child: const Text(
                             "Skip »",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: "BottleParty",
-                                fontSize: 18,
+                                fontSize: 21,
                                 letterSpacing: .2),
                           ),
                         );
