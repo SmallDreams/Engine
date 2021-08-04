@@ -87,7 +87,7 @@ class SettingsClip extends StatelessWidget {
                                 ),
                                 Icon(
                                   Icons.settings,
-                                  size: 18,
+                                  size: 21,
                                   color: Colors.black,
                                 ),
                               ],
