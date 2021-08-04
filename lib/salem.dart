@@ -9,6 +9,7 @@ export 'package:salem/components/visualnovel/gui/name_box.dart';
 export 'package:salem/components/visualnovel/models/core_speech.dart';
 export 'package:salem/core/audio/global_audio.dart';
 export 'package:salem/components/visualnovel/models/bgm_volume.dart';
+export 'package:salem/components/visualnovel/models/sfx_volume.dart';
 export 'package:salem/components/visualnovel/models/voice_volume.dart';
 export 'package:salem/components/visualnovel/models/text_speed.dart';
 
