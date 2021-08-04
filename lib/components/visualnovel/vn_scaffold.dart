@@ -115,6 +115,7 @@ class _VNState extends State<VNScreen> {
         });
       } else {
         nextSpeech();
+        GlobalAudio.playAudio.stopVoiceAudio();
         if (widget.callback != null) {
           widget.callback!(getNumber());
         }
@@ -303,6 +304,7 @@ class _VNState extends State<VNScreen> {
                               setState(() {
                                 if (isFinished() != true) {
                                   nextSpeech();
+                                  GlobalAudio.playAudio.stopVoiceAudio();
                                   if (widget.callback != null) {
                                     widget.callback!(getNumber());
                                   }
@@ -331,6 +333,7 @@ class _VNState extends State<VNScreen> {
                                 });
                               } else {
                                 nextSpeech();
+                                GlobalAudio.playAudio.stopVoiceAudio();
                                 if (widget.callback != null) {
                                   widget.callback!(getNumber());
                                 }

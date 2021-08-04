@@ -53,6 +53,7 @@ class _VNConstructorState extends State<VNConstructor> {
   @override
   void initState() {
     super.initState();
+    getSpeed();
   }
 
   Future<Null> getSharedPrefs() async {
