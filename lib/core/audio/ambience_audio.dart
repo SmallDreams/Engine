@@ -27,7 +27,24 @@ class AmbienceAudio {
     }
   }
 
-  Future<void> volume(volume) async {
+  /// Resumes the currently played (but resumed) background music.
+  static Future<void> resume() async {
+    if (audioPlayer != null) {
+      isPlaying = true;
+      await audioPlayer!.resume();
+    }
+  }
+
+  /// Pauses the background music without unloading or resetting the audio
+  /// player.
+  static Future<void> pause() async {
+    if (audioPlayer != null) {
+      isPlaying = false;
+      await audioPlayer!.pause();
+    }
+  }
+
+  static Future<void> volume(volume) async {
     await audioPlayer!.setVolume(volume);
   }
 
