@@ -44,7 +44,7 @@ class AmbienceAudio {
     }
   }
 
-  static Future<void> volume(volume) async {
+  static Future<void> setVolume(volume) async {
     await audioPlayer!.setVolume(volume);
   }
 
