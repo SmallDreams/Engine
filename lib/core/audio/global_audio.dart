@@ -82,6 +82,15 @@ class PlayAudio with WidgetsBindingObserver {
     }
   }
 
+  Future<void> stopAmbienceAudio() async {
+    //isPlaying = false;
+    if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
+      AmbienceAudioDesktop.playBGMDesktop.stop();
+    } else {
+      AmbienceAudio.playBGM.stop();
+    }
+  }
+
   Future<void> stopVoiceAudio() async {
     //isPlaying = false;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
