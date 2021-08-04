@@ -49,7 +49,7 @@ class _SFXVolumeState extends State<SFXVolume> {
           ),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: const Text(
-            "BGM Volume",
+            "SFX Volume",
             style: TextStyle(fontSize: 18, fontFamily: "Arvo"),
           ),
         ),
