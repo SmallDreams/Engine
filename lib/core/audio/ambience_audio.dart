@@ -27,6 +27,10 @@ class AmbienceAudio {
     }
   }
 
+  Future<void> volume(volume) async {
+    await audioPlayer!.setVolume(volume);
+  }
+
   /// Plays, and keep looping the given [file]
   static Future<AudioPlayer> loop(String file, {double volume = 1.0}) {
     return audioCache.loop(file, volume: volume, mode: PlayerMode.LOW_LATENCY);
