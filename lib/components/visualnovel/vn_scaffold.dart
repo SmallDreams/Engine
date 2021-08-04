@@ -18,6 +18,7 @@ class VNScreen extends StatefulWidget {
   final int? updatedNumber;
   final bgm;
   final String? vnFont;
+  final String? vnNameFont;
   VNScreen({
     this.bgImage,
     this.speechList,
@@ -27,6 +28,7 @@ class VNScreen extends StatefulWidget {
     this.updatedNumber,
     this.bgm,
     this.vnFont,
+    this.vnNameFont,
   });
   @override
   _VNState createState() => _VNState();
@@ -350,6 +352,7 @@ class _VNState extends State<VNScreen> {
                             hasAnimation: hasAnimation(),
                             animationName: animationName(),
                             vnFont: widget.vnFont,
+                            vnNameFont: widget.vnNameFont,
                           ),
                         ),
                       ),

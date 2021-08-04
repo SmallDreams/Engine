@@ -23,11 +23,13 @@ class VNConstructor extends StatefulWidget {
     this.hasAnimation,
     this.animationName,
     this.vnFont,
+    this.vnNameFont,
   });
 
   final String? characterName;
   final bgImage;
   final String? vnFont;
+  final String? vnNameFont;
   final String? mcImage;
   final String? centerCharacterImage;
   final String? leftCharacterImage;
@@ -123,6 +125,7 @@ class _VNConstructorState extends State<VNConstructor> {
                   children: <Widget>[
                     NameBox(
                       characterName: widget.characterName,
+                      vnNameFont: widget.vnNameFont,
                     ),
                     Stack(
                       alignment: Alignment.centerLeft,
@@ -207,6 +210,7 @@ class _VNConstructorState extends State<VNConstructor> {
                     children: [
                       NameBox(
                         characterName: widget.characterName,
+                        vnNameFont: widget.vnNameFont,
                       ),
                       Column(
                         children: [

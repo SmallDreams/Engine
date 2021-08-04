@@ -3,10 +3,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class NameBox extends StatefulWidget {
   final characterName;
-  final font;
+  final String? vnNameFont;
   NameBox({
     this.characterName,
-    this.font,
+    this.vnNameFont,
   });
   @override
   _NameBoxState createState() => _NameBoxState();
@@ -45,7 +45,7 @@ class _NameBoxState extends State<NameBox> {
                 child: Text(
                   "$_name ?? MC Name",
                   style: TextStyle(
-                    fontFamily: widget.font,
+                    fontFamily: widget.vnNameFont,
                     fontSize: 32,
                     color: Colors.black,
                   ),
@@ -66,7 +66,7 @@ class _NameBoxState extends State<NameBox> {
               child: Text(
                 widget.characterName ?? "Character Name",
                 style: TextStyle(
-                  fontFamily: widget.font,
+                  fontFamily: widget.vnNameFont,
                   fontSize: 32,
                   color: Colors.black,
                 ),
