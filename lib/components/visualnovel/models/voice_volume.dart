@@ -4,8 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class VoiceVolume extends StatefulWidget {
+  const VoiceVolume({Key? key}) : super(key: key);
+
   @override
-  _TextSpeedState createState() => new _TextSpeedState();
+  _TextSpeedState createState() => _TextSpeedState();
 }
 
 class _TextSpeedState extends State<VoiceVolume> {
@@ -40,13 +42,13 @@ class _TextSpeedState extends State<VoiceVolume> {
         color: Colors.transparent,
         alignment: Alignment.centerLeft,
         child: Container(
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             color: Theme.of(context).cardColor,
           ),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Text(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: const Text(
             "Voice Volume",
             style: TextStyle(fontFamily: "Mali", fontSize: 20),
           ),
@@ -54,7 +56,7 @@ class _TextSpeedState extends State<VoiceVolume> {
       ),
       Container(
         height: 55,
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 25,
         ),
         decoration: BoxDecoration(
@@ -64,23 +66,25 @@ class _TextSpeedState extends State<VoiceVolume> {
         child: Row(
           children: <Widget>[
             vol == 0
-                ? Icon(
+                ? const Icon(
                     Icons.music_off,
                     size: 35,
                   )
-                : Icon(
+                : const Icon(
                     Icons.music_note,
                     size: 35,
                   ),
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
             Flexible(
               child: SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   activeTrackColor: Theme.of(context).colorScheme.secondary,
                   inactiveTrackColor: Colors.grey[300],
                   thumbColor: Theme.of(context).colorScheme.secondary,
-                  thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10.0),
-                  overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0),
+                  thumbShape:
+                      const RoundSliderThumbShape(enabledThumbRadius: 10.0),
+                  overlayShape:
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                 ),
                 child: Slider(
                   min: 0.0,
@@ -91,7 +95,7 @@ class _TextSpeedState extends State<VoiceVolume> {
                       if (UniversalPlatform.isWindows ||
                           UniversalPlatform.isLinux) {
                         VoiceAudioDesktop.playVoiceDesktop.player
-                            ?.setVolume(volume);
+                            .setVolume(volume);
                       } else {
                         VoiceAudio.playVoice.audioPlayer?.setVolume(volume);
                         if (vol == 0) {

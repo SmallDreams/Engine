@@ -174,7 +174,7 @@ class VoiceAudioDesktop {
 class PlayVoiceDesktop extends WidgetsBindingObserver {
   bool _isRegistered = false;
   bool isPlaying = false;
-  Player? player = Player(id: 1);
+  Player player = Player(id: 1);
 
   /// Registers a [WidgetsBinding] observer.
   ///
@@ -213,7 +213,7 @@ class PlayVoiceDesktop extends WidgetsBindingObserver {
     if (isPlaying == false) {
       isPlaying = true;
 
-      player?.open(
+      player.open(
         Playlist(
           playlistMode: PlaylistMode.single,
           medias: [
@@ -221,11 +221,11 @@ class PlayVoiceDesktop extends WidgetsBindingObserver {
           ],
         ),
       );
-      player?.setVolume(vol ?? 1.0);
+      player.setVolume(vol ?? 1.0);
     } else {
-      currentPlayer?.stop();
+      currentPlayer.stop();
 
-      player?.open(
+      player.open(
         Playlist(
           playlistMode: PlaylistMode.single,
           medias: [
@@ -233,7 +233,7 @@ class PlayVoiceDesktop extends WidgetsBindingObserver {
           ],
         ),
       );
-      player?.setVolume(vol ?? 1.0);
+      player.setVolume(vol ?? 1.0);
     }
   }
 
@@ -241,7 +241,7 @@ class PlayVoiceDesktop extends WidgetsBindingObserver {
   Future<void> stop() async {
     isPlaying = false;
     if (player != null) {
-      player?.stop();
+      player.stop();
     }
   }
 
@@ -258,12 +258,12 @@ class PlayVoiceDesktop extends WidgetsBindingObserver {
   Future<void> pause() async {
     if (player != null) {
       isPlaying = false;
-      player?.pause();
+      player.pause();
     }
   }
 
   Future<void> volume(volume) async {
-    player?.setVolume(volume);
+    player.setVolume(volume);
   }
 
   // @override

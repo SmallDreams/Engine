@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class GlobalAudio {
-  final musicName;
+  final String? musicName;
   GlobalAudio({this.musicName});
   static final playAudio = PlayAudio();
 }
