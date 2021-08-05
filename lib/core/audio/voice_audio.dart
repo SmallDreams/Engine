@@ -174,7 +174,7 @@ class VoiceAudioDesktop {
 class PlayVoiceDesktop extends WidgetsBindingObserver {
   bool _isRegistered = false;
   bool isPlaying = false;
-  Player? player = new Player(id: 1);
+  Player? player = Player(id: 1);
 
   /// Registers a [WidgetsBinding] observer.
   ///

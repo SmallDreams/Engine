@@ -92,7 +92,7 @@ class _SFXVolumeState extends State<SFXVolume> {
                     setState(() {
                       if (UniversalPlatform.isWindows ||
                           UniversalPlatform.isLinux) {
-                        // AmbienceAudioDesktop.volume(volume);
+                        AmbienceAudioDesktop.playBGMDesktop.volume(volume);
                       } else {
                         AmbienceAudio.setVolume(volume);
                         if (vol == 0) {

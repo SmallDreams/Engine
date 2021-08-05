@@ -72,7 +72,7 @@ class _VNState extends State<VNScreen> {
       }
     }
 
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         opacity = 1.0;
       });
@@ -103,12 +103,12 @@ class _VNState extends State<VNScreen> {
   void _incrementCounter() {
     setState(() {
       if (isFinished() == true) {
-        Future.delayed(Duration(seconds: 2), () {
+        Future.delayed(const Duration(seconds: 2), () {
           Navigator.of(context).pushNamed(widget.nextRoute);
         });
 
         switchFade = true;
-        Future.delayed(Duration(milliseconds: 300), () {
+        Future.delayed(const Duration(milliseconds: 300), () {
           setState(() {
             opacity = 1.0;
           });
@@ -126,12 +126,12 @@ class _VNState extends State<VNScreen> {
   void _decrementCounter() {
     setState(() {
       if (isFinished() == true) {
-        Future.delayed(Duration(seconds: 2), () {
+        Future.delayed(const Duration(seconds: 2), () {
           Navigator.of(context).pushNamed(widget.nextRoute);
         });
 
         switchFade = true;
-        Future.delayed(Duration(milliseconds: 300), () {
+        Future.delayed(const Duration(milliseconds: 300), () {
           setState(() {
             opacity = 1.0;
           });
@@ -239,13 +239,13 @@ class _VNState extends State<VNScreen> {
           } else {
             return Builder(
               builder: (context) {
-                if (this.mounted && introFade == true) {
-                  Future.delayed(Duration(milliseconds: 1200), () {
+                if (mounted && introFade == true) {
+                  Future.delayed(const Duration(milliseconds: 1200), () {
                     setState(() {
                       introFade = false;
                     });
                   });
-                  Future.delayed(Duration(milliseconds: 300), () {
+                  Future.delayed(const Duration(milliseconds: 300), () {
                     setState(() {
                       opacityIntro = 0.0;
                     });
@@ -259,7 +259,7 @@ class _VNState extends State<VNScreen> {
                         ),
                         AnimatedOpacity(
                           opacity: opacityIntro!,
-                          duration: Duration(milliseconds: 300),
+                          duration: const Duration(milliseconds: 300),
                           child: Container(
                             width: double.infinity,
                             height: double.infinity,
@@ -280,7 +280,7 @@ class _VNState extends State<VNScreen> {
                           ),
                           AnimatedOpacity(
                             opacity: opacity!,
-                            duration: Duration(milliseconds: 300),
+                            duration: const Duration(milliseconds: 300),
                             child: Container(
                               width: double.infinity,
                               height: double.infinity,

@@ -80,7 +80,7 @@ class AmbienceAudioDesktop {
 }
 
 class PlayAudio extends WidgetsBindingObserver {
-  Player? player;
+  Player player = Player(id: 2);
   bool isPlaying = false;
 
   /// Plays and loops a background music file specified by [filename].
@@ -94,15 +94,15 @@ class PlayAudio extends WidgetsBindingObserver {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     double? vol = prefs.getDouble('sfxValue');
 
-    player?.open(
+    player.open(
       Playlist(
-        playlistMode: PlaylistMode.loop,
+        playlistMode: PlaylistMode.single,
         medias: [
           Media.asset('assets/audio/ambience/' + filename + ".mp3"),
         ],
       ),
     );
-    player?.setVolume(vol ?? 1.0);
+    player.setVolume(vol ?? 1.0);
     isPlaying = true;
   }
 
@@ -110,7 +110,7 @@ class PlayAudio extends WidgetsBindingObserver {
   Future<void> stop() async {
     isPlaying = false;
     if (player != null) {
-      player?.stop();
+      player.stop();
     }
   }
 
@@ -127,12 +127,12 @@ class PlayAudio extends WidgetsBindingObserver {
   Future<void> pause() async {
     if (player != null) {
       isPlaying = false;
-      player?.pause();
+      player.pause();
     }
   }
 
   Future<void> volume(volume) async {
-    player?.setVolume(volume);
+    player.setVolume(volume);
   }
 
   // @override
