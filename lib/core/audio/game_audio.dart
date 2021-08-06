@@ -85,9 +85,7 @@ class PlayAudio extends WidgetsBindingObserver {
   /// Stops the currently playing background music track (if any).
   Future<void> stop() async {
     isPlaying = false;
-    if (player != null) {
-      player.stop();
-    }
+    player.stop();
   }
 
   /// Resumes the currently played (but resumed) background music.

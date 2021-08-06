@@ -1,3 +1,3 @@
 import 'package:salem/salem.dart';
 
-final namebox = NameBox(font: "");
+final namebox = NameBox(vnNameFont: "");
