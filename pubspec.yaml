@@ -18,11 +18,11 @@ dependencies:
   shared_preferences: ">=2.0.6 <3.0.0"
   
   # audio
-  dart_vlc: ">=0.0.9 <1.0.0"
+  dart_vlc: ">=0.1.1 <1.0.0"
   audioplayers: ">=0.19.1 <1.0.0"
 
   # UI
-  rive: ">=0.7.22 <1.0.0"
+  rive: ">=0.7.27 <1.0.0"
   rive_loading: ">=0.1.0 <1.0.0"
   bubble: ">=1.2.1 <2.0.0"
 
