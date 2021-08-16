@@ -54,15 +54,8 @@ class Bgm extends WidgetsBindingObserver {
     }
 
     isPlaying = true;
-    if (filename.isNotEmpty) {
-      audioPlayer =
-          await audioCache.loop(filename + ".mp3", volume: vol ?? 1.0);
-    } else {
-      print("BGM continuation");
-      // String? notHome = prefs.getString("notHome");
-      // audioPlayer =
-      //     await audioCache.loop(notHome! + ".mp3", volume: vol ?? 1.0);
-    }
+
+    audioPlayer = await audioCache.loop(filename + ".mp3", volume: vol ?? 1.0);
   }
 
   /// Stops the currently playing background music track (if any).
