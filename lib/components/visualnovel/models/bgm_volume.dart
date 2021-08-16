@@ -17,22 +17,22 @@ class _TextSpeedState extends State<BGMVolume> {
     getVolume();
   }
 
-  double? vol = 0.5;
+  double? bgmVol = 1.0;
   getVolume() async {
-    vol = await getVolumeState();
+    bgmVol = await getVolumeState();
     setState(() {});
   }
 
   saveVolumeState(value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setDouble('volValue', value);
+    prefs.setDouble('bgmValue', value);
   }
 
   getVolumeState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('volValue');
+    double? bgmVol = prefs.getDouble('bgmValue');
 
-    return vol!;
+    return bgmVol!;
   }
 
   @override
@@ -63,7 +63,7 @@ class _TextSpeedState extends State<BGMVolume> {
         ),
         child: Row(
           children: <Widget>[
-            vol == 0
+            bgmVol == 0
                 ? const Icon(
                     Icons.music_off,
                     size: 35,
@@ -87,7 +87,7 @@ class _TextSpeedState extends State<BGMVolume> {
                 child: Slider(
                   min: 0.0,
                   max: 1.0,
-                  value: vol ?? 1.0,
+                  value: bgmVol ?? 1.0,
                   onChanged: (volume) {
                     setState(() {
                       if (UniversalPlatform.isWindows ||
@@ -96,13 +96,13 @@ class _TextSpeedState extends State<BGMVolume> {
                             .setVolume(volume);
                       } else {
                         GameAudio.playBGM.audioPlayer!.setVolume(volume);
-                        if (vol == 0) {
+                        if (bgmVol == 0) {
                           GameAudio.playBGM.pause();
                         } else {
                           GameAudio.playBGM.resume();
                         }
                       }
-                      vol = volume;
+                      bgmVol = volume;
                       saveVolumeState(volume);
                     });
                   },

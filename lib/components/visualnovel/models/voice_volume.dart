@@ -17,9 +17,9 @@ class _TextSpeedState extends State<VoiceVolume> {
     getVolume();
   }
 
-  double? vol = 0.5;
+  double? voiceVol = 0.5;
   getVolume() async {
-    vol = await getVolumeState();
+    voiceVol = await getVolumeState();
     setState(() {});
   }
 
@@ -30,9 +30,9 @@ class _TextSpeedState extends State<VoiceVolume> {
 
   getVolumeState() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('voiceValue');
+    double? voiceVol = prefs.getDouble('voiceValue');
 
-    return vol!;
+    return voiceVol!;
   }
 
   @override
@@ -65,7 +65,7 @@ class _TextSpeedState extends State<VoiceVolume> {
         ),
         child: Row(
           children: <Widget>[
-            vol == 0
+            voiceVol == 0
                 ? const Icon(
                     Icons.music_off,
                     size: 35,
@@ -89,7 +89,7 @@ class _TextSpeedState extends State<VoiceVolume> {
                 child: Slider(
                   min: 0.0,
                   max: 1.0,
-                  value: vol ?? 1.0,
+                  value: voiceVol ?? 1.0,
                   onChanged: (volume) {
                     setState(() {
                       if (UniversalPlatform.isWindows ||
@@ -98,13 +98,13 @@ class _TextSpeedState extends State<VoiceVolume> {
                             .setVolume(volume);
                       } else {
                         VoiceAudio.playVoice.audioPlayer?.setVolume(volume);
-                        if (vol == 0) {
+                        if (voiceVol == 0) {
                           VoiceAudio.playVoice.pause();
                         } else {
                           VoiceAudio.playVoice.resume();
                         }
                       }
-                      vol = volume;
+                      voiceVol = volume;
                       saveVolumeState(volume);
                     });
                   },

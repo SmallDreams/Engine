@@ -46,7 +46,7 @@ class Bgm extends WidgetsBindingObserver {
   /// playing.
   Future<void> play(String filename, {double volume = 1.0}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('volValue');
+    double? vol = prefs.getDouble('bgmValue');
     print(vol);
     final currentPlayer = audioPlayer;
     if (currentPlayer != null && currentPlayer.state != PlayerState.STOPPED) {

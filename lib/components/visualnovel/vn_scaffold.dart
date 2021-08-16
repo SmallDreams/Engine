@@ -60,7 +60,7 @@ class _VNState extends State<VNScreen> {
   @override
   void initState() {
     super.initState();
-    if (GlobalAudio.playAudio.isPlaying == false) {
+    if (GlobalAudio.playAudio.isPlaying == false && widget.bgm != notHome) {
       if (widget.bgm != null) {
         GlobalAudio.playAudio.getBGM(widget.bgm.toString());
       } else if (notHome != null) {
@@ -103,6 +103,7 @@ class _VNState extends State<VNScreen> {
   void _incrementCounter() {
     setState(() {
       if (isFinished() == true) {
+        GlobalAudio.playAudio.stopAmbienceAudio();
         Future.delayed(const Duration(seconds: 2), () {
           Navigator.of(context).pushNamed(widget.nextRoute);
         });
@@ -177,6 +178,7 @@ class _VNState extends State<VNScreen> {
 
   bool? isFinished() {
     if (textNumber >= widget.speechList.length - 1) {
+      GlobalAudio.playAudio.stopAmbienceAudio();
       GlobalAudio.playAudio.stopVoiceAudio();
       return true;
     } else {
@@ -319,6 +321,7 @@ class _VNState extends State<VNScreen> {
                           onTap: () {
                             setState(() {
                               if (isFinished() == true) {
+                                GlobalAudio.playAudio.stopAmbienceAudio();
                                 Future.delayed(const Duration(seconds: 2), () {
                                   Navigator.of(context)
                                       .pushNamed(widget.nextRoute);
