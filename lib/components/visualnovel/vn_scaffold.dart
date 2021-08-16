@@ -104,6 +104,7 @@ class _VNState extends State<VNScreen> {
     setState(() {
       if (isFinished() == true) {
         GlobalAudio.playAudio.stopAmbienceAudio();
+        GlobalAudio.playAudio.stopVoiceAudio();
         Future.delayed(const Duration(seconds: 2), () {
           Navigator.of(context).pushNamed(widget.nextRoute);
         });
@@ -127,6 +128,8 @@ class _VNState extends State<VNScreen> {
   void _decrementCounter() {
     setState(() {
       if (isFinished() == true) {
+        GlobalAudio.playAudio.stopAmbienceAudio();
+        GlobalAudio.playAudio.stopVoiceAudio();
         Future.delayed(const Duration(seconds: 2), () {
           Navigator.of(context).pushNamed(widget.nextRoute);
         });
