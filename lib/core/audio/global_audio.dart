@@ -23,13 +23,13 @@ class PlayAudio with WidgetsBindingObserver {
       if (musicName != notHome && musicName.isNotEmpty) {
         GameAudioDesktop.playBGMDesktop.play(musicName);
       } else {
-        print("Test");
+        print(musicName);
       }
     } else {
       if (musicName != notHome && musicName.isNotEmpty) {
         GameAudio.playBGM.play(musicName);
       } else {
-        print("Test");
+        print(musicName);
       }
     }
   }
