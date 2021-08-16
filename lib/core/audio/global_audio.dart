@@ -20,14 +20,14 @@ class PlayAudio with WidgetsBindingObserver {
     String? notHome = prefs.getString('notHome');
     isPlaying = true;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      if (musicName != notHome) {
+      if (musicName != notHome && musicName.isNotEmpty) {
         GameAudioDesktop.playBGMDesktop.play(musicName);
       } else {
         GameAudioDesktop.playBGMDesktop.stop();
         GameAudioDesktop.playBGMDesktop.play(musicName);
       }
     } else {
-      if (musicName != notHome) {
+      if (musicName != notHome && musicName.isNotEmpty) {
         GameAudio.playBGM.play(musicName);
       } else {
         GameAudio.playBGM.stop();
