@@ -16,17 +16,15 @@ class PlayAudio with WidgetsBindingObserver {
   bool isPlaying = false;
 
   Future<void> getBGM(String musicName) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? notHome = prefs.getString('notHome');
     isPlaying = true;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      if (musicName != notHome && musicName.isNotEmpty) {
+      if (musicName.isNotEmpty) {
         GameAudioDesktop.playBGMDesktop.play(musicName);
       } else {
         print(musicName);
       }
     } else {
-      if (musicName != notHome && musicName.isNotEmpty) {
+      if (musicName.isNotEmpty) {
         GameAudio.playBGM.play(musicName);
       } else {
         print(musicName);
