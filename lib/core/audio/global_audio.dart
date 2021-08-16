@@ -22,17 +22,11 @@ class PlayAudio with WidgetsBindingObserver {
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
       if (musicName != notHome && musicName.isNotEmpty) {
         GameAudioDesktop.playBGMDesktop.play(musicName);
-      } else {
-        GameAudioDesktop.playBGMDesktop.stop();
-        GameAudioDesktop.playBGMDesktop.play(musicName);
-      }
+      } else {}
     } else {
       if (musicName != notHome && musicName.isNotEmpty) {
         GameAudio.playBGM.play(musicName);
-      } else {
-        GameAudio.playBGM.stop();
-        GameAudio.playBGM.play(musicName);
-      }
+      } else {}
     }
   }
 
