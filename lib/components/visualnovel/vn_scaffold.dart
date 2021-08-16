@@ -61,11 +61,7 @@ class _VNState extends State<VNScreen> {
   void initState() {
     super.initState();
     if (widget.bgm != notHome) {
-      if (widget.bgm != null) {
-        GlobalAudio.playAudio.getBGM(widget.bgm.toString());
-      } else if (notHome != null) {
-        GlobalAudio.playAudio.getBGM(notHome!);
-      }
+      GlobalAudio.playAudio.getBGM(widget.bgm.toString());
     } else {
       if (notHome != null) {
         GlobalAudio.playAudio.getBGM(notHome!);
