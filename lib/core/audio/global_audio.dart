@@ -61,11 +61,11 @@ class PlayAudio with WidgetsBindingObserver {
         AmbienceAudioDesktop.playBGMDesktop.play(musicName);
       }
     } else {
-      if (AmbienceAudio.playBGM.isPlaying == false) {
-        AmbienceAudio.playBGM.play(musicName);
+      if (AmbienceAudio.playAmbience.isPlaying == false) {
+        AmbienceAudio.playAmbience.play(musicName);
       } else {
-        AmbienceAudio.playBGM.stop();
-        AmbienceAudio.playBGM.play(musicName);
+        AmbienceAudio.playAmbience.stop();
+        AmbienceAudio.playAmbience.play(musicName);
       }
     }
   }
@@ -84,7 +84,7 @@ class PlayAudio with WidgetsBindingObserver {
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
       AmbienceAudioDesktop.playBGMDesktop.stop();
     } else {
-      AmbienceAudio.playBGM.stop();
+      AmbienceAudio.playAmbience.stop();
     }
   }
 

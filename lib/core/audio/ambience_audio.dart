@@ -72,7 +72,7 @@ class AmbienceAudio {
   /// Access a shared instance of the [Bgm] class.
   ///
   /// This will use the same global audio cache from [FlameAudio].
-  static late final Bgm playBGM = Bgm(audioCache: audioCache);
+  static late final Ambience playAmbience = Ambience(audioCache: audioCache);
 }
 
 class AmbienceAudioDesktop {

@@ -17,7 +17,7 @@ class _SFXVolumeState extends State<SFXVolume> {
     getVolume();
   }
 
-  double? vol = 0.5;
+  double? vol = 1.0;
   getVolume() async {
     vol = await getVolumeState();
     setState(() {});
