@@ -65,16 +65,16 @@ abstract class AnimatedText {
               style: textStyle,
               textAlign: textAlign,
               textOverflow: TextOverflow.ellipsis,
-              maxLines: 5,
+              maxLines: 10,
             );
           } else {
             return SimpleRichText(
-              "\n› ···" + "\n",
+              "\n› ···\n",
               logIt: false,
               style: textStyle,
               textAlign: textAlign,
               textOverflow: TextOverflow.ellipsis,
-              maxLines: 5,
+              maxLines: 10,
               // pre: TextSpan(text: 'PRE', style: TextStyle(color: Colors.purple)),
               // post: TextSpan(text: 'POST', style: TextStyle(color: Colors.purple)),
             );
