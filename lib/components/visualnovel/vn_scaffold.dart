@@ -76,16 +76,8 @@ class _VNState extends State<VNScreen> {
     SharedPreferences.getInstance().then((SharedPreferences sp) {
       sharedPreferences = sp;
       notHome = sharedPreferences!.getString("notHome");
-      try {
-        if (widget.bgm.isNotEmpty) {
-          notHome = widget.bgm.toString();
-        }
-      } catch (e) {
-        print("EMPTY");
-      }
-
+      notHome = widget.bgm.toString();
       persistNotHome(notHome!);
-      print(notHome);
     });
   }
 
