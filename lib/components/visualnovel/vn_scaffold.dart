@@ -73,12 +73,15 @@ class _VNState extends State<VNScreen> {
         opacity = 1.0;
       });
     });
-    SharedPreferences.getInstance().then((SharedPreferences sp) {
-      sharedPreferences = sp;
-      notHome = sharedPreferences!.getString("notHome");
-      notHome = widget.bgm.toString();
-      persistNotHome(notHome!);
-    });
+    if (widget.bgm.isNotEmpty) {
+      print("Test");
+      SharedPreferences.getInstance().then((SharedPreferences sp) {
+        sharedPreferences = sp;
+        notHome = sharedPreferences!.getString("notHome");
+        notHome = widget.bgm.toString();
+        persistNotHome(notHome!);
+      });
+    }
   }
 
   void persistNotHome(String value) {
