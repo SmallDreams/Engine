@@ -5,7 +5,7 @@ class TextSpeed extends StatefulWidget {
   final player;
   TextSpeed({Key? key, this.player});
   @override
-  _TextSpeedState createState() => new _TextSpeedState();
+  _TextSpeedState createState() => _TextSpeedState();
 }
 
 class _TextSpeedState extends State<TextSpeed> {
@@ -41,13 +41,13 @@ class _TextSpeedState extends State<TextSpeed> {
         color: Colors.transparent,
         alignment: Alignment.centerLeft,
         child: Container(
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             color: Theme.of(context).cardColor,
           ),
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Text(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: const Text(
             "Text Speed",
             style: TextStyle(fontSize: 18, fontFamily: "Arvo"),
           ),
@@ -55,7 +55,7 @@ class _TextSpeedState extends State<TextSpeed> {
       ),
       Container(
         height: 55,
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 25,
         ),
         decoration: BoxDecoration(
@@ -67,32 +67,32 @@ class _TextSpeedState extends State<TextSpeed> {
             Builder(
               builder: (context) {
                 if (speed == 0) {
-                  return Icon(
+                  return const Icon(
                     Icons.pause,
                     size: 35,
                   );
                 } else if (speed <= 25) {
-                  return Icon(
+                  return const Icon(
                     Icons.fast_forward,
                     size: 35,
                   );
                 } else {
-                  return Icon(
+                  return const Icon(
                     Icons.play_arrow,
                     size: 35,
                   );
                 }
               },
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
-            Text(
+            const Text(
               "Faster",
               style: TextStyle(
                   fontFamily: "Mali", fontSize: 16, color: Colors.black),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Flexible(
@@ -101,8 +101,10 @@ class _TextSpeedState extends State<TextSpeed> {
                   activeTrackColor: Theme.of(context).colorScheme.secondary,
                   inactiveTrackColor: Colors.grey[300],
                   thumbColor: Theme.of(context).colorScheme.secondary,
-                  thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
-                  overlayShape: RoundSliderOverlayShape(overlayRadius: 0.0),
+                  thumbShape:
+                      const RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                  overlayShape:
+                      const RoundSliderOverlayShape(overlayRadius: 0.0),
                 ),
                 child: Slider(
                   divisions: 10,
@@ -121,10 +123,10 @@ class _TextSpeedState extends State<TextSpeed> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
-            Text(
+            const Text(
               "Slower",
               style: TextStyle(
                   fontFamily: "Mali", fontSize: 16, color: Colors.black),
