@@ -104,7 +104,7 @@ class _TextSpeedState extends State<BGMVolume> {
                             GameAudio.playBGM.resume();
                           }
                         }
-                      }
+                      } else {}
                       bgmVol = volume;
                       saveVolumeState(volume);
                     });

@@ -105,7 +105,7 @@ class _SFXVolumeState extends State<SFXVolume> {
                             AmbienceAudio.resume();
                           }
                         }
-                      }
+                      } else {}
                       vol = volume;
                       saveVolumeState(volume);
                     });

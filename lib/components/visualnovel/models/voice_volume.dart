@@ -17,7 +17,7 @@ class _TextSpeedState extends State<VoiceVolume> {
     getVolume();
   }
 
-  double? voiceVol = 0.5;
+  double? voiceVol = 1.0;
   getVolume() async {
     voiceVol = await getVolumeState();
     setState(() {});
@@ -107,7 +107,7 @@ class _TextSpeedState extends State<VoiceVolume> {
                             VoiceAudio.playVoice.resume();
                           }
                         }
-                      }
+                      } else {}
                       voiceVol = volume;
                       saveVolumeState(volume);
                     });
