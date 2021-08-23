@@ -18,7 +18,7 @@ dependencies:
   shared_preferences: ">=2.0.6 <3.0.0"
   
   # audio
-  dart_vlc: 0.1.4
+  dart_vlc: ">=0.1.6 <1.0.0"
   audioplayers: ">=0.19.1 <1.0.0"
 
   # UI
