@@ -68,3 +68,15 @@
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+example/ios/build/Pods.build/Release-iphonesimulator/shared_preferences.build/dgph~
+example/ios/build/Pods.build/Release-iphonesimulator/shared_preferences.build/dgph
+example/ios/build/Pods.build/Release-iphonesimulator/salem.build/dgph~
+example/ios/build/Pods.build/Release-iphonesimulator/salem.build/dgph
+example/ios/build/Pods.build/Release-iphonesimulator/Pods-Runner.build/dgph~
+example/ios/build/Pods.build/Release-iphonesimulator/Pods-Runner.build/dgph
+example/ios/build/Pods.build/Release-iphonesimulator/path_provider.build/dgph~
+example/ios/build/Pods.build/Release-iphonesimulator/path_provider.build/dgph
+example/ios/build/Pods.build/Release-iphonesimulator/Flutter.build/dgph~
+example/ios/build/Pods.build/Release-iphonesimulator/Flutter.build/dgph
+example/ios/build/Pods.build/Release-iphonesimulator/audioplayers.build/dgph~
+example/ios/build/Pods.build/Release-iphonesimulator/audioplayers.build/dgph

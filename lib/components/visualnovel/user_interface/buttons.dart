@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salem/salem.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class Buttons extends StatelessWidget {
@@ -178,6 +179,8 @@ showAlertDialog(BuildContext context, nextRoute) {
               letterSpacing: .4),
         ),
         onPressed: () {
+          GlobalAudio.playAudio.stopAmbienceAudio();
+          GlobalAudio.playAudio.stopVoiceAudio();
           Navigator.of(context).pushNamed(nextRoute);
         },
       ),
