@@ -84,7 +84,8 @@ class SettingsClip extends StatelessWidget {
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: "Nasa",
-                                    fontSize: 21,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Icon(
@@ -147,7 +148,8 @@ dynamic skipClip(context, nextRoute) {
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: "Nasa",
-                              fontSize: 21,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         );
