@@ -75,16 +75,17 @@ class SettingsClip extends StatelessWidget {
                               borderRadius: BorderRadius.circular(50),
                               color: Colors.white,
                             ),
-                            padding: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
                             child: Row(
                               children: const [
                                 Text(
                                   "Settings",
                                   style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: "BottleParty",
-                                      fontSize: 21,
-                                      letterSpacing: .2),
+                                    color: Colors.black,
+                                    fontFamily: "Nasa",
+                                    fontSize: 21,
+                                  ),
                                 ),
                                 Icon(
                                   Icons.settings,
@@ -139,14 +140,15 @@ dynamic skipClip(context, nextRoute) {
                             borderRadius: BorderRadius.circular(50),
                             color: Colors.white,
                           ),
-                          padding: const EdgeInsets.all(5),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 10),
                           child: const Text(
                             "Skip »",
                             style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: "BottleParty",
-                                fontSize: 21,
-                                letterSpacing: .2),
+                              color: Colors.black,
+                              fontFamily: "Nasa",
+                              fontSize: 21,
+                            ),
                           ),
                         );
                       },
