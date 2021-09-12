@@ -25,7 +25,6 @@ class VNConstructor extends StatefulWidget {
     this.vnFont,
     this.vnNameFont,
   });
-
   final String? characterName;
   final bgImage;
   final String? vnFont;
@@ -56,7 +55,7 @@ class _VNConstructorState extends State<VNConstructor> {
     getSpeed();
   }
 
-  Future<Null> getSharedPrefs() async {
+  Future<void> getSharedPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     isNoti = (prefs.getBool("notiState"));
     if (isNoti == true) {
@@ -250,7 +249,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                                         color: Colors.black,
                                                         fontFamily:
                                                             widget.vnFont,
-                                                        fontSize: 18),
+                                                        fontSize: 20),
                                                     speed: Duration(
                                                         milliseconds:
                                                             speed ?? 25),
@@ -283,6 +282,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                                   horizontal: width * 0.035,
                                                   vertical: height * 0.005),
                                               child: AnimatedTextKit(
+                                                // nextSpeech: widget.nextSpeech,
                                                 animatedTexts: [
                                                   TyperAnimatedText(
                                                     widget.characterText ??
@@ -292,7 +292,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                                         color: Colors.black,
                                                         fontFamily:
                                                             widget.vnFont,
-                                                        fontSize: 18),
+                                                        fontSize: 20),
                                                     speed: Duration(
                                                         milliseconds:
                                                             speed ?? 25),
