@@ -56,6 +56,7 @@ class SettingsClip extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       return ElevatedButton(
           style: ElevatedButton.styleFrom(
+            primary: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25),
             ),
@@ -69,11 +70,13 @@ class SettingsClip extends StatelessWidget {
                 fontFamily: "Nasa",
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
             Icon(
               Icons.settings,
               size: 21,
+              color: Colors.black,
             ),
           ]));
     });
@@ -90,6 +93,7 @@ dynamic skipClip(context, nextRoute) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     ElevatedButton(
       style: ElevatedButton.styleFrom(
+        primary: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
         ),
@@ -100,6 +104,7 @@ dynamic skipClip(context, nextRoute) {
         style: TextStyle(
           fontFamily: "Nasa",
           fontSize: 18,
+          color: Colors.black,
           fontWeight: FontWeight.bold,
         ),
       ),
