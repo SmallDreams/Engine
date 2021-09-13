@@ -34,6 +34,9 @@ class Buttons extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               skipClip(context, nextRoute),
+              const SizedBox(
+                width: 5,
+              ),
               SettingsClip(route: route),
             ],
           ),
@@ -59,56 +62,22 @@ class SettingsClip extends StatelessWidget {
           ),
           onPressed: () => Navigator.of(context)
               .pushNamed("/settings", arguments: ScreenArguments(route)),
-          child: Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    color: Colors.transparent,
-                    padding: const EdgeInsets.all(1),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: Image.asset(
-                        "assets/images/gui/more.png",
-                        fit: BoxFit.cover,
-                        errorBuilder: (BuildContext context, Object exception,
-                            StackTrace? stackTrace) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.transparent),
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.white,
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 10),
-                            child: Row(
-                              children: const [
-                                Text(
-                                  "Settings",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: "Nasa",
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.settings,
-                                  size: 21,
-                                  color: Colors.black,
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
+          child: Row(children: const [
+            Text(
+              "Settings",
+              style: TextStyle(
+                color: Colors.black,
+                fontFamily: "Nasa",
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
-            ],
-          ));
+            ),
+            Icon(
+              Icons.settings,
+              size: 21,
+              color: Colors.black,
+            ),
+          ]));
     });
   }
 }
@@ -120,60 +89,25 @@ class ScreenArguments {
 }
 
 dynamic skipClip(context, nextRoute) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25),
-          ),
-        ),
-        onPressed: () => showAlertDialog(context, nextRoute),
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  color: Colors.transparent,
-                  padding: const EdgeInsets.all(1),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: Image.asset(
-                      "assets/images/gui/fastforwardhover.png",
-                      fit: BoxFit.cover,
-                      errorBuilder: (BuildContext context, Object exception,
-                          StackTrace? stackTrace) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.transparent),
-                            borderRadius: BorderRadius.circular(50),
-                            color: Colors.white,
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 10),
-                          child: const Text(
-                            "Skip »",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: "Nasa",
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+    ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
         ),
       ),
-    ],
-  );
+      onPressed: () => showAlertDialog(context, nextRoute),
+      child: const Text(
+        "Skip »",
+        style: TextStyle(
+          color: Colors.black,
+          fontFamily: "Nasa",
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    )
+  ]);
 }
 
 showAlertDialog(BuildContext context, nextRoute) {
