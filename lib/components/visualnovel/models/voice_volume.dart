@@ -50,7 +50,7 @@ class _TextSpeedState extends State<VoiceVolume> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: const Text(
             "Voice Volume",
-            style: TextStyle(fontFamily: "Mali", fontSize: 20),
+            style: TextStyle(fontFamily: "Nasa", fontSize: 20),
           ),
         ),
       ),

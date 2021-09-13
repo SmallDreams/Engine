@@ -49,7 +49,7 @@ class _TextSpeedState extends State<TextSpeed> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: const Text(
             "Text Speed",
-            style: TextStyle(fontSize: 18, fontFamily: "Arvo"),
+            style: TextStyle(fontSize: 20, fontFamily: "Nasa"),
           ),
         ),
       ),
