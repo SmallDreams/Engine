@@ -51,8 +51,8 @@ class SettingsClip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      return InkWell(
-          onTap: () => Navigator.of(context)
+      return ElevatedButton(
+          onPressed: () => Navigator.of(context)
               .pushNamed("/settings", arguments: ScreenArguments(route)),
           child: Stack(
             alignment: Alignment.center,
@@ -118,8 +118,8 @@ dynamic skipClip(context, nextRoute) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      InkWell(
-        onTap: () => showAlertDialog(context, nextRoute),
+      ElevatedButton(
+        onPressed: () => showAlertDialog(context, nextRoute),
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
