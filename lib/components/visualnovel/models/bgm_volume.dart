@@ -50,7 +50,7 @@ class _TextSpeedState extends State<BGMVolume> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: const Text(
             "BGM Volume",
-            style: TextStyle(fontSize: 20, fontFamily: "Nasa"),
+            style: TextStyle(fontSize: 18, fontFamily: "Nasa"),
           ),
         ),
       ),
@@ -92,7 +92,6 @@ class _TextSpeedState extends State<BGMVolume> {
                     setState(() {
                       if (GameAudio.playBGM.isPlaying == true ||
                           GameAudioDesktop.playBGMDesktop.isPlaying == true) {
-                        print("ERROR");
                         if (UniversalPlatform.isWindows ||
                             UniversalPlatform.isLinux) {
                           GameAudioDesktop.playBGMDesktop.player
