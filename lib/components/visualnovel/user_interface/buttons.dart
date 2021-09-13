@@ -52,6 +52,11 @@ class SettingsClip extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25),
+            ),
+          ),
           onPressed: () => Navigator.of(context)
               .pushNamed("/settings", arguments: ScreenArguments(route)),
           child: Stack(
@@ -119,6 +124,11 @@ dynamic skipClip(context, nextRoute) {
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
+        ),
         onPressed: () => showAlertDialog(context, nextRoute),
         child: Stack(
           alignment: Alignment.center,
