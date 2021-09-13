@@ -107,7 +107,9 @@ class _TextSpeedState extends State<VoiceVolume> {
                             VoiceAudio.playVoice.resume();
                           }
                         }
-                      } else {}
+                      } else {
+                        print("ERROR");
+                      }
                       voiceVol = volume;
                       saveVolumeState(volume);
                     });
