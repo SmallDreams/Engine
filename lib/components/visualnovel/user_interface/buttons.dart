@@ -122,8 +122,8 @@ showAlertDialog(BuildContext context, nextRoute) {
           "YES",
           style: TextStyle(
               color: Colors.black,
-              fontFamily: "Aleo",
-              fontSize: 22,
+              fontFamily: "Nasa",
+              fontSize: 20,
               letterSpacing: .4),
         ),
         onPressed: () {
@@ -142,8 +142,8 @@ showAlertDialog(BuildContext context, nextRoute) {
           "NO",
           style: TextStyle(
               color: Colors.black,
-              fontFamily: "Aleo",
-              fontSize: 22,
+              fontFamily: "Nasa",
+              fontSize: 20,
               letterSpacing: .4),
         ),
         onPressed: () {
@@ -165,10 +165,10 @@ showAlertDialog(BuildContext context, nextRoute) {
       child: Column(
         children: <Widget>[
           const Text("Chapter Skip",
-              style: TextStyle(fontSize: 28, fontFamily: "Aleo"),
+              style: TextStyle(fontSize: 28, fontFamily: "Rubik"),
               textAlign: TextAlign.center),
           const Text("Are you sure about that?",
-              style: TextStyle(fontSize: 24, fontFamily: "Aleo"),
+              style: TextStyle(fontSize: 24, fontFamily: "Rubik"),
               textAlign: TextAlign.center),
           const Spacer(),
           continueButton,
