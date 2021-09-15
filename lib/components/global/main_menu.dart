@@ -1,7 +1,5 @@
-import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/components/visualnovel/user_interface/buttons.dart';
-import 'package:salem/core/audio/game_audio.dart';
 import 'package:salem/core/audio/global_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -85,15 +83,15 @@ class _BaseScreenState extends State<SalemMainMenu> {
     sharedPreferences?.setString("getPersistBGM", value);
   }
 
-  @override
-  void didChangeDependencies() {
-    if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      super.didChangeDependencies();
-      GameAudioDesktop.playBGMDesktop.player = Player(
-        id: 0,
-      );
-    }
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
+  //     super.didChangeDependencies();
+  //     GameAudioDesktop.playBGMDesktop.player = Player(
+  //       id: 0,
+  //     );
+  //   }
+  // }
 
   checkForImgExtension() {
     if (widget.bgImage.contains("png")) {

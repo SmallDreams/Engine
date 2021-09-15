@@ -1,13 +1,10 @@
-import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/components/global/logical_keyboard.dart';
 import 'package:salem/components/global/onWillPop.dart';
 import 'package:salem/components/visualnovel/user_interface/background_builder.dart';
-import 'package:salem/core/audio/game_audio.dart';
 import 'package:salem/core/audio/global_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'vn_constructor.dart';
-import 'package:universal_platform/universal_platform.dart';
 
 class VNScreen extends StatefulWidget {
   final bgImage;
@@ -46,16 +43,16 @@ class _VNState extends State<VNScreen> {
   // int? updatedNumber;
   // _VNState({this.callback, this.updatedNumber});
 
-  @override
-  void didChangeDependencies() {
-    if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      super.didChangeDependencies();
-      GameAudioDesktop.playBGMDesktop.player = Player(
-        id: 0,
-      );
-    }
-    super.didChangeDependencies();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
+  //     super.didChangeDependencies();
+  //     GameAudioDesktop.playBGMDesktop.player = Player(
+  //       id: 0,
+  //     );
+  //   }
+  //   super.didChangeDependencies();
+  // }
 
   @override
   void initState() {

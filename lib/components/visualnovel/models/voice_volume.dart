@@ -92,13 +92,15 @@ class _TextSpeedState extends State<VoiceVolume> {
                   value: voiceVol ?? 1.0,
                   onChanged: (volume) {
                     setState(() {
-                      if (VoiceAudio.playVoice.isPlaying == true ||
-                          VoiceAudioDesktop.playVoiceDesktop.isPlaying ==
-                              true) {
+                      if (VoiceAudio.playVoice.isPlaying == true
+                          //  ||
+                          //     VoiceAudioDesktop.playVoiceDesktop.isPlaying ==
+                          //         true
+                          ) {
                         if (UniversalPlatform.isWindows ||
                             UniversalPlatform.isLinux) {
-                          VoiceAudioDesktop.playVoiceDesktop.player
-                              .setVolume(volume);
+                          // VoiceAudioDesktop.playVoiceDesktop.player
+                          //     .setVolume(volume);
                         } else {
                           VoiceAudio.playVoice.audioPlayer?.setVolume(volume);
                           if (voiceVol == 0) {

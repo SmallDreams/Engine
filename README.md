@@ -15,8 +15,8 @@ A lightweight cross-platform visual novel game engine, developed in Flutter.
 - ✅ Android
 - ✅ iOS/iPadOS
 - ✅ macOS
-- ✅ Windows
-- ✅ Linux
+- ❌ Windows
+- ❌ Linux
 - ❌ Web
 
 ---

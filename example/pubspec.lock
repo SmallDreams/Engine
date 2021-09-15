@@ -22,20 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.7.0"
-  audio_video_progress_bar:
-    dependency: transitive
-    description:
-      name: audio_video_progress_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.0"
   audioplayers:
     dependency: transitive
     description:
       name: audioplayers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.20.0"
+    version: "0.20.1"
   bubble:
     dependency: transitive
     description:
@@ -78,20 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  dart_vlc:
-    dependency: transitive
-    description:
-      name: dart_vlc
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.7"
-  dart_vlc_ffi:
-    dependency: transitive
-    description:
-      name: dart_vlc_ffi
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.4"
   ffi:
     dependency: transitive
     description:

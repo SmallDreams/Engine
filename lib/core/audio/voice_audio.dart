@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -166,114 +165,114 @@ class PlayVoice extends WidgetsBindingObserver {
   }
 }
 
-class VoiceAudioDesktop {
-  /// Access a shared instance of the [AudioCache] class.
-  static late final PlayVoiceDesktop playVoiceDesktop = PlayVoiceDesktop();
-}
+// class VoiceAudioDesktop {
+//   /// Access a shared instance of the [AudioCache] class.
+//   static late final PlayVoiceDesktop playVoiceDesktop = PlayVoiceDesktop();
+// }
 
-class PlayVoiceDesktop extends WidgetsBindingObserver {
-  bool _isRegistered = false;
-  bool isPlaying = false;
-  Player player = Player(id: 1);
+// class PlayVoiceDesktop extends WidgetsBindingObserver {
+//   bool _isRegistered = false;
+//   bool isPlaying = false;
+//   Player player = Player(id: 1);
 
-  /// Registers a [WidgetsBinding] observer.
-  ///
-  /// This must be called for auto-pause and resume to work properly.
-  void initialize() {
-    if (_isRegistered) {
-      return;
-    }
-    _isRegistered = true;
-    WidgetsBinding.instance?.addObserver(this);
-  }
+//   /// Registers a [WidgetsBinding] observer.
+//   ///
+//   /// This must be called for auto-pause and resume to work properly.
+//   void initialize() {
+//     if (_isRegistered) {
+//       return;
+//     }
+//     _isRegistered = true;
+//     WidgetsBinding.instance?.addObserver(this);
+//   }
 
-  /// Dispose the [WidgetsBinding] observer.
-  void dispose() {
-    if (!_isRegistered) {
-      return;
-    }
-    WidgetsBinding.instance?.removeObserver(this);
-    _isRegistered = false;
-  }
+//   /// Dispose the [WidgetsBinding] observer.
+//   void dispose() {
+//     if (!_isRegistered) {
+//       return;
+//     }
+//     WidgetsBinding.instance?.removeObserver(this);
+//     _isRegistered = false;
+//   }
 
-  /// Plays and loops a background music file specified by [filename].
-  ///
-  /// The volume can be specified in the optional named parameter [volume]
-  /// where `0` means off and `1` means max.
-  ///
-  /// It is safe to call this function even when a current BGM track is
-  /// playing.
-  Future<void> play(String filename, {double volume = 1.0}) async {
-    //AudioService service = Provider.of<AudioService>(context);
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('voiceValue');
+//   /// Plays and loops a background music file specified by [filename].
+//   ///
+//   /// The volume can be specified in the optional named parameter [volume]
+//   /// where `0` means off and `1` means max.
+//   ///
+//   /// It is safe to call this function even when a current BGM track is
+//   /// playing.
+//   Future<void> play(String filename, {double volume = 1.0}) async {
+//     //AudioService service = Provider.of<AudioService>(context);
+//     SharedPreferences prefs = await SharedPreferences.getInstance();
+//     double? vol = prefs.getDouble('voiceValue');
 
-    final currentPlayer = player;
+//     final currentPlayer = player;
 
-    if (isPlaying == false) {
-      isPlaying = true;
+//     if (isPlaying == false) {
+//       isPlaying = true;
 
-      player.open(
-        Playlist(
-          playlistMode: PlaylistMode.single,
-          medias: [
-            Media.asset('assets/audio/' + filename + ".mp3"),
-          ],
-        ),
-      );
-      player.setVolume(vol ?? 1.0);
-    } else {
-      currentPlayer.stop();
+//       player.open(
+//         Playlist(
+//           playlistMode: PlaylistMode.single,
+//           medias: [
+//             Media.asset('assets/audio/' + filename + ".mp3"),
+//           ],
+//         ),
+//       );
+//       player.setVolume(vol ?? 1.0);
+//     } else {
+//       currentPlayer.stop();
 
-      player.open(
-        Playlist(
-          playlistMode: PlaylistMode.single,
-          medias: [
-            Media.asset('assets/audio/' + filename + ".mp3"),
-          ],
-        ),
-      );
-      player.setVolume(vol ?? 1.0);
-    }
-  }
+//       player.open(
+//         Playlist(
+//           playlistMode: PlaylistMode.single,
+//           medias: [
+//             Media.asset('assets/audio/' + filename + ".mp3"),
+//           ],
+//         ),
+//       );
+//       player.setVolume(vol ?? 1.0);
+//     }
+//   }
 
-  /// Stops the currently playing background music track (if any).
-  Future<void> stop() async {
-    isPlaying = false;
-    if (player != null) {
-      player.stop();
-    }
-  }
+//   /// Stops the currently playing background music track (if any).
+//   Future<void> stop() async {
+//     isPlaying = false;
+//     if (player != null) {
+//       player.stop();
+//     }
+//   }
 
-  /// Resumes the currently played (but resumed) background music.
-  // Future<void> resume() async {
-  //   if (audioPlayer != null) {
-  //     isPlaying = true;
-  //     await audioPlayer!.resume();
-  //   }
-  // }
+//   /// Resumes the currently played (but resumed) background music.
+//   // Future<void> resume() async {
+//   //   if (audioPlayer != null) {
+//   //     isPlaying = true;
+//   //     await audioPlayer!.resume();
+//   //   }
+//   // }
 
-  /// Pauses the background music without unloading or resetting the audio
-  /// player.
-  Future<void> pause() async {
-    if (player != null) {
-      isPlaying = false;
-      player.pause();
-    }
-  }
+//   /// Pauses the background music without unloading or resetting the audio
+//   /// player.
+//   Future<void> pause() async {
+//     if (player != null) {
+//       isPlaying = false;
+//       player.pause();
+//     }
+//   }
 
-  Future<void> volume(volume) async {
-    player.setVolume(volume);
-  }
+//   Future<void> volume(volume) async {
+//     player.setVolume(volume);
+//   }
 
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   if (state == AppLifecycleState.resumed) {
-  //     if (isPlaying && player?.state == PlayerState.PAUSED) {
-  //       audioPlayer?.resume();
-  //     }
-  //   } else {
-  //     audioPlayer?.pause();
-  //   }
-  // }
-}
+//   // @override
+//   // void didChangeAppLifecycleState(AppLifecycleState state) {
+//   //   if (state == AppLifecycleState.resumed) {
+//   //     if (isPlaying && player?.state == PlayerState.PAUSED) {
+//   //       audioPlayer?.resume();
+//   //     }
+//   //   } else {
+//   //     audioPlayer?.pause();
+//   //   }
+//   // }
+// }

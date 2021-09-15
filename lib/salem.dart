@@ -13,7 +13,7 @@ export 'package:salem/components/visualnovel/models/sfx_volume.dart';
 export 'package:salem/components/visualnovel/models/voice_volume.dart';
 export 'package:salem/components/visualnovel/models/text_speed.dart';
 
-import 'package:dart_vlc/dart_vlc.dart';
+//import 'package:dart_vlc/dart_vlc.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -22,7 +22,7 @@ abstract class Salem {
     WidgetsFlutterBinding.ensureInitialized();
     if (UniversalPlatform.isWeb) {
     } else {
-      DartVLC.initialize();
+      //DartVLC.initialize();
     }
   }
 }

@@ -19,7 +19,7 @@ class PlayAudio with WidgetsBindingObserver {
     isPlaying = true;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
       if (musicName.isNotEmpty) {
-        GameAudioDesktop.playBGMDesktop.play(musicName);
+        // GameAudioDesktop.playBGMDesktop.play(musicName);
       } else {
         print(musicName);
       }
@@ -35,12 +35,12 @@ class PlayAudio with WidgetsBindingObserver {
   Future<void> getVoice(String musicName) async {
     isPlaying = true;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      if (VoiceAudioDesktop.playVoiceDesktop.isPlaying == false) {
-        VoiceAudioDesktop.playVoiceDesktop.play(musicName);
-      } else {
-        VoiceAudioDesktop.playVoiceDesktop.stop();
-        VoiceAudioDesktop.playVoiceDesktop.play(musicName);
-      }
+      // if (VoiceAudioDesktop.playVoiceDesktop.isPlaying == false) {
+      //   VoiceAudioDesktop.playVoiceDesktop.play(musicName);
+      // } else {
+      //   VoiceAudioDesktop.playVoiceDesktop.stop();
+      //   VoiceAudioDesktop.playVoiceDesktop.play(musicName);
+      // }
     } else {
       if (VoiceAudio.playVoice.isPlaying == false) {
         VoiceAudio.playVoice.play(musicName);
@@ -54,12 +54,12 @@ class PlayAudio with WidgetsBindingObserver {
   Future<void> getAmbience(String musicName) async {
     isPlaying = true;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      if (AmbienceAudioDesktop.playBGMDesktop.isPlaying == false) {
-        AmbienceAudioDesktop.playBGMDesktop.play(musicName);
-      } else {
-        AmbienceAudioDesktop.playBGMDesktop.stop();
-        AmbienceAudioDesktop.playBGMDesktop.play(musicName);
-      }
+      // if (AmbienceAudioDesktop.playBGMDesktop.isPlaying == false) {
+      //   AmbienceAudioDesktop.playBGMDesktop.play(musicName);
+      // } else {
+      //   AmbienceAudioDesktop.playBGMDesktop.stop();
+      //   AmbienceAudioDesktop.playBGMDesktop.play(musicName);
+      // }
     } else {
       if (AmbienceAudio.playAmbience.isPlaying == false) {
         AmbienceAudio.playAmbience.play(musicName);
@@ -73,7 +73,7 @@ class PlayAudio with WidgetsBindingObserver {
   Future<void> stopAudio() async {
     //isPlaying = false;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      GameAudioDesktop.playBGMDesktop.stop();
+      // GameAudioDesktop.playBGMDesktop.stop();
     } else {
       GameAudio.playBGM.stop();
     }
@@ -82,7 +82,7 @@ class PlayAudio with WidgetsBindingObserver {
   Future<void> stopAmbienceAudio() async {
     //isPlaying = false;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      AmbienceAudioDesktop.playBGMDesktop.stop();
+      // AmbienceAudioDesktop.playBGMDesktop.stop();
     } else {
       AmbienceAudio.playAmbience.stop();
     }
@@ -91,7 +91,7 @@ class PlayAudio with WidgetsBindingObserver {
   Future<void> stopVoiceAudio() async {
     //isPlaying = false;
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-      VoiceAudioDesktop.playVoiceDesktop.stop();
+      // VoiceAudioDesktop.playVoiceDesktop.stop();
     } else {
       VoiceAudio.playVoice.stop();
     }
