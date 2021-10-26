@@ -25,7 +25,7 @@ class Routes extends StatelessWidget {
           return SplashScreen();
         },
         "/mainmenu": (_) {
-          return MainMenu();
+          return const MainMenu();
         },
         // '/intro': (_) {
         //   return Intro();
@@ -33,7 +33,7 @@ class Routes extends StatelessWidget {
           return VN1();
         },
         '/chatscreen': (_) {
-          return Chat();
+          return const Chat();
         },
       },
     );

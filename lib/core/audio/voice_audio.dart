@@ -9,15 +9,14 @@ class VoiceAudio {
 class PlayVoice extends WidgetsBindingObserver {
   bool _isRegistered = false;
 
-  late AudioPlayer audioPlayer;
-  final _player = AudioPlayer();
+  final audioPlayer = AudioPlayer();
   bool isPlaying = false;
 
   void initialize() {
     if (_isRegistered) {
       return;
     }
-    _player.play();
+    audioPlayer.play();
     _isRegistered = true;
     WidgetsBinding.instance?.addObserver(this);
   }

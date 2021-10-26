@@ -219,7 +219,7 @@ class _BaseScreenState extends State<SalemMainMenu> {
   void showAlertDialog(BuildContext context) {
     // set up the button
     Widget okButton = TextButton(
-      child: Text("Okay."),
+      child: const Text("Okay."),
       onPressed: () {
         Navigator.of(context).pop();
       },
@@ -227,14 +227,14 @@ class _BaseScreenState extends State<SalemMainMenu> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      contentPadding: EdgeInsets.all(5),
+      contentPadding: const EdgeInsets.all(5),
       backgroundColor: Colors.white,
-      title: Text(
+      title: const Text(
         "Not available",
         textAlign: TextAlign.center,
         style: TextStyle(fontSize: 28),
       ),
-      content: Text(
+      content: const Text(
         "Sorry! Currently not available.",
         textAlign: TextAlign.center,
         style: TextStyle(),

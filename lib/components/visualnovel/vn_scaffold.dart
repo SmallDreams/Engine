@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:salem/components/global/logical_keyboard.dart';
 import 'package:salem/components/global/onWillPop.dart';
 import 'package:salem/components/visualnovel/user_interface/background_builder.dart';
@@ -38,25 +39,16 @@ class _VNState extends State<VNScreen> {
   double? opacityIntro = 1.0;
   String? notHome;
   SharedPreferences? sharedPreferences;
-
-  // Function? callback;
-  // int? updatedNumber;
-  // _VNState({this.callback, this.updatedNumber});
-
-  // @override
-  // void didChangeDependencies() {
-  //   if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
-  //     super.didChangeDependencies();
-  //     GameAudioDesktop.playBGMDesktop.player = Player(
-  //       id: 0,
-  //     );
-  //   }
-  //   super.didChangeDependencies();
-  // }
+  final _player = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
+    _player.play();
+    Future.delayed(const Duration(seconds: 1), () {
+      GlobalAudio.playAudio
+          .getVoice(widget.speechList[textNumber].voice.toString());
+    });
     if (widget.bgm != notHome) {
       GlobalAudio.playAudio.getBGM(widget.bgm.toString());
     } else {
@@ -104,6 +96,11 @@ class _VNState extends State<VNScreen> {
         });
       } else {
         nextSpeech();
+        if (widget.speechList[textNumber].voice != null &&
+            widget.speechList[textNumber].voice!.isNotEmpty) {
+          GlobalAudio.playAudio
+              .getVoice(widget.speechList[textNumber + 1].voice.toString());
+        }
         GlobalAudio.playAudio.stopVoiceAudio();
         if (widget.callback != null) {
           widget.callback!(getNumber());
@@ -129,6 +126,11 @@ class _VNState extends State<VNScreen> {
         });
       } else {
         nextSpeech();
+        if (widget.speechList[textNumber].voice != null &&
+            widget.speechList[textNumber].voice!.isNotEmpty) {
+          GlobalAudio.playAudio
+              .getVoice(widget.speechList[textNumber + 1].voice.toString());
+        }
         if (widget.callback != null) {
           widget.callback!(getNumber());
         }
@@ -210,9 +212,9 @@ class _VNState extends State<VNScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (getVoice() != null && getVoice()!.isNotEmpty) {
-      _playAudio();
-    }
+    // if (getVoice() != null && getVoice()!.isNotEmpty) {
+    //   _playAudio();
+    // }
 
     return WillPopScope(
       onWillPop: () => getOnWillPop(),
@@ -326,6 +328,14 @@ class _VNState extends State<VNScreen> {
                                 });
                               } else {
                                 nextSpeech();
+                                if (widget.speechList[textNumber].voice !=
+                                        null &&
+                                    widget.speechList[textNumber].voice!
+                                        .isNotEmpty) {
+                                  GlobalAudio.playAudio.getVoice(widget
+                                      .speechList[textNumber + 1].voice
+                                      .toString());
+                                }
                                 GlobalAudio.playAudio.stopVoiceAudio();
                                 if (widget.callback != null) {
                                   widget.callback!(getNumber());

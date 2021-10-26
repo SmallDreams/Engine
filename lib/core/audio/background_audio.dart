@@ -11,9 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// to keep running.
 class Bgm extends WidgetsBindingObserver {
   bool _isRegistered = false;
-  late AudioPlayer audioPlayer;
   bool isPlaying = false;
-  final currentPlayer = AudioPlayer();
+  final audioPlayer = AudioPlayer();
 
   /// Registers a [WidgetsBinding] observer.
   ///
@@ -89,7 +88,7 @@ class Bgm extends WidgetsBindingObserver {
 
 class Ambience extends WidgetsBindingObserver {
   bool _isRegistered = false;
-  late AudioPlayer audioPlayer;
+  final audioPlayer = AudioPlayer();
   bool isPlaying = false;
 
   /// Registers a [WidgetsBinding] observer.

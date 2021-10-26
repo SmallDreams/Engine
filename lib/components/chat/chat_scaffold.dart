@@ -8,10 +8,11 @@ class SalemChatScreen extends StatefulWidget {
   final route;
   final nextRoute;
   SalemChatScreen({
+    Key? key,
     required this.route,
     required this.messages,
     required this.nextRoute,
-  });
+  }) : super(key: key);
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -61,25 +62,25 @@ class _ChatScreenState extends State<SalemChatScreen> {
         backgroundColor: Colors.white,
         flexibleSpace: SafeArea(
           child: Container(
-            padding: EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(right: 16),
             child: Row(
               children: <Widget>[
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 2,
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   maxRadius: 20,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 12,
                 ),
                 Expanded(
@@ -87,12 +88,12 @@ class _ChatScreenState extends State<SalemChatScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         "Henry Briggs",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Text(
@@ -103,7 +104,7 @@ class _ChatScreenState extends State<SalemChatScreen> {
                     ],
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.settings,
                   color: Colors.black54,
                 ),
@@ -115,12 +116,12 @@ class _ChatScreenState extends State<SalemChatScreen> {
       body: Stack(
         children: <Widget>[
           ListView.builder(
-            itemCount: this.value,
+            itemCount: value,
             shrinkWrap: true,
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            physics: NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) => BuildRow(
-              callback: this.callback,
+              callback: callback,
               messages: widget.messages,
               index: index,
               key: _key,
@@ -129,7 +130,7 @@ class _ChatScreenState extends State<SalemChatScreen> {
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
-              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+              padding: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
               height: 60,
               width: double.infinity,
               color: Colors.white,

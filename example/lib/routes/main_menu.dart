@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:salem/salem.dart';
 
 class MainMenu extends StatefulWidget {
+  const MainMenu({Key? key}) : super(key: key);
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -11,16 +12,16 @@ class _MyHomePageState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
     return SalemMainMenu(
-      bgImage: "mainmenu.jpeg",
-      mainMenuBGM: "jetstream",
+      bgImage: "main.jpg",
+      mainMenuBGM: "kids",
       creditsButton: false,
-      center: true,
-      buttonWidth: 400,
-      buttonHeight: 80,
+      bottomCenter: true,
+      buttonWidth: 250,
+      buttonHeight: 65,
       fontSize: 21,
       buttonColor: Colors.white,
       textColor: Colors.black,
-      buttonRadius: 7,
+      buttonRadius: 15,
     );
   }
 }
