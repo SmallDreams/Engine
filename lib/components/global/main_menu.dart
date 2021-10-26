@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:salem/components/visualnovel/user_interface/buttons.dart';
 import 'package:salem/core/audio/global_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,18 +62,20 @@ class SalemMainMenu extends StatefulWidget {
 class _BaseScreenState extends State<SalemMainMenu> {
   SharedPreferences? sharedPreferences;
   String? getPersistBGM;
+  final _player = AudioPlayer();
   @override
   void initState() {
     super.initState();
-
-    GlobalAudio.playAudio.getBGM(widget.mainMenuBGM);
+    _player.play();
+    _player.setAsset("assets/audio/" + widget.mainMenuBGM + ".mp3",
+        preload: true);
+    //GlobalAudio.playAudio.getBGM(widget.mainMenuBGM);
 
     SharedPreferences.getInstance().then((SharedPreferences sp) {
       sharedPreferences = sp;
       getPersistBGM = sharedPreferences!.getString("getPersistBGM");
       getPersistBGM = widget.mainMenuBGM;
       persistBGM(getPersistBGM!);
-      print(getPersistBGM);
     });
   }
 

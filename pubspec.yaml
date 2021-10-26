@@ -15,14 +15,14 @@ dependencies:
   # core
   universal_platform: ">=1.0.0+1 <2.0.0"
   universal_io: ">=2.0.4 <3.0.0"
-  shared_preferences: ">=2.0.7 <3.0.0"
+  shared_preferences: ">=2.0.8 <3.0.0"
   
   # audio
   #dart_vlc: ">=0.1.7 <1.0.0"
-  audioplayers: ">=0.20.1 <1.0.0"
+  just_audio: ">=0.9.14 <1.0.0"
 
   # UI
-  rive: ">=0.7.28 <1.0.0"
+  rive: ">=0.7.32 <1.0.0"
   rive_loading: ">=0.1.0 <1.0.0"
   bubble: ">=1.2.1 <2.0.0"
 

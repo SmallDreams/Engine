@@ -1,78 +1,7 @@
-import 'package:audioplayers/audioplayers.dart';
-//import 'package:dart_vlc/dart_vlc.dart';
-import 'package:flutter/material.dart';
 import 'package:salem/core/audio/background_audio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AmbienceAudio {
-  static bool isPlaying = false;
-  static AudioPlayer? audioPlayer;
-
-  /// Access a shared instance of the [AudioCache] class.
-  static AudioCache audioCache = AudioCache(prefix: 'assets/audio/ambience/');
-
-  /// Plays a single run of the given [file], with a given [volume].
-  static Future<AudioPlayer> play(String file) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('sfxValue');
-
-    return audioCache.play(file + ".mp3",
-        volume: vol ?? 1.0, mode: PlayerMode.LOW_LATENCY);
-  }
-
-  static Future<void> stop() async {
-    isPlaying = false;
-    if (audioPlayer != null) {
-      await audioPlayer!.stop();
-    }
-  }
-
-  /// Resumes the currently played (but resumed) background music.
-  static Future<void> resume() async {
-    if (audioPlayer != null) {
-      isPlaying = true;
-      await audioPlayer!.resume();
-    }
-  }
-
-  /// Pauses the background music without unloading or resetting the audio
-  /// player.
-  static Future<void> pause() async {
-    if (audioPlayer != null) {
-      isPlaying = false;
-      await audioPlayer!.pause();
-    }
-  }
-
-  static Future<void> setVolume(volume) async {
-    await audioPlayer!.setVolume(volume);
-  }
-
-  /// Plays, and keep looping the given [file]
-  static Future<AudioPlayer> loop(String file, {double volume = 1.0}) {
-    return audioCache.loop(file, volume: volume, mode: PlayerMode.LOW_LATENCY);
-  }
-
-  /// Plays a single run of the given file [file]
-  /// This method supports long audio files
-  static Future<AudioPlayer> playLongAudio(String file, {double volume = 1.0}) {
-    return audioCache.play(file, volume: volume);
-  }
-
-  /// Plays, and keep looping the given [file]
-  /// This method supports long audio files
-  ///
-  /// NOTE: Length audio files on Android have an audio gap between loop
-  /// iterations, this happens due to limitations on Android's native media
-  /// player features, if you need a gapless loop, prefer the loop method
-  static Future<AudioPlayer> loopLongAudio(String file, {double volume = 1.0}) {
-    return audioCache.loop(file, volume: volume);
-  }
-
-  /// Access a shared instance of the [Bgm] class.
-  ///
-  /// This will use the same global audio cache from [FlameAudio].
-  static late final Ambience playAmbience = Ambience(audioCache: audioCache);
+  static late final Ambience playAmbience = Ambience();
 }
 
 // class AmbienceAudioDesktop {

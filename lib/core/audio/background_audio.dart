@@ -1,5 +1,5 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/widgets.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The looping background music class.
@@ -11,11 +11,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// to keep running.
 class Bgm extends WidgetsBindingObserver {
   bool _isRegistered = false;
-  late AudioCache audioCache;
-  AudioPlayer? audioPlayer;
+  late AudioPlayer audioPlayer;
   bool isPlaying = false;
-
-  Bgm({AudioCache? audioCache}) : audioCache = audioCache ?? AudioCache();
+  final currentPlayer = AudioPlayer();
 
   /// Registers a [WidgetsBinding] observer.
   ///
@@ -24,6 +22,7 @@ class Bgm extends WidgetsBindingObserver {
     if (_isRegistered) {
       return;
     }
+
     _isRegistered = true;
     WidgetsBinding.instance?.addObserver(this);
   }
@@ -47,95 +46,51 @@ class Bgm extends WidgetsBindingObserver {
   Future<void> play(String filename, {double volume = 1.0}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     double? vol = prefs.getDouble('bgmValue');
-    print(vol);
-    final currentPlayer = audioPlayer;
-    if (currentPlayer != null && currentPlayer.state != PlayerState.STOPPED) {
-      currentPlayer.stop();
-    }
 
     isPlaying = true;
-
-    audioPlayer = await audioCache.loop(filename + ".mp3", volume: vol ?? 1.0);
+    audioPlayer.setAsset("assets/audio/" + filename + ".mp3", preload: true);
   }
 
   /// Stops the currently playing background music track (if any).
   Future<void> stop() async {
     isPlaying = false;
-    if (audioPlayer != null) {
-      await audioPlayer!.stop();
-    }
+    await audioPlayer.stop();
   }
 
   /// Resumes the currently played (but resumed) background music.
   Future<void> resume() async {
-    if (audioPlayer != null) {
-      isPlaying = true;
-      await audioPlayer!.resume();
-    }
+    isPlaying = true;
+    await audioPlayer.play();
   }
 
   /// Pauses the background music without unloading or resetting the audio
   /// player.
   Future<void> pause() async {
-    if (audioPlayer != null) {
-      isPlaying = false;
-      await audioPlayer!.pause();
-    }
+    isPlaying = false;
+    await audioPlayer.pause();
   }
 
   Future<void> volume(volume) async {
-    await audioPlayer!.setVolume(volume);
+    await audioPlayer.setVolume(volume);
   }
 
-  /// Pre-fetch an audio and store it in the cache.
-  ///
-  /// Alias of `audioCache.load();`.
-  Future<Uri> load(String file) => audioCache.load(file);
-
-  /// Pre-fetch an audio and store it in the cache.
-  ///
-  /// Alias of `audioCache.loadAsFile();`.
-  //Future<File> loadAsFile(String file) => audioCache.loadAsFile(file);
-
-  /// Pre-fetch a list of audios and store them in the cache.
-  ///
-  /// Alias of `audioCache.loadAll();`.
-  Future<List<Uri>> loadAll(List<String> files) => audioCache.loadAll(files);
-
-  /// Clears the file in the cache.
-  ///
-  /// Alias of `audioCache.clear();`.
-  void clear(Uri file) => audioCache.clear(file);
-
-  /// Clears all the audios in the cache.
-  ///
-  /// Alias of `audioCache.clearAll();`.
-  void clearAll() => audioCache.clearAll();
-
-  /// Handler for AppLifecycleState changes.
-  ///
-  /// This function handles the automatic pause and resume when the app
-  /// lifecycle state changes. There is NO NEED to call this function directly
-  /// directly.
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      if (isPlaying && audioPlayer?.state == PlayerState.PAUSED) {
-        audioPlayer?.resume();
+      if (isPlaying &&
+          audioPlayer.playerState == audioPlayer.playerState.playing) {
+        audioPlayer.play();
       }
     } else {
-      audioPlayer?.pause();
+      audioPlayer.pause();
     }
   }
 }
 
 class Ambience extends WidgetsBindingObserver {
   bool _isRegistered = false;
-  late AudioCache audioCache;
-  AudioPlayer? audioPlayer;
+  late AudioPlayer audioPlayer;
   bool isPlaying = false;
-
-  Ambience({AudioCache? audioCache}) : audioCache = audioCache ?? AudioCache();
 
   /// Registers a [WidgetsBinding] observer.
   ///
@@ -167,84 +122,50 @@ class Ambience extends WidgetsBindingObserver {
   Future<void> play(String filename, {double volume = 1.0}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     double? vol = prefs.getDouble('sfxValue');
-    print(vol);
     final currentPlayer = audioPlayer;
-    if (currentPlayer != null && currentPlayer.state != PlayerState.STOPPED) {
+    if (currentPlayer != null &&
+        currentPlayer.playerState != currentPlayer.playing) {
       currentPlayer.stop();
     }
 
     isPlaying = true;
-
-    audioPlayer = await audioCache.loop(filename + ".mp3", volume: vol ?? 1.0);
+    await audioPlayer.setLoopMode(LoopMode.one);
+    await audioPlayer.setAsset(filename + ".mp3");
+    await audioPlayer.setVolume(vol ?? 1.0);
   }
 
   /// Stops the currently playing background music track (if any).
   Future<void> stop() async {
     isPlaying = false;
-    if (audioPlayer != null) {
-      await audioPlayer!.stop();
-    }
+    await audioPlayer.stop();
   }
 
   /// Resumes the currently played (but resumed) background music.
   Future<void> resume() async {
-    if (audioPlayer != null) {
-      isPlaying = true;
-      await audioPlayer!.resume();
-    }
+    isPlaying = true;
+    await audioPlayer.play();
   }
 
   /// Pauses the background music without unloading or resetting the audio
   /// player.
   Future<void> pause() async {
-    if (audioPlayer != null) {
-      isPlaying = false;
-      await audioPlayer!.pause();
-    }
+    isPlaying = false;
+    await audioPlayer.pause();
   }
 
   Future<void> volume(volume) async {
-    await audioPlayer!.setVolume(volume);
+    await audioPlayer.setVolume(volume);
   }
 
-  /// Pre-fetch an audio and store it in the cache.
-  ///
-  /// Alias of `audioCache.load();`.
-  Future<Uri> load(String file) => audioCache.load(file);
-
-  /// Pre-fetch an audio and store it in the cache.
-  ///
-  /// Alias of `audioCache.loadAsFile();`.
-  //Future<File> loadAsFile(String file) => audioCache.loadAsFile(file);
-
-  /// Pre-fetch a list of audios and store them in the cache.
-  ///
-  /// Alias of `audioCache.loadAll();`.
-  Future<List<Uri>> loadAll(List<String> files) => audioCache.loadAll(files);
-
-  /// Clears the file in the cache.
-  ///
-  /// Alias of `audioCache.clear();`.
-  void clear(Uri file) => audioCache.clear(file);
-
-  /// Clears all the audios in the cache.
-  ///
-  /// Alias of `audioCache.clearAll();`.
-  void clearAll() => audioCache.clearAll();
-
-  /// Handler for AppLifecycleState changes.
-  ///
-  /// This function handles the automatic pause and resume when the app
-  /// lifecycle state changes. There is NO NEED to call this function directly
-  /// directly.
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      if (isPlaying && audioPlayer?.state == PlayerState.PAUSED) {
-        audioPlayer?.resume();
+      if (isPlaying &&
+          audioPlayer.playerState == audioPlayer.playerState.playing) {
+        audioPlayer.play();
       }
     } else {
-      audioPlayer?.pause();
+      audioPlayer.pause();
     }
   }
 }
