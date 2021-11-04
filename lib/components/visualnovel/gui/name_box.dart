@@ -39,14 +39,15 @@ class _NameBoxState extends State<NameBox> {
                   border: Border.all(
                     color: Colors.transparent,
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
+                  borderRadius: const BorderRadius.all(Radius.circular(10))),
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 2, horizontal: 15),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 2, horizontal: 15),
                 child: Text(
                   "$_name ?? MC Name",
                   style: TextStyle(
                     fontFamily: widget.vnNameFont,
-                    fontSize: 32,
+                    fontSize: 25,
                     color: Colors.black,
                   ),
                 ),
@@ -56,18 +57,18 @@ class _NameBoxState extends State<NameBox> {
         } else {
           return Container(
             decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.7),
+                color: Colors.white.withOpacity(1),
                 border: Border.all(
                   color: Colors.transparent,
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(20))),
+                borderRadius: const BorderRadius.all(Radius.circular(10))),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 15),
               child: Text(
                 widget.characterName ?? "Character Name",
                 style: TextStyle(
                   fontFamily: widget.vnNameFont,
-                  fontSize: 32,
+                  fontSize: 25,
                   color: Colors.black,
                 ),
               ),

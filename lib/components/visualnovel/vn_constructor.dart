@@ -136,7 +136,7 @@ class _VNConstructorState extends State<VNConstructor> {
                           child: Builder(builder: (context) {
                             return Container(
                               decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.8),
+                                  color: Colors.white.withOpacity(0.2),
                                   border: Border.all(
                                     color: Colors.black.withOpacity(0),
                                   ),
@@ -218,14 +218,14 @@ class _VNConstructorState extends State<VNConstructor> {
                               Widget>[
                             Container(
                               padding: const EdgeInsets.symmetric(vertical: 10),
-                              width: MediaQuery.of(context).size.width / 1.2,
+                              width: MediaQuery.of(context).size.width / 1.25,
                               child: Builder(
                                 builder: (context) {
                                   if (widget.characterName == "MC" ||
                                       widget.characterName == "Narrator") {
                                     return Container(
                                       decoration: BoxDecoration(
-                                          color: Colors.white.withOpacity(0.8),
+                                          color: Colors.white.withOpacity(0.2),
                                           border: Border.all(
                                             color: Colors.black.withOpacity(0),
                                           ),
@@ -267,20 +267,20 @@ class _VNConstructorState extends State<VNConstructor> {
                                   } else {
                                     return Container(
                                       decoration: BoxDecoration(
-                                          color: Colors.white.withOpacity(0.8),
+                                          color: Colors.white.withOpacity(1),
                                           border: Border.all(
                                             color: Colors.black.withOpacity(0),
                                           ),
                                           borderRadius: const BorderRadius.all(
-                                              Radius.circular(20))),
+                                              Radius.circular(10))),
                                       child: Stack(
                                         children: [
                                           Opacity(
                                             opacity: 1,
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: width * 0.035,
-                                                  vertical: height * 0.005),
+                                                horizontal: width * 0.045,
+                                              ),
                                               child: AnimatedTextKit(
                                                 // nextSpeech: widget.nextSpeech,
                                                 animatedTexts: [

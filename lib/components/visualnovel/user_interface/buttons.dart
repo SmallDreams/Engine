@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:salem/salem.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -6,7 +7,8 @@ class Buttons extends StatelessWidget {
   final route;
   final nextRoute;
 
-  Buttons({required this.route, required this.nextRoute});
+  const Buttons({Key? key, required this.route, required this.nextRoute})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (BuildContext context) {
@@ -50,7 +52,7 @@ class Buttons extends StatelessWidget {
 class SettingsClip extends StatelessWidget {
   final route;
 
-  SettingsClip({Key? key, this.route});
+  const SettingsClip({Key? key, this.route}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -58,24 +60,25 @@ class SettingsClip extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             primary: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(15),
             ),
           ),
           onPressed: () => Navigator.of(context)
               .pushNamed("/settings", arguments: ScreenArguments(route)),
           child: Row(children: const [
             Text(
-              "Settings",
+              "SETTINGS",
               style: TextStyle(
                 fontFamily: "Nasa",
-                fontSize: 18,
+                fontSize: 17,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
+            SizedBox(width: 5),
             Icon(
-              Icons.settings,
-              size: 21,
+              FontAwesomeIcons.cog,
+              size: 20,
               color: Colors.black,
             ),
           ]));
@@ -95,19 +98,27 @@ dynamic skipClip(context, nextRoute) {
       style: ElevatedButton.styleFrom(
         primary: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(15),
         ),
       ),
       onPressed: () => showAlertDialog(context, nextRoute),
-      child: const Text(
-        "Skip »",
-        style: TextStyle(
-          fontFamily: "Nasa",
-          fontSize: 18,
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
+      child: Row(children: const [
+        Text(
+          "SKIP",
+          style: TextStyle(
+            fontFamily: "Nasa",
+            fontSize: 17,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
+        SizedBox(width: 5),
+        Icon(
+          FontAwesomeIcons.forward,
+          size: 20,
+          color: Colors.black,
+        ),
+      ]),
     )
   ]);
 }
