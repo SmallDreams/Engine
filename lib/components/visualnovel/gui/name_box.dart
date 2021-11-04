@@ -47,7 +47,7 @@ class _NameBoxState extends State<NameBox> {
                   "$_name ?? MC Name",
                   style: TextStyle(
                     fontFamily: widget.vnNameFont,
-                    fontSize: 25,
+                    fontSize: 28.5,
                     color: Colors.black,
                   ),
                 ),
@@ -68,7 +68,7 @@ class _NameBoxState extends State<NameBox> {
                 widget.characterName ?? "Character Name",
                 style: TextStyle(
                   fontFamily: widget.vnNameFont,
-                  fontSize: 25,
+                  fontSize: 28.5,
                   color: Colors.black,
                 ),
               ),
