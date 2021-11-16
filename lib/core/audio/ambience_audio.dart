@@ -40,7 +40,7 @@ class Ambience extends WidgetsBindingObserver {
   /// playing.
   Future<void> play(String filename, {double volume = 1.0}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('sfxValue');
+    double? vol = prefs.getDouble('sfxValue') ?? 1.0;
     final currentPlayer = audioPlayerAmbience;
     if (currentPlayer != null &&
         currentPlayer.playerState != currentPlayer.playing) {
@@ -48,11 +48,13 @@ class Ambience extends WidgetsBindingObserver {
     }
 
     isPlaying = true;
-    await audioPlayerAmbience.setLoopMode(LoopMode.one);
-    await audioPlayerAmbience
-        .setAsset("assets/audio/ambience/" + filename + ".mp3");
-    await audioPlayerAmbience.setVolume(vol ?? 1.0);
-    await audioPlayerAmbience.play();
+    await audioPlayerAmbience.setVolume(vol).then((value) async =>
+        await audioPlayerAmbience
+            .setAsset("assets/audio/ambience/" + filename + ".mp3",
+                preload: true)
+            .then((value) async => await audioPlayerAmbience
+                .setLoopMode(LoopMode.one)
+                .then((value) async => await audioPlayerAmbience.play())));
   }
 
   /// Stops the currently playing background music track (if any).

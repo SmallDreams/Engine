@@ -46,9 +46,12 @@ class PlayVoice extends WidgetsBindingObserver {
       await currentPlayer.stop();
     }
 
-    await currentPlayer.setVolume(vol ?? 1.0);
-    await currentPlayer.setAsset("assets/audio/" + filename + ".mp3");
-    await currentPlayer.play();
+    await currentPlayer.setVolume(vol ?? 1.0).then((value) async =>
+        await currentPlayer
+            .setAsset("assets/audio/" + filename + ".mp3", preload: true)
+            .then((value) async => await audioPlayerVoice
+                .setLoopMode(LoopMode.off)
+                .then((value) async => await currentPlayer.play())));
   }
 
   /// Stops the currently playing background music track (if any).

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:salem/components/visualnovel/gui/name_box.dart';
 import 'package:salem/components/visualnovel/models/text_animation.dart';
 import 'package:salem/components/visualnovel/user_interface/background_builder.dart';
 import 'package:salem/components/visualnovel/user_interface/buttons.dart';
-import 'package:salem/components/visualnovel/user_interface/text_dialog.dart';
-import 'package:salem/components/visualnovel/user_interface/text_say.dart';
 import 'package:salem/components/visualnovel/user_interface/vn_img_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -270,7 +267,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                   } else {
                                     return Container(
                                       decoration: BoxDecoration(
-                                          color: Colors.white.withOpacity(1),
+                                          color: Colors.white.withOpacity(0.95),
                                           border: Border.all(
                                             color: Colors.black.withOpacity(0),
                                           ),
@@ -282,7 +279,7 @@ class _VNConstructorState extends State<VNConstructor> {
                                             opacity: 1,
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                horizontal: width * 0.045,
+                                                horizontal: width * 0.025,
                                               ),
                                               child: AnimatedTextKit(
                                                 // nextSpeech: widget.nextSpeech,
@@ -292,13 +289,30 @@ class _VNConstructorState extends State<VNConstructor> {
                                                         "···",
                                                     textAlign: TextAlign.left,
                                                     textStyle: TextStyle(
+                                                        // shadows: <Shadow>[
+                                                        //   Shadow(
+                                                        //     offset:
+                                                        //         Offset(0, 0),
+                                                        //     blurRadius: 3.0,
+                                                        //     color: Colors.black,
+                                                        //   ),
+                                                        //   Shadow(
+                                                        //     offset: Offset(
+                                                        //         1.0, 1.0),
+                                                        //     blurRadius: 8.0,
+                                                        //     color: Colors.black,
+                                                        //   ),
+                                                        // ],
                                                         color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         fontFamily:
-                                                            widget.vnFont,
-                                                        fontSize: 20),
+                                                            "Montserrat",
+                                                        fontSize: 16.5,
+                                                        letterSpacing: 0.75),
                                                     speed: Duration(
                                                         milliseconds:
-                                                            speed ?? 25),
+                                                            speed ?? 15),
                                                   ),
                                                 ],
                                                 displayFullTextOnTap: true,

@@ -44,11 +44,13 @@ class Bgm extends WidgetsBindingObserver {
   /// playing.
   Future<void> play(String filename, {double volume = 1.0}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('bgmValue');
+    double vol = prefs.getDouble('bgmValue') ?? 1.0;
 
     isPlaying = true;
-    audioPlayerBGM.setAsset("assets/audio/" + filename + ".mp3", preload: true);
-    await audioPlayerBGM.play();
+    await audioPlayerBGM.setVolume(vol).then((value) async => audioPlayerBGM
+        .setAsset("assets/audio/" + filename + ".mp3", preload: true)
+        .then((value) async => await audioPlayerBGM.setLoopMode(LoopMode.one))
+        .then((value) async => await audioPlayerBGM.play()));
   }
 
   /// Stops the currently playing background music track (if any).
