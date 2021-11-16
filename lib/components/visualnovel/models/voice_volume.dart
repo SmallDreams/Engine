@@ -97,7 +97,7 @@ class _TextSpeedState extends State<VoiceVolume> {
                         // VoiceAudioDesktop.playVoiceDesktop.player
                         //     .setVolume(volume);
                       } else {
-                        VoiceAudio.playVoice.audioPlayer?.setVolume(volume);
+                        VoiceAudio.playVoice.audioPlayerVoice.setVolume(volume);
                         if (voiceVol == 0) {
                           VoiceAudio.playVoice.pause();
                         } else {

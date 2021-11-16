@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:salem/components/visualnovel/gui/name_box.dart';
 import 'package:salem/components/visualnovel/models/text_animation.dart';
 import 'package:salem/components/visualnovel/user_interface/background_builder.dart';
 import 'package:salem/components/visualnovel/user_interface/buttons.dart';
+import 'package:salem/components/visualnovel/user_interface/text_dialog.dart';
+import 'package:salem/components/visualnovel/user_interface/text_say.dart';
 import 'package:salem/components/visualnovel/user_interface/vn_img_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_platform/universal_platform.dart';

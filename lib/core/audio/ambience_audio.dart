@@ -1,147 +1,93 @@
-import 'package:audioplayers/audioplayers.dart';
-//import 'package:dart_vlc/dart_vlc.dart';
-import 'package:salem/core/audio/background_audio.dart';
+import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AmbienceAudio {
-  static bool isPlaying = false;
-  static AudioPlayer? audioPlayer;
+  static late final Ambience playAmbience = Ambience();
+}
 
-  /// Access a shared instance of the [AudioCache] class.
-  static AudioCache audioCache = AudioCache(prefix: 'assets/audio/ambience/');
+class Ambience extends WidgetsBindingObserver {
+  bool _isRegistered = false;
+  final audioPlayerAmbience = AudioPlayer();
+  bool isPlaying = false;
 
-  /// Plays a single run of the given [file], with a given [volume].
-  static Future<AudioPlayer> play(String file) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    double? vol = prefs.getDouble('sfxValue');
-
-    return audioCache.play(file + ".mp3",
-        volume: vol ?? 1.0, mode: PlayerMode.LOW_LATENCY);
+  /// Registers a [WidgetsBinding] observer.
+  ///
+  /// This must be called for auto-pause and resume to work properly.
+  void initialize() {
+    if (_isRegistered) {
+      return;
+    }
+    _isRegistered = true;
+    WidgetsBinding.instance?.addObserver(this);
   }
 
-  static Future<void> stop() async {
-    isPlaying = false;
-    if (audioPlayer != null) {
-      await audioPlayer!.stop();
+  /// Dispose the [WidgetsBinding] observer.
+  void dispose() {
+    if (!_isRegistered) {
+      return;
     }
+    WidgetsBinding.instance?.removeObserver(this);
+    _isRegistered = false;
+  }
+
+  /// Plays and loops a background music file specified by [filename].
+  ///
+  /// The volume can be specified in the optional named parameter [volume]
+  /// where `0` means off and `1` means max.
+  ///
+  /// It is safe to call this function even when a current BGM track is
+  /// playing.
+  Future<void> play(String filename, {double volume = 1.0}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    double? vol = prefs.getDouble('sfxValue');
+    final currentPlayer = audioPlayerAmbience;
+    if (currentPlayer != null &&
+        currentPlayer.playerState != currentPlayer.playing) {
+      currentPlayer.stop();
+    }
+
+    isPlaying = true;
+    await audioPlayerAmbience.setLoopMode(LoopMode.one);
+    await audioPlayerAmbience
+        .setAsset("assets/audio/ambience/" + filename + ".mp3");
+    await audioPlayerAmbience.setVolume(vol ?? 1.0);
+    await audioPlayerAmbience.play();
+  }
+
+  /// Stops the currently playing background music track (if any).
+  Future<void> stop() async {
+    isPlaying = false;
+    await audioPlayerAmbience.stop();
   }
 
   /// Resumes the currently played (but resumed) background music.
-  static Future<void> resume() async {
-    if (audioPlayer != null) {
-      isPlaying = true;
-      await audioPlayer!.resume();
-    }
+  Future<void> resume() async {
+    isPlaying = true;
+    await audioPlayerAmbience.play();
   }
 
   /// Pauses the background music without unloading or resetting the audio
   /// player.
-  static Future<void> pause() async {
-    if (audioPlayer != null) {
-      isPlaying = false;
-      await audioPlayer!.pause();
+  Future<void> pause() async {
+    isPlaying = false;
+    await audioPlayerAmbience.pause();
+  }
+
+  Future<void> volume(volume) async {
+    await audioPlayerAmbience.setVolume(volume);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      if (isPlaying &&
+          audioPlayerAmbience.playerState ==
+              audioPlayerAmbience.playerState.playing) {
+        audioPlayerAmbience.play();
+      }
+    } else {
+      audioPlayerAmbience.pause();
     }
   }
-
-  static Future<void> setVolume(volume) async {
-    await audioPlayer!.setVolume(volume);
-  }
-
-  /// Plays, and keep looping the given [file]
-  static Future<AudioPlayer> loop(String file, {double volume = 1.0}) {
-    return audioCache.loop(file, volume: volume, mode: PlayerMode.LOW_LATENCY);
-  }
-
-  /// Plays a single run of the given file [file]
-  /// This method supports long audio files
-  static Future<AudioPlayer> playLongAudio(String file, {double volume = 1.0}) {
-    return audioCache.play(file, volume: volume);
-  }
-
-  /// Plays, and keep looping the given [file]
-  /// This method supports long audio files
-  ///
-  /// NOTE: Length audio files on Android have an audio gap between loop
-  /// iterations, this happens due to limitations on Android's native media
-  /// player features, if you need a gapless loop, prefer the loop method
-  static Future<AudioPlayer> loopLongAudio(String file, {double volume = 1.0}) {
-    return audioCache.loop(file, volume: volume);
-  }
-
-  /// Access a shared instance of the [Bgm] class.
-  ///
-  /// This will use the same global audio cache from [FlameAudio].
-  static late final Ambience playAmbience = Ambience(audioCache: audioCache);
 }
-
-// class AmbienceAudioDesktop {
-//   static late final PlayAudio playBGMDesktop = PlayAudio();
-// }
-
-// class PlayAudio extends WidgetsBindingObserver {
-//   Player player = Player(id: 2);
-//   bool isPlaying = false;
-
-//   /// Plays and loops a background music file specified by [filename].
-//   ///
-//   /// The volume can be specified in the optional named parameter [volume]
-//   /// where `0` means off and `1` means max.
-//   ///
-//   /// It is safe to call this function even when a current BGM track is
-//   /// playing.
-//   Future<void> play(String filename, {double volume = 1.0}) async {
-//     SharedPreferences prefs = await SharedPreferences.getInstance();
-//     double? vol = prefs.getDouble('sfxValue');
-
-//     player.open(
-//       Playlist(
-//         playlistMode: PlaylistMode.single,
-//         medias: [
-//           Media.asset('assets/audio/ambience/' + filename + ".mp3"),
-//         ],
-//       ),
-//     );
-//     player.setVolume(vol ?? 1.0);
-//     isPlaying = true;
-//   }
-
-//   /// Stops the currently playing background music track (if any).
-//   Future<void> stop() async {
-//     isPlaying = false;
-//     if (player != null) {
-//       player.stop();
-//     }
-//   }
-
-//   /// Resumes the currently played (but resumed) background music.
-//   // Future<void> resume() async {
-//   //   if (audioPlayer != null) {
-//   //     isPlaying = true;
-//   //     await audioPlayer!.resume();
-//   //   }
-//   // }
-
-//   /// Pauses the background music without unloading or resetting the audio
-//   /// player.
-//   Future<void> pause() async {
-//     if (player != null) {
-//       isPlaying = false;
-//       player.pause();
-//     }
-//   }
-
-//   Future<void> volume(volume) async {
-//     player.setVolume(volume);
-//   }
-
-//   // @override
-//   // void didChangeAppLifecycleState(AppLifecycleState state) {
-//   //   if (state == AppLifecycleState.resumed) {
-//   //     if (isPlaying && player?.state == PlayerState.PAUSED) {
-//   //       audioPlayer?.resume();
-//   //     }
-//   //   } else {
-//   //     audioPlayer?.pause();
-//   //   }
-//   // }
-// }

@@ -19,7 +19,8 @@ dependencies:
   
   # audio
   #dart_vlc: ">=0.1.7 <1.0.0"
-  audioplayers: ">=0.20.1 <1.0.0"
+  #audioplayers: ">=0.20.1 <1.0.0"
+  just_audio: ^0.9.17
 
   # UI
   rive: ">=0.7.28 <1.0.0"
@@ -34,7 +35,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ">=1.0.4 <2.0.0"
+  #flutter_lints: ">=1.0.4 <2.0.0"
 
 flutter:
 

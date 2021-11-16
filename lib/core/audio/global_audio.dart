@@ -20,15 +20,11 @@ class PlayAudio with WidgetsBindingObserver {
     if (UniversalPlatform.isWindows || UniversalPlatform.isLinux) {
       if (musicName.isNotEmpty) {
         // GameAudioDesktop.playBGMDesktop.play(musicName);
-      } else {
-        print(musicName);
-      }
+      } else {}
     } else {
       if (musicName.isNotEmpty) {
         GameAudio.playBGM.play(musicName);
-      } else {
-        print(musicName);
-      }
+      } else {}
     }
   }
 
