@@ -84,251 +84,112 @@ class _VNConstructorState extends State<VNConstructor> {
     getSpeed();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        BackgroundBuilder(image: widget.bgImage),
-        // Character Image here
-        Builder(
-          builder: (BuildContext context) {
-            if (widget.mcImage != null ||
-                widget.centerCharacterImage != null ||
-                widget.leftCharacterImage != null ||
-                widget.rightCharacterImage != null) {
-              if (widget.characterName == "MC" ||
-                  widget.characterName == "Narrator") {
-                return ImageBuilderMC(image: widget.mcImage);
+    return Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Stack(fit: StackFit.expand, children: [
+          //Character Image here
+          Builder(
+            builder: (BuildContext context) {
+              if (widget.mcImage != null ||
+                  widget.centerCharacterImage != null ||
+                  widget.leftCharacterImage != null ||
+                  widget.rightCharacterImage != null) {
+                if (widget.characterName == "MC" ||
+                    widget.characterName == "Narrator") {
+                  return ImageBuilderMC(image: widget.mcImage);
+                } else {
+                  return ImageBuilder(
+                    centerImage: widget.centerCharacterImage,
+                    hasAnimation: widget.hasAnimation ?? false,
+                    animationName: widget.animationName ?? "idle",
+                  );
+                }
               } else {
-                return ImageBuilder(
-                  centerImage: widget.centerCharacterImage,
-                  hasAnimation: widget.hasAnimation ?? false,
-                  animationName: widget.animationName ?? "idle",
-                );
+                return const SizedBox.shrink();
               }
-            } else {
-              return const SizedBox.shrink();
-            }
-          },
-        ),
+            },
+          ),
 
-        Builder(
-          builder: (context) {
-            if (UniversalPlatform.isMacOS ||
-                UniversalPlatform.isWindows ||
-                UniversalPlatform.isLinux ||
-                UniversalPlatform.isWeb) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    NameBox(
-                      characterName: widget.characterName,
-                      vnNameFont: widget.vnNameFont,
-                    ),
-                    Stack(
-                      alignment: Alignment.centerLeft,
-                      children: <Widget>[
-                        Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          width: MediaQuery.of(context).size.width / 2.05,
-                          child: Builder(builder: (context) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.2),
-                                  border: Border.all(
-                                    color: Colors.black.withOpacity(0),
-                                  ),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20))),
-                              child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: width * 0.03,
-                                      vertical: height * 0.025),
-                                  child: Builder(
-                                    builder: (context) {
-                                      if (widget.characterText != null) {
-                                        return AnimatedTextKit(
-                                          animatedTexts: [
-                                            TyperAnimatedText(
-                                              widget.characterText ?? "···",
-                                              textAlign: TextAlign.left,
-                                              textStyle: TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: widget.vnFont,
-                                                  fontSize: 21),
-                                              speed: Duration(
-                                                  milliseconds: speed ?? 25),
-                                            ),
-                                          ],
-                                          displayFullTextOnTap: true,
-                                          isRepeatingAnimation: false,
-                                          key: ValueKey(widget.n),
-                                        );
-                                      } else {
-                                        return AnimatedTextKit(
-                                          animatedTexts: [
-                                            TyperAnimatedText(
-                                              widget.cT ?? "···",
-                                              textAlign: TextAlign.left,
-                                              textStyle: TextStyle(
-                                                  color: Colors.black,
-                                                  fontFamily: widget.vnFont,
-                                                  fontSize: 21),
-                                              speed: Duration(
-                                                  milliseconds: speed ?? 25),
-                                            ),
-                                          ],
-                                          displayFullTextOnTap: true,
-                                          isRepeatingAnimation: false,
-                                          key: ValueKey(widget.n),
-                                        );
-                                      }
-                                    },
-                                  )),
-                            );
-                            //   }
-                          }),
-                        ),
-                      ],
-                    ),
-                    Buttons(
-                      route: widget.route,
-                      nextRoute: widget.nextRoute,
-                    ),
-                  ],
-                ),
-              );
-            } else {
-              return Stack(
-                fit: StackFit.expand,
-                children: <Widget>[
-                  Column(
+          Builder(
+            builder: (context) {
+              if (UniversalPlatform.isMacOS ||
+                  UniversalPlatform.isWindows ||
+                  UniversalPlatform.isLinux ||
+                  UniversalPlatform.isWeb) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
+                    children: <Widget>[
                       NameBox(
                         characterName: widget.characterName,
                         vnNameFont: widget.vnNameFont,
                       ),
-                      Column(
-                        children: [
-                          Stack(alignment: Alignment.centerLeft, children: <
-                              Widget>[
-                            Container(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              width: MediaQuery.of(context).size.width / 1.25,
-                              child: Builder(
-                                builder: (context) {
-                                  if (widget.characterName == "MC" ||
-                                      widget.characterName == "Narrator") {
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white.withOpacity(0.2),
-                                          border: Border.all(
-                                            color: Colors.black.withOpacity(0),
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20))),
-                                      child: Stack(
-                                        children: [
-                                          Opacity(
-                                            opacity: 1,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: width * 0.03,
-                                                  vertical: height * 0.025),
-                                              child: AnimatedTextKit(
-                                                animatedTexts: [
-                                                  TyperAnimatedText(
-                                                    widget.characterText ??
-                                                        "···",
-                                                    textAlign: TextAlign.left,
-                                                    textStyle: TextStyle(
-                                                        color: Colors.black,
-                                                        fontFamily:
-                                                            widget.vnFont,
-                                                        fontSize: 20),
-                                                    speed: Duration(
-                                                        milliseconds:
-                                                            speed ?? 25),
-                                                  ),
-                                                ],
-                                                displayFullTextOnTap: true,
-                                                isRepeatingAnimation: false,
-                                                key: ValueKey(widget.n),
+                      Stack(
+                        alignment: Alignment.centerLeft,
+                        children: <Widget>[
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            width: MediaQuery.of(context).size.width / 2.05,
+                            child: Builder(builder: (context) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.2),
+                                    border: Border.all(
+                                      color: Colors.black.withOpacity(0),
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(20))),
+                                child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: width * 0.03,
+                                        vertical: height * 0.025),
+                                    child: Builder(
+                                      builder: (context) {
+                                        if (widget.characterText != null) {
+                                          return AnimatedTextKit(
+                                            animatedTexts: [
+                                              TyperAnimatedText(
+                                                widget.characterText ?? "···",
+                                                textAlign: TextAlign.left,
+                                                textStyle: TextStyle(
+                                                    color: Colors.black,
+                                                    fontFamily: widget.vnFont,
+                                                    fontSize: 21),
+                                                speed: Duration(
+                                                    milliseconds: speed ?? 25),
                                               ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  } else {
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white.withOpacity(0.95),
-                                          border: Border.all(
-                                            color: Colors.black.withOpacity(0),
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10))),
-                                      child: Stack(
-                                        children: [
-                                          Opacity(
-                                            opacity: 1,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: width * 0.025,
+                                            ],
+                                            displayFullTextOnTap: true,
+                                            isRepeatingAnimation: false,
+                                            key: ValueKey(widget.n),
+                                          );
+                                        } else {
+                                          return AnimatedTextKit(
+                                            animatedTexts: [
+                                              TyperAnimatedText(
+                                                widget.cT ?? "···",
+                                                textAlign: TextAlign.left,
+                                                textStyle: TextStyle(
+                                                    color: Colors.black,
+                                                    fontFamily: widget.vnFont,
+                                                    fontSize: 21),
+                                                speed: Duration(
+                                                    milliseconds: speed ?? 25),
                                               ),
-                                              child: AnimatedTextKit(
-                                                // nextSpeech: widget.nextSpeech,
-                                                animatedTexts: [
-                                                  TyperAnimatedText(
-                                                    widget.characterText ??
-                                                        "···",
-                                                    textAlign: TextAlign.left,
-                                                    textStyle: TextStyle(
-                                                        // shadows: <Shadow>[
-                                                        //   Shadow(
-                                                        //     offset:
-                                                        //         Offset(0, 0),
-                                                        //     blurRadius: 3.0,
-                                                        //     color: Colors.black,
-                                                        //   ),
-                                                        //   Shadow(
-                                                        //     offset: Offset(
-                                                        //         1.0, 1.0),
-                                                        //     blurRadius: 8.0,
-                                                        //     color: Colors.black,
-                                                        //   ),
-                                                        // ],
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontFamily:
-                                                            "Montserrat",
-                                                        fontSize: 16.5,
-                                                        letterSpacing: 0.75),
-                                                    speed: Duration(
-                                                        milliseconds:
-                                                            speed ?? 15),
-                                                  ),
-                                                ],
-                                                displayFullTextOnTap: true,
-                                                isRepeatingAnimation: false,
-                                                key: ValueKey(widget.n),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }
-                                },
-                              ),
-                            ),
-                          ]),
+                                            ],
+                                            displayFullTextOnTap: true,
+                                            isRepeatingAnimation: false,
+                                            key: ValueKey(widget.n),
+                                          );
+                                        }
+                                      },
+                                    )),
+                              );
+                              //   }
+                            }),
+                          ),
                         ],
                       ),
                       Buttons(
@@ -336,13 +197,162 @@ class _VNConstructorState extends State<VNConstructor> {
                         nextRoute: widget.nextRoute,
                       ),
                     ],
-                  )
-                ],
-              );
-            }
-          },
-        ),
-      ],
-    );
+                  ),
+                );
+              } else {
+                return Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        NameBox(
+                          characterName: widget.characterName,
+                          vnNameFont: widget.vnNameFont,
+                        ),
+                        Column(
+                          children: [
+                            Stack(alignment: Alignment.centerLeft, children: <
+                                Widget>[
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                width: MediaQuery.of(context).size.width / 1.2,
+                                child: Builder(
+                                  builder: (context) {
+                                    if (widget.characterName == "MC" ||
+                                        widget.characterName == "Narrator") {
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                            color:
+                                                Colors.white.withOpacity(0.2),
+                                            border: Border.all(
+                                              color:
+                                                  Colors.black.withOpacity(0),
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(20))),
+                                        child: Stack(
+                                          children: [
+                                            Opacity(
+                                              opacity: 1,
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: width * 0.03,
+                                                    vertical: height * 0.025),
+                                                child: AnimatedTextKit(
+                                                  animatedTexts: [
+                                                    TyperAnimatedText(
+                                                      widget.characterText ??
+                                                          "···",
+                                                      textAlign: TextAlign.left,
+                                                      textStyle: TextStyle(
+                                                          color: Colors.black,
+                                                          fontFamily:
+                                                              widget.vnFont,
+                                                          fontSize: 20),
+                                                      speed: Duration(
+                                                          milliseconds:
+                                                              speed ?? 25),
+                                                    ),
+                                                  ],
+                                                  displayFullTextOnTap: true,
+                                                  isRepeatingAnimation: false,
+                                                  key: ValueKey(widget.n),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    } else {
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                            color:
+                                                Colors.white.withOpacity(0.9),
+                                            border: Border.all(
+                                              color:
+                                                  Colors.black.withOpacity(0),
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(10))),
+                                        child: Stack(
+                                          children: [
+                                            Opacity(
+                                              opacity: 1,
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: width * 0.017,
+                                                ),
+                                                child: AnimatedTextKit(
+                                                  // nextSpeech: widget.nextSpeech,
+                                                  animatedTexts: [
+                                                    TyperAnimatedText(
+                                                      widget.characterText ??
+                                                          " ·  ·  · ",
+                                                      textAlign: TextAlign.left,
+                                                      textStyle: TextStyle(
+                                                          //  shadows: <Shadow>[
+                                                          //   Shadow(
+                                                          //     offset:
+                                                          //         Offset(1, 2),
+                                                          //     blurRadius: 0,
+                                                          //     color:
+                                                          //         Colors.black,
+                                                          //   ),
+                                                          //   Shadow(
+                                                          //     offset: Offset(
+                                                          //         2.0, 1.1),
+                                                          //     blurRadius: 0,
+                                                          //     color:
+                                                          //         Colors.black,
+                                                          //   ),
+                                                          // ],
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontFamily:
+                                                              "Montserrat",
+                                                          fontSize: 16.5,
+                                                          letterSpacing: 1.5),
+                                                      speed: Duration(
+                                                          milliseconds:
+                                                              speed ?? 15),
+                                                    ),
+                                                  ],
+                                                  displayFullTextOnTap: true,
+                                                  isRepeatingAnimation: false,
+                                                  key: ValueKey(widget.n),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    }
+                                  },
+                                ),
+                              ),
+                            ]),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 170,
+                        ),
+                        // Buttons(
+                        //   route: widget.route,
+                        //   nextRoute: widget.nextRoute,
+                        // ),
+                      ],
+                    )
+                  ],
+                );
+              }
+            },
+          ),
+        ]));
   }
 }

@@ -21,12 +21,15 @@ dependencies:
   #dart_vlc: ">=0.1.7 <1.0.0"
   #audioplayers: ">=0.20.1 <1.0.0"
   just_audio: ^0.9.17
+  just_waveform: ^0.0.1
 
   # UI
+  line_icons: ^2.0.1
   rive: ">=0.7.28 <1.0.0"
   rive_loading: ">=0.1.0 <1.0.0"
   bubble: ">=1.2.1 <2.0.0"
   font_awesome_flutter: ">=9.2.0 <10.0.0"
+  panorama: ^0.4.1
 
   # Translation
   # easy_localization: ">=3.0.0 <4.0.0"

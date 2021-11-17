@@ -90,6 +90,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_cube:
+    dependency: transitive
+    description:
+      name: flutter_cube
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
@@ -172,6 +179,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.2"
+  just_waveform:
+    dependency: transitive
+    description:
+      name: just_waveform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
+  line_icons:
+    dependency: transitive
+    description:
+      name: line_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   lints:
     dependency: transitive
     description:
@@ -186,6 +207,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  motion_sensors:
+    dependency: transitive
+    description:
+      name: motion_sensors
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
+  panorama:
+    dependency: transitive
+    description:
+      name: panorama
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1"
   path:
     dependency: transitive
     description:

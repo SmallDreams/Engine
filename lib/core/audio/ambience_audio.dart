@@ -41,13 +41,7 @@ class Ambience extends WidgetsBindingObserver {
   Future<void> play(String filename, {double volume = 1.0}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     double? vol = prefs.getDouble('sfxValue') ?? 1.0;
-    final currentPlayer = audioPlayerAmbience;
-    if (currentPlayer != null &&
-        currentPlayer.playerState != currentPlayer.playing) {
-      currentPlayer.stop();
-    }
 
-    isPlaying = true;
     await audioPlayerAmbience.setVolume(vol).then((value) async =>
         await audioPlayerAmbience
             .setAsset("assets/audio/ambience/" + filename + ".mp3",

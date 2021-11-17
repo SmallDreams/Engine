@@ -35,7 +35,7 @@ class _NameBoxState extends State<NameBox> {
             alignment: Alignment.center,
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.7),
+                  color: Colors.black.withOpacity(0.45),
                   border: Border.all(
                     color: Colors.transparent,
                   ),
@@ -57,7 +57,7 @@ class _NameBoxState extends State<NameBox> {
         } else {
           return Container(
             decoration: BoxDecoration(
-                color: Colors.white.withOpacity(1),
+                color: Colors.white.withOpacity(0.9),
                 border: Border.all(
                   color: Colors.transparent,
                 ),
@@ -67,8 +67,22 @@ class _NameBoxState extends State<NameBox> {
               child: Text(
                 widget.characterName ?? "Character Name",
                 style: TextStyle(
+                  // shadows: <Shadow>[
+                  //   Shadow(
+                  //     offset: Offset(1, 2),
+                  //     blurRadius: 0,
+                  //     color: Colors.black,
+                  //   ),
+                  //   Shadow(
+                  //     offset: Offset(2.0, 1),
+                  //     blurRadius: 0,
+                  //     color: Colors.black,
+                  //   ),
+                  // ],
                   fontFamily: widget.vnNameFont,
-                  fontSize: 28.5,
+                  fontSize: 29.5,
+                  letterSpacing: 2,
+                  fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),

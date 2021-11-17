@@ -7,6 +7,7 @@ import Foundation
 
 import audio_session
 import just_audio
+import just_waveform
 import path_provider_macos
 import salem
 import shared_preferences_macos
@@ -14,6 +15,7 @@ import shared_preferences_macos
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   AudioSessionPlugin.register(with: registry.registrar(forPlugin: "AudioSessionPlugin"))
   JustAudioPlugin.register(with: registry.registrar(forPlugin: "JustAudioPlugin"))
+  JustWaveformPlugin.register(with: registry.registrar(forPlugin: "JustWaveformPlugin"))
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
   SalemPlugin.register(with: registry.registrar(forPlugin: "SalemPlugin"))
   SharedPreferencesPlugin.register(with: registry.registrar(forPlugin: "SharedPreferencesPlugin"))

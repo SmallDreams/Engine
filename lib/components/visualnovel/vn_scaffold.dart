@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:salem/components/global/logical_keyboard.dart';
 import 'package:salem/components/global/onWillPop.dart';
 import 'package:salem/components/visualnovel/user_interface/background_builder.dart';
 import 'package:salem/core/audio/global_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'vn_constructor.dart';
+import 'package:just_audio/just_audio.dart';
 
 class VNScreen extends StatefulWidget {
   final bgImage;
   final speechList;
-  final route;
-  final nextRoute;
+  final String? route;
+  final String? nextRoute;
   final Function? callback;
   final int? updatedNumber;
   final bgm;
@@ -19,8 +21,8 @@ class VNScreen extends StatefulWidget {
   VNScreen({
     this.bgImage,
     this.speechList,
-    required this.route,
-    required this.nextRoute,
+    this.route,
+    this.nextRoute,
     this.callback,
     this.updatedNumber,
     this.bgm,
@@ -32,6 +34,7 @@ class VNScreen extends StatefulWidget {
 }
 
 class _VNState extends State<VNScreen> {
+  final buttonPlayer = AudioPlayer();
   var introFade = true;
   var switchFade = false;
   double? opacity = 0.0;
@@ -93,7 +96,7 @@ class _VNState extends State<VNScreen> {
         GlobalAudio.playAudio.stopAmbienceAudio();
         GlobalAudio.playAudio.stopVoiceAudio();
         Future.delayed(const Duration(seconds: 2), () {
-          Navigator.of(context).pushNamed(widget.nextRoute);
+          Navigator.of(context).pushNamed(widget.nextRoute!);
         });
 
         switchFade = true;
@@ -103,6 +106,9 @@ class _VNState extends State<VNScreen> {
           });
         });
       } else {
+        if (getVoice() != null && getVoice()!.isNotEmpty) {
+          _playAudio();
+        }
         nextSpeech();
         GlobalAudio.playAudio.stopVoiceAudio();
         if (widget.callback != null) {
@@ -118,7 +124,7 @@ class _VNState extends State<VNScreen> {
         GlobalAudio.playAudio.stopAmbienceAudio();
         GlobalAudio.playAudio.stopVoiceAudio();
         Future.delayed(const Duration(seconds: 2), () {
-          Navigator.of(context).pushNamed(widget.nextRoute);
+          Navigator.of(context).pushNamed(widget.nextRoute!);
         });
 
         switchFade = true;
@@ -128,6 +134,9 @@ class _VNState extends State<VNScreen> {
           });
         });
       } else {
+        if (getVoice() != null && getVoice()!.isNotEmpty) {
+          _playAudio();
+        }
         nextSpeech();
         if (widget.callback != null) {
           widget.callback!(getNumber());
@@ -139,7 +148,13 @@ class _VNState extends State<VNScreen> {
   var isPressed;
   int textNumber = 0;
   void _playAudio() {
-    GlobalAudio.playAudio.getVoice(getVoice().toString());
+    if (getVoice()!.contains("connor")) {
+      GlobalAudio.playAudio
+          .getVoice("voices/speech/en/connor/" + getVoice().toString());
+    } else {
+      GlobalAudio.playAudio
+          .getVoice("voices/speech/en/" + getVoice().toString());
+    }
   }
 
   void nextSpeech() {
@@ -210,156 +225,154 @@ class _VNState extends State<VNScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (getVoice() != null && getVoice()!.isNotEmpty) {
-      _playAudio();
-    }
-
     return WillPopScope(
-      onWillPop: () => getOnWillPop(),
-      child: Builder(
-        builder: (context) {
-          if (widget.speechList == null || widget.speechList.isEmpty) {
-            return const Scaffold(
-              backgroundColor: Colors.red,
-              body: Center(
-                child: Text(
-                  "Error!\nPlease ensure that you added the correct 'speechList'.",
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            );
-          } else {
-            return Builder(
-              builder: (context) {
-                if (mounted && introFade == true) {
-                  Future.delayed(const Duration(milliseconds: 1200), () {
-                    setState(() {
-                      introFade = false;
-                    });
-                  });
-                  Future.delayed(const Duration(milliseconds: 300), () {
-                    setState(() {
-                      opacityIntro = 0.0;
-                    });
-                  });
-                  return Scaffold(
-                    backgroundColor: Colors.black,
-                    body: Stack(
-                      children: [
-                        BackgroundBuilder(
-                          image: widget.bgImage,
-                        ),
-                        AnimatedOpacity(
-                          opacity: opacityIntro!,
-                          duration: const Duration(milliseconds: 300),
-                          child: Container(
-                            width: double.infinity,
-                            height: double.infinity,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                } else {
-                  if (switchFade != false) {
-                    return Scaffold(
-                      backgroundColor: Colors.black,
-                      body: Stack(
-                        children: [
-                          BackgroundBuilder(
-                            image: widget.bgImage,
-                          ),
-                          AnimatedOpacity(
-                            opacity: opacity!,
-                            duration: const Duration(milliseconds: 300),
-                            child: Container(
-                              width: double.infinity,
-                              height: double.infinity,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    return CounterShortcuts(
-                      onIncrementDetected: _incrementCounter,
-                      onDecrementDetected: _decrementCounter,
-                      child: Scaffold(
-                        resizeToAvoidBottomInset: false,
-                        backgroundColor: Colors.black,
-                        body: GestureDetector(
-                          onLongPressStart: (_) async {
-                            isPressed = true;
-                            do {
-                              setState(() {
-                                if (isFinished() != true) {
-                                  nextSpeech();
-                                  GlobalAudio.playAudio.stopVoiceAudio();
-                                  if (widget.callback != null) {
-                                    widget.callback!(getNumber());
-                                  }
-                                }
-                              });
-                              await Future.delayed(
-                                  const Duration(milliseconds: 100));
-                            } while (isPressed);
-                          },
-                          onLongPressEnd: (_) =>
-                              setState(() => isPressed = false),
-                          onTap: () {
-                            setState(() {
-                              if (isFinished() == true) {
-                                GlobalAudio.playAudio.stopAmbienceAudio();
-                                Future.delayed(const Duration(seconds: 2), () {
-                                  Navigator.of(context)
-                                      .pushNamed(widget.nextRoute);
-                                });
+        onWillPop: () => getOnWillPop(),
+        child: Stack(children: [
+          BackgroundBuilder(image: widget.bgImage),
+          Scaffold(
+              backgroundColor: Colors.transparent,
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                actions: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: InkWell(
+                      onTap: () async {
+                        Navigator.of(context).pushNamed("/settings");
 
-                                switchFade = true;
-                                Future.delayed(
-                                    const Duration(milliseconds: 300), () {
-                                  setState(() {
-                                    opacity = 1.0;
-                                  });
-                                });
-                              } else {
-                                nextSpeech();
-                                GlobalAudio.playAudio.stopVoiceAudio();
-                                if (widget.callback != null) {
-                                  widget.callback!(getNumber());
-                                }
-                              }
-                            });
-                          },
-                          child: VNConstructor(
-                            bgImage: widget.bgImage,
-                            characterName: getCharacterName(),
-                            characterText: getCharacterText(),
-                            cT: getCT(),
-                            n: getNumber(),
-                            mcImage: getMCImage(),
-                            centerCharacterImage: getCenterCharacterImage(),
-                            leftCharacterImage: getLeftCharacterImage(),
-                            rightCharacterImage: getRightCharacterImage(),
-                            route: widget.route,
-                            nextRoute: widget.nextRoute,
-                            hasAnimation: hasAnimation(),
-                            animationName: animationName(),
-                            vnFont: widget.vnFont,
-                            vnNameFont: widget.vnNameFont,
-                          ),
+                        await buttonPlayer
+                            .setAsset("assets/audio/button_click.mp3")
+                            .then((value) async => await buttonPlayer.play());
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 7),
+                        child: Icon(
+                          LineIcons.cog,
+                          size: 30,
                         ),
                       ),
-                    );
-                  }
-                }
-              },
-            );
-          }
-        },
-      ),
-    );
+                    ),
+                  ),
+                ],
+              ),
+              body:
+                  // Builder(
+                  //   builder: (context) {
+                  //     if (mounted && introFade == true) {
+                  //       Future.delayed(const Duration(milliseconds: 1200), () {
+                  //         setState(() {
+                  //           introFade = false;
+                  //         });
+                  //       });
+                  //       Future.delayed(const Duration(milliseconds: 300), () {
+                  //         setState(() {
+                  //           opacityIntro = 0.0;
+                  //         });
+                  //       });
+                  //       return Stack(
+                  //         children: [
+                  //           BackgroundBuilder(
+                  //             image: widget.bgImage,
+                  //           ),
+                  //           AnimatedOpacity(
+                  //             opacity: opacityIntro!,
+                  //             duration: const Duration(milliseconds: 300),
+                  //             child: Container(
+                  //               width: double.infinity,
+                  //               height: double.infinity,
+                  //               color: Colors.black,
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       );
+                  //     } else {
+                  //       if (switchFade != false) {
+                  //         return Stack(
+                  //           children: [
+                  //             BackgroundBuilder(
+                  //               image: widget.bgImage,
+                  //             ),
+                  //             AnimatedOpacity(
+                  //               opacity: opacity!,
+                  //               duration: const Duration(milliseconds: 300),
+                  //               child: Container(
+                  //                 width: double.infinity,
+                  //                 height: double.infinity,
+                  //                 color: Colors.black,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         );
+                  //       } else {
+                  CounterShortcuts(
+                onIncrementDetected: _incrementCounter,
+                onDecrementDetected: _decrementCounter,
+                child: GestureDetector(
+                  onLongPressStart: (_) async {
+                    isPressed = true;
+                    do {
+                      setState(() {
+                        if (isFinished() != true) {
+                          nextSpeech();
+                          if (getVoice() != null && getVoice()!.isNotEmpty) {
+                            _playAudio();
+                          }
+                          if (widget.callback != null) {
+                            widget.callback!(getNumber());
+                          }
+                        }
+                      });
+                      await Future.delayed(const Duration(milliseconds: 100));
+                    } while (isPressed);
+                  },
+                  onLongPressEnd: (_) => setState(() => isPressed = false),
+                  onTap: () {
+                    setState(() {
+                      if (isFinished() == true) {
+                        GlobalAudio.playAudio.stopAmbienceAudio();
+                        Future.delayed(const Duration(seconds: 2), () {
+                          Navigator.of(context).pushNamed(widget.nextRoute!);
+                        });
+
+                        switchFade = true;
+                        Future.delayed(const Duration(milliseconds: 300), () {
+                          setState(() {
+                            opacity = 1.0;
+                          });
+                        });
+                      } else {
+                        nextSpeech();
+                        if (getVoice() != null && getVoice()!.isNotEmpty) {
+                          _playAudio();
+                        }
+                        GlobalAudio.playAudio.stopVoiceAudio();
+                        if (widget.callback != null) {
+                          widget.callback!(getNumber());
+                        }
+                      }
+                    });
+                  },
+                  child: VNConstructor(
+                    bgImage: widget.bgImage,
+                    characterName: getCharacterName(),
+                    characterText: getCharacterText(),
+                    cT: getCT(),
+                    n: getNumber(),
+                    mcImage: getMCImage(),
+                    centerCharacterImage: getCenterCharacterImage(),
+                    leftCharacterImage: getLeftCharacterImage(),
+                    rightCharacterImage: getRightCharacterImage(),
+                    route: widget.route,
+                    nextRoute: widget.nextRoute,
+                    hasAnimation: hasAnimation(),
+                    animationName: animationName(),
+                    vnFont: widget.vnFont,
+                    vnNameFont: widget.vnNameFont,
+                  ),
+                ),
+              ))
+        ]));
   }
 }

@@ -116,7 +116,6 @@ class _TextSpeedState extends State<TextSpeed> {
                     setState(() {
                       speed = fast.toInt();
                       saveSpeedState(fast.toInt());
-                      print(speed);
                       //saveVolumeState(volume);
                     });
                   },

@@ -64,7 +64,7 @@ class SettingsClip extends StatelessWidget {
             ),
           ),
           onPressed: () => Navigator.of(context)
-              .pushNamed("/settings", arguments: ScreenArguments(route)),
+              .pushNamed("/settings", arguments: ScreenArguments(route ?? "/")),
           child: Row(children: const [
             Text(
               "SETTINGS",

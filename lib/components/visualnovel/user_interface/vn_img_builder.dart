@@ -27,7 +27,6 @@ class _ImageBuilderState extends State<ImageBuilder> {
   late RiveAnimationController _controller;
   @override
   void initState() {
-    print(widget.animationName);
     super.initState();
     _controller = SimpleAnimation(
       widget.animationName,
