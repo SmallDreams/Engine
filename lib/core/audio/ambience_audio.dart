@@ -27,6 +27,7 @@ class Ambience extends WidgetsBindingObserver {
     if (!_isRegistered) {
       return;
     }
+    audioPlayerAmbience.dispose();
     WidgetsBinding.instance?.removeObserver(this);
     _isRegistered = false;
   }

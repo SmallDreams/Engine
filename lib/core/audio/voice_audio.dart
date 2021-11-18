@@ -26,6 +26,7 @@ class PlayVoice extends WidgetsBindingObserver {
     if (!_isRegistered) {
       return;
     }
+    audioPlayerVoice.dispose();
     WidgetsBinding.instance?.removeObserver(this);
     _isRegistered = false;
   }

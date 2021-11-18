@@ -31,6 +31,7 @@ class Bgm extends WidgetsBindingObserver {
     if (!_isRegistered) {
       return;
     }
+    audioPlayerBGM.dispose();
     WidgetsBinding.instance?.removeObserver(this);
     _isRegistered = false;
   }
