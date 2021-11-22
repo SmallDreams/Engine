@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:salem/components/global/logical_keyboard.dart';
 import 'package:salem/components/global/onWillPop.dart';
+import 'package:salem/components/visualnovel/models/text_animation.dart';
 import 'package:salem/components/visualnovel/user_interface/background_builder.dart';
 import 'package:salem/core/audio/global_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -157,7 +158,7 @@ class _VNState extends State<VNScreen> {
     }
   }
 
-  void nextSpeech() {
+  Function? nextSpeech() {
     if (textNumber < widget.speechList.length - 1) {
       textNumber++;
     }
@@ -250,63 +251,15 @@ class _VNState extends State<VNScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 7),
                         child: Icon(
                           LineIcons.cog,
-                          size: 30,
+                          size: 32.5,
+                          color: Colors.white,
                         ),
                       ),
                     ),
                   ),
                 ],
               ),
-              body:
-                  // Builder(
-                  //   builder: (context) {
-                  //     if (mounted && introFade == true) {
-                  //       Future.delayed(const Duration(milliseconds: 1200), () {
-                  //         setState(() {
-                  //           introFade = false;
-                  //         });
-                  //       });
-                  //       Future.delayed(const Duration(milliseconds: 300), () {
-                  //         setState(() {
-                  //           opacityIntro = 0.0;
-                  //         });
-                  //       });
-                  //       return Stack(
-                  //         children: [
-                  //           BackgroundBuilder(
-                  //             image: widget.bgImage,
-                  //           ),
-                  //           AnimatedOpacity(
-                  //             opacity: opacityIntro!,
-                  //             duration: const Duration(milliseconds: 300),
-                  //             child: Container(
-                  //               width: double.infinity,
-                  //               height: double.infinity,
-                  //               color: Colors.black,
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       );
-                  //     } else {
-                  //       if (switchFade != false) {
-                  //         return Stack(
-                  //           children: [
-                  //             BackgroundBuilder(
-                  //               image: widget.bgImage,
-                  //             ),
-                  //             AnimatedOpacity(
-                  //               opacity: opacity!,
-                  //               duration: const Duration(milliseconds: 300),
-                  //               child: Container(
-                  //                 width: double.infinity,
-                  //                 height: double.infinity,
-                  //                 color: Colors.black,
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         );
-                  //       } else {
-                  CounterShortcuts(
+              body: CounterShortcuts(
                 onIncrementDetected: _incrementCounter,
                 onDecrementDetected: _decrementCounter,
                 child: GestureDetector(
@@ -355,22 +308,49 @@ class _VNState extends State<VNScreen> {
                     });
                   },
                   child: VNConstructor(
-                    bgImage: widget.bgImage,
-                    characterName: getCharacterName(),
-                    characterText: getCharacterText(),
-                    cT: getCT(),
-                    n: getNumber(),
-                    mcImage: getMCImage(),
-                    centerCharacterImage: getCenterCharacterImage(),
-                    leftCharacterImage: getLeftCharacterImage(),
-                    rightCharacterImage: getRightCharacterImage(),
-                    route: widget.route,
-                    nextRoute: widget.nextRoute,
-                    hasAnimation: hasAnimation(),
-                    animationName: animationName(),
-                    vnFont: widget.vnFont,
-                    vnNameFont: widget.vnNameFont,
-                  ),
+                      bgImage: widget.bgImage,
+                      characterName: getCharacterName(),
+                      characterText: getCharacterText(),
+                      cT: getCT(),
+                      n: getNumber(),
+                      mcImage: getMCImage(),
+                      centerCharacterImage: getCenterCharacterImage(),
+                      leftCharacterImage: getLeftCharacterImage(),
+                      rightCharacterImage: getRightCharacterImage(),
+                      route: widget.route,
+                      nextRoute: widget.nextRoute,
+                      hasAnimation: hasAnimation(),
+                      animationName: animationName(),
+                      vnFont: widget.vnFont,
+                      vnNameFont: widget.vnNameFont,
+                      onCallback: () {
+                        setState(() {
+                          if (isFinished() == true) {
+                            GlobalAudio.playAudio.stopAmbienceAudio();
+                            Future.delayed(const Duration(seconds: 2), () {
+                              Navigator.of(context)
+                                  .pushNamed(widget.nextRoute!);
+                            });
+
+                            switchFade = true;
+                            Future.delayed(const Duration(milliseconds: 300),
+                                () {
+                              setState(() {
+                                opacity = 1.0;
+                              });
+                            });
+                          } else {
+                            nextSpeech();
+                            if (getVoice() != null && getVoice()!.isNotEmpty) {
+                              _playAudio();
+                            }
+                            GlobalAudio.playAudio.stopVoiceAudio();
+                            if (widget.callback != null) {
+                              widget.callback!(getNumber());
+                            }
+                          }
+                        });
+                      }),
                 ),
               ))
         ]));

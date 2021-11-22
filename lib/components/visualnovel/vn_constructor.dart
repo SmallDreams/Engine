@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salem/components/visualnovel/gui/name_box.dart';
 import 'package:salem/components/visualnovel/models/text_animation.dart';
-import 'package:salem/components/visualnovel/user_interface/background_builder.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:salem/components/visualnovel/user_interface/buttons.dart';
 import 'package:salem/components/visualnovel/user_interface/vn_img_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,6 +24,7 @@ class VNConstructor extends StatefulWidget {
     this.animationName,
     this.vnFont,
     this.vnNameFont,
+    required this.onCallback,
   });
   final String? characterName;
   final bgImage;
@@ -40,6 +41,7 @@ class VNConstructor extends StatefulWidget {
   final route;
   final bool? hasAnimation;
   final animationName;
+  final Function onCallback;
 
   @override
   _VNConstructorState createState() => _VNConstructorState();
@@ -270,6 +272,14 @@ class _VNConstructorState extends State<VNConstructor> {
                                     } else {
                                       return Container(
                                         decoration: BoxDecoration(
+                                            // boxShadow: [
+                                            //   BoxShadow(
+                                            //     color: Colors.black,
+                                            //     blurRadius: 10,
+                                            //     offset: Offset(
+                                            //         5, 10), // Shadow position
+                                            //   ),
+                                            // ],
                                             color:
                                                 Colors.white.withOpacity(0.9),
                                             border: Border.all(
@@ -279,13 +289,13 @@ class _VNConstructorState extends State<VNConstructor> {
                                             borderRadius:
                                                 const BorderRadius.all(
                                                     Radius.circular(10))),
-                                        child: Stack(
+                                        child: Column(
                                           children: [
                                             Opacity(
                                               opacity: 1,
                                               child: Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                  horizontal: width * 0.017,
+                                                  horizontal: width * 0.024,
                                                 ),
                                                 child: AnimatedTextKit(
                                                   // nextSpeech: widget.nextSpeech,
@@ -324,11 +334,19 @@ class _VNConstructorState extends State<VNConstructor> {
                                                     ),
                                                   ],
                                                   displayFullTextOnTap: true,
+
+                                                  onTap: () {
+                                                    widget.onCallback();
+                                                  },
                                                   isRepeatingAnimation: false,
                                                   key: ValueKey(widget.n),
                                                 ),
                                               ),
                                             ),
+                                            Container(
+                                              child: Icon(
+                                                  EvaIcons.arrowCircleRight),
+                                            )
                                           ],
                                         ),
                                       );

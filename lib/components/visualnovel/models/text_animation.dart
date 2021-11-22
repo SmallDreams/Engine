@@ -240,8 +240,8 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
   Widget build(BuildContext context) {
     final completeText = _currentAnimatedText.completeText(context);
     return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: _onTap,
+      //  behavior: HitTestBehavior.opaque,
+      onTap: onTap,
       child: _isCurrentlyPausing || !_controller.isAnimating
           ? completeText
           : AnimatedBuilder(
@@ -319,9 +319,12 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
     }
   }
 
-  void _onTap() {
+  void onTap() {
     if (widget.displayFullTextOnTap) {
       if (_isCurrentlyPausing) {
+        // widget.onNext?.call(_index, isLast);
+        widget.onTap?.call();
+
         if (widget.stopPauseOnTap) {
           _timer?.cancel();
           _nextAnimation();
@@ -347,8 +350,6 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
         );
       }
     }
-
-    widget.onTap?.call();
   }
 }
 
@@ -764,7 +765,7 @@ class SimpleRichText extends StatelessWidget {
           }
 
           if ((fussy ?? false) && set.isNotEmpty) {
-            throw 'simple_rich_text: not closed: $set'; //TODO: throw real error?
+            throw 'simple_rich_text: not closed: $set';
           }
 
           // If no last line:
