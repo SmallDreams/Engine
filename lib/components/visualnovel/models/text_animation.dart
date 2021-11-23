@@ -3,13 +3,11 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:salem/components/global/logical_keyboard.dart';
-import 'package:salem/components/visualnovel/user_interface/buttons.dart';
 import 'package:salem/components/visualnovel/user_interface/vn_img_builder.dart';
 import 'package:salem/salem.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_platform/universal_platform.dart';
+import 'package:sizer/sizer.dart';
 
 // Copyright (c) 2018 Ayush Agarwal
 /// Abstract base class for text animations.
@@ -264,9 +262,6 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
   Timer? _timer;
   bool? isNoti = true;
   int? speed = 25;
-  // final getChildData = AnimatedTextKit(
-  //   animatedTexts: [],
-  // ).onTap!();
 
   Future<void> getSharedPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -314,6 +309,7 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
     final completeText = _currentAnimatedText.completeText(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
     return CounterShortcuts(
         onIncrementDetected: _incrementCounter,
         onDecrementDetected: _decrementCounter,
@@ -361,11 +357,16 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
                               Stack(
                                 alignment: Alignment.centerLeft,
                                 children: <Widget>[
+                                  SizerUtil.deviceType == DeviceType.tablet
+                                      ? SizedBox(
+                                          height: 20,
+                                        )
+                                      : SizedBox.shrink(),
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 10),
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.2,
+                                    width: MediaQuery.of(context).size.width /
+                                        1.225,
                                     child: Container(
                                       decoration: BoxDecoration(
                                           // boxShadow: [
@@ -381,7 +382,7 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
                                             color: Colors.black.withOpacity(0),
                                           ),
                                           borderRadius: const BorderRadius.all(
-                                              Radius.circular(10))),
+                                              Radius.circular(20))),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -392,7 +393,7 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
                                             opacity: 1,
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                horizontal: width * 0.025,
+                                                horizontal: width * 0.03,
                                               ),
                                               child: _isCurrentlyPausing ||
                                                       !_controller.isAnimating
@@ -417,7 +418,7 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
                                 ],
                               ),
                               SizedBox(
-                                height: 170,
+                                height: height / 6,
                               ),
                               // Buttons(
                               //   route: widget.route,

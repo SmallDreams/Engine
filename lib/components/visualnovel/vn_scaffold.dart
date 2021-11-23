@@ -202,6 +202,7 @@ class _VNState extends State<VNScreen> {
 
   @override
   Widget build(BuildContext context) {
+    int size = widget.speechList.length;
     return WillPopScope(
         onWillPop: () => getOnWillPop(),
         child: Stack(children: [
@@ -270,30 +271,21 @@ class _VNState extends State<VNScreen> {
               displayFullTextOnTap: true,
 
               onTap: () {
-                setState(() {
-                  if (isFinished() == true) {
-                    GlobalAudio.playAudio.stopAmbienceAudio();
-                    Future.delayed(const Duration(seconds: 2), () {
-                      Navigator.of(context).pushNamed(widget.nextRoute!);
-                    });
-
-                    switchFade = true;
-                    Future.delayed(const Duration(milliseconds: 300), () {
-                      setState(() {
-                        opacity = 1.0;
+                textNumber >= size - 1
+                    ? setState(() {
+                        GlobalAudio.playAudio.stopAmbienceAudio();
+                        Navigator.of(context).pushNamed(widget.nextRoute!);
+                      })
+                    : setState(() {
+                        nextSpeech();
+                        if (getVoice() != null && getVoice()!.isNotEmpty) {
+                          _playAudio();
+                        }
+                        GlobalAudio.playAudio.stopVoiceAudio();
+                        if (widget.callback != null) {
+                          widget.callback!(getNumber());
+                        }
                       });
-                    });
-                  } else {
-                    nextSpeech();
-                    if (getVoice() != null && getVoice()!.isNotEmpty) {
-                      _playAudio();
-                    }
-                    GlobalAudio.playAudio.stopVoiceAudio();
-                    if (widget.callback != null) {
-                      widget.callback!(getNumber());
-                    }
-                  }
-                });
               },
               isRepeatingAnimation: false,
               key: ValueKey(

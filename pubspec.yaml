@@ -30,6 +30,7 @@ dependencies:
   rive_loading: ">=0.1.0 <1.0.0"
   bubble: ">=1.2.1 <2.0.0"
   font_awesome_flutter: ">=9.2.0 <10.0.0"
+  sizer: ^2.0.15
 
   # Translation
   # easy_localization: ">=3.0.0 <4.0.0"
