@@ -7,7 +7,7 @@ import 'package:salem/components/global/logical_keyboard.dart';
 import 'package:salem/components/visualnovel/user_interface/vn_img_builder.dart';
 import 'package:salem/salem.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sizer/sizer.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 
 // Copyright (c) 2018 Ayush Agarwal
 /// Abstract base class for text animations.
@@ -138,7 +138,7 @@ abstract class AnimatedText {
 }
 
 /// Base class for Animated Text widgets.
-class AnimatedTextKit extends StatefulWidget {
+class SalemVisualNovelConstructor extends StatefulWidget {
   /// List of [AnimatedText] to display subsequently in the animation.
   final List<AnimatedText> animatedTexts;
 
@@ -208,7 +208,7 @@ class AnimatedTextKit extends StatefulWidget {
   final route;
   final bool? hasAnimation;
   final animationName;
-  const AnimatedTextKit({
+  const SalemVisualNovelConstructor({
     Key? key,
     required this.animatedTexts,
     this.pause = const Duration(milliseconds: 1000),
@@ -244,11 +244,12 @@ class AnimatedTextKit extends StatefulWidget {
 
   /// Creates the mutable state for this widget. See [StatefulWidget.createState].
   @override
-  _AnimatedTextKitState createState() => _AnimatedTextKitState();
+  _SalemVisualNovelConstructorState createState() =>
+      _SalemVisualNovelConstructorState();
 }
 
-class _AnimatedTextKitState extends State<AnimatedTextKit>
-    with TickerProviderStateMixin {
+class _SalemVisualNovelConstructorState
+    extends State<SalemVisualNovelConstructor> with TickerProviderStateMixin {
   late AnimationController _controller;
 
   late AnimatedText _currentAnimatedText;
@@ -314,6 +315,7 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
         onIncrementDetected: _incrementCounter,
         onDecrementDetected: _decrementCounter,
         child: GestureDetector(
+            onLongPress: () => onTap(),
             onTap: () => onTap(),
             child: Scaffold(
                 backgroundColor: Colors.transparent,
@@ -357,16 +359,14 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
                               Stack(
                                 alignment: Alignment.centerLeft,
                                 children: <Widget>[
-                                  SizerUtil.deviceType == DeviceType.tablet
-                                      ? SizedBox(
-                                          height: 20,
-                                        )
-                                      : SizedBox.shrink(),
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 10),
-                                    width: MediaQuery.of(context).size.width /
-                                        1.225,
+                                    width: Device.get().isTablet &&
+                                            Device.get().isIos
+                                        ? MediaQuery.of(context).size.width / 2
+                                        : MediaQuery.of(context).size.width /
+                                            1.225,
                                     child: Container(
                                       decoration: BoxDecoration(
                                           // boxShadow: [

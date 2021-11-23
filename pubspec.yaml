@@ -16,6 +16,7 @@ dependencies:
   universal_platform: ">=1.0.0+1 <2.0.0"
   universal_io: ">=2.0.4 <3.0.0"
   shared_preferences: ">=2.0.7 <3.0.0"
+  flutter_device_type: ">=0.4.0 <1.0.0"
   
   # audio
   #dart_vlc: ">=0.1.7 <1.0.0"
@@ -30,7 +31,6 @@ dependencies:
   rive_loading: ">=0.1.0 <1.0.0"
   bubble: ">=1.2.1 <2.0.0"
   font_awesome_flutter: ">=9.2.0 <10.0.0"
-  sizer: ^2.0.15
 
   # Translation
   # easy_localization: ">=3.0.0 <4.0.0"

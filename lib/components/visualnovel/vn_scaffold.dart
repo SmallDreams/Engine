@@ -202,6 +202,7 @@ class _VNState extends State<VNScreen> {
 
   @override
   Widget build(BuildContext context) {
+    getSpeed();
     int size = widget.speechList.length;
     return WillPopScope(
         onWillPop: () => getOnWillPop(),
@@ -236,7 +237,7 @@ class _VNState extends State<VNScreen> {
                 ),
               ],
             ),
-            body: AnimatedTextKit(
+            body: SalemVisualNovelConstructor(
               // callback: getCallback(),
               // nextSpeech: widget.nextSpeech,
               animatedTexts: [
