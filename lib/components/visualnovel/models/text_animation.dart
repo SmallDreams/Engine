@@ -3,6 +3,13 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:salem/components/global/logical_keyboard.dart';
+import 'package:salem/components/visualnovel/user_interface/buttons.dart';
+import 'package:salem/components/visualnovel/user_interface/vn_img_builder.dart';
+import 'package:salem/salem.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 // Copyright (c) 2018 Ayush Agarwal
 /// Abstract base class for text animations.
@@ -147,6 +154,8 @@ class AnimatedTextKit extends StatefulWidget {
   /// By default it is set to false.
   final bool displayFullTextOnTap;
 
+  final VoidCallback? callback;
+
   /// If on pause, should a tap remove the remaining pause time ?
   ///
   /// By default it is set to false.
@@ -186,6 +195,21 @@ class AnimatedTextKit extends StatefulWidget {
   /// By default it is set to 3
   final int totalRepeatCount;
 
+  final String? characterName;
+  final bgImage;
+  final String? vnFont;
+  final String? vnNameFont;
+  final String? mcImage;
+  final String? centerCharacterImage;
+  final String? leftCharacterImage;
+  final String? rightCharacterImage;
+  final int? n;
+  final nextRoute;
+  final characterText;
+  final cT;
+  final route;
+  final bool? hasAnimation;
+  final animationName;
   const AnimatedTextKit({
     Key? key,
     required this.animatedTexts,
@@ -195,10 +219,26 @@ class AnimatedTextKit extends StatefulWidget {
     this.onTap,
     this.onNext,
     this.onNextBeforePause,
+    this.callback,
     this.onFinished,
     this.isRepeatingAnimation = true,
     this.totalRepeatCount = 3,
     this.repeatForever = false,
+    this.bgImage,
+    this.characterName,
+    this.characterText,
+    this.cT,
+    this.n,
+    this.mcImage,
+    this.centerCharacterImage,
+    this.leftCharacterImage,
+    this.rightCharacterImage,
+    required this.route,
+    required this.nextRoute,
+    this.hasAnimation,
+    this.animationName,
+    this.vnFont,
+    this.vnNameFont,
   })  : assert(animatedTexts.length > 0),
         assert(!isRepeatingAnimation || totalRepeatCount > 0 || repeatForever),
         assert(null == onFinished || !repeatForever),
@@ -222,10 +262,35 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
   bool _isCurrentlyPausing = false;
 
   Timer? _timer;
+  bool? isNoti = true;
+  int? speed = 25;
+  // final getChildData = AnimatedTextKit(
+  //   animatedTexts: [],
+  // ).onTap!();
+
+  Future<void> getSharedPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    isNoti = (prefs.getBool("notiState"));
+    if (isNoti == true) {
+      //_playAudio();
+    } else {}
+  }
+
+  getSpeed() async {
+    speed = await getSpeedState();
+    setState(() {});
+  }
+
+  getSpeedState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int? speed = prefs.getInt('speedValue');
+    return speed;
+  }
 
   @override
   void initState() {
     super.initState();
+    getSpeed();
     _initAnimation();
   }
 
@@ -236,20 +301,145 @@ class _AnimatedTextKitState extends State<AnimatedTextKit>
     super.dispose();
   }
 
+  void _incrementCounter() {
+    onTap();
+  }
+
+  void _decrementCounter() {
+    onTap();
+  }
+
   @override
   Widget build(BuildContext context) {
     final completeText = _currentAnimatedText.completeText(context);
-    return GestureDetector(
-      //  behavior: HitTestBehavior.opaque,
-      onTap: onTap,
-      child: _isCurrentlyPausing || !_controller.isAnimating
-          ? completeText
-          : AnimatedBuilder(
-              animation: _controller,
-              builder: _currentAnimatedText.animatedBuilder,
-              child: completeText,
-            ),
-    );
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return CounterShortcuts(
+        onIncrementDetected: _incrementCounter,
+        onDecrementDetected: _decrementCounter,
+        child: GestureDetector(
+            onTap: () => onTap(),
+            child: Scaffold(
+                backgroundColor: Colors.transparent,
+                body: Stack(fit: StackFit.expand, children: [
+                  //Character Image here
+                  Builder(
+                    builder: (BuildContext context) {
+                      if (widget.mcImage != null ||
+                          widget.centerCharacterImage != null ||
+                          widget.leftCharacterImage != null ||
+                          widget.rightCharacterImage != null) {
+                        if (widget.characterName == "MC" ||
+                            widget.characterName == "Narrator") {
+                          return ImageBuilderMC(image: widget.mcImage);
+                        } else {
+                          return ImageBuilder(
+                            centerImage: widget.centerCharacterImage,
+                            hasAnimation: widget.hasAnimation ?? false,
+                            animationName: widget.animationName ?? "idle",
+                          );
+                        }
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    },
+                  ),
+
+                  Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          NameBox(
+                            characterName: widget.characterName,
+                            vnNameFont: widget.vnNameFont,
+                          ),
+                          Column(
+                            children: [
+                              Stack(
+                                alignment: Alignment.centerLeft,
+                                children: <Widget>[
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.2,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          // boxShadow: [
+                                          //   BoxShadow(
+                                          //     color: Colors.black,
+                                          //     blurRadius: 10,
+                                          //     offset: Offset(
+                                          //         5, 10), // Shadow position
+                                          //   ),
+                                          // ],
+                                          color: Colors.white.withOpacity(0.9),
+                                          border: Border.all(
+                                            color: Colors.black.withOpacity(0),
+                                          ),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10))),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Opacity(
+                                            opacity: 1,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: width * 0.025,
+                                              ),
+                                              child: _isCurrentlyPausing ||
+                                                      !_controller.isAnimating
+                                                  ? completeText
+                                                  : AnimatedBuilder(
+                                                      animation: _controller,
+                                                      builder:
+                                                          _currentAnimatedText
+                                                              .animatedBuilder,
+                                                      child: completeText,
+                                                    ),
+                                            ),
+                                          ),
+                                          // Container(
+                                          //   child: Icon(
+                                          //       EvaIcons.arrowCircleRight),
+                                          // )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 170,
+                              ),
+                              // Buttons(
+                              //   route: widget.route,
+                              //   nextRoute: widget.nextRoute,
+                              // ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ]))));
+    // GestureDetector(
+    //   onTap: onTap,
+    // child: _isCurrentlyPausing || !_controller.isAnimating
+    //     ? completeText
+    //     : AnimatedBuilder(
+    //         animation: _controller,
+    //         builder: _currentAnimatedText.animatedBuilder,
+    //         child: completeText,
+    //       ),
+    // );
   }
 
   bool get _isLast => _index == widget.animatedTexts.length - 1;
@@ -404,63 +594,6 @@ class TyperAnimatedText extends AnimatedText {
     assert(count <= textCharacters.length);
     return textWidget(textCharacters.take(count).toString());
   }
-}
-
-/// Animation that displays [text] elements, as if they are being typed one
-/// character at a time.
-///
-/// ![Typer example](https://raw.githubusercontent.com/aagarwal1012/Animated-Text-Kit/master/display/typer.gif)
-@Deprecated('Use AnimatedTextKit with TyperAnimatedText instead.')
-class TyperAnimatedTextKit extends AnimatedTextKit {
-  TyperAnimatedTextKit({
-    Key? key,
-    required List<String> text,
-    TextAlign textAlign = TextAlign.start,
-    TextStyle? textStyle,
-    Duration speed = const Duration(milliseconds: 40),
-    Duration pause = const Duration(milliseconds: 1000),
-    bool displayFullTextOnTap = false,
-    bool stopPauseOnTap = false,
-    VoidCallback? onTap,
-    void Function(int, bool)? onNext,
-    void Function(int, bool)? onNextBeforePause,
-    VoidCallback? onFinished,
-    bool isRepeatingAnimation = true,
-    bool repeatForever = true,
-    int totalRepeatCount = 3,
-    Curve curve = Curves.linear,
-  }) : super(
-          key: key,
-          animatedTexts:
-              _animatedTexts(text, textAlign, textStyle, speed, curve),
-          pause: pause,
-          displayFullTextOnTap: displayFullTextOnTap,
-          stopPauseOnTap: stopPauseOnTap,
-          onTap: onTap,
-          onNext: onNext,
-          onNextBeforePause: onNextBeforePause,
-          onFinished: onFinished,
-          isRepeatingAnimation: isRepeatingAnimation,
-          repeatForever: repeatForever,
-          totalRepeatCount: totalRepeatCount,
-        );
-
-  static List<AnimatedText> _animatedTexts(
-    List<String> text,
-    TextAlign textAlign,
-    TextStyle? textStyle,
-    Duration speed,
-    Curve curve,
-  ) =>
-      text
-          .map((_) => TyperAnimatedText(
-                _,
-                textAlign: textAlign,
-                textStyle: textStyle,
-                speed: speed,
-                curve: curve,
-              ))
-          .toList();
 }
 
 const Map<String, int> colorMap = {

@@ -262,7 +262,14 @@ class _BuildRowState extends State<BuildRow> {
               ? Builder(
                   builder: (context) {
                     if (_start > 0) {
-                      return TextCardBubble();
+                      return Text(
+                        " ·  ·  · ",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                        ),
+                      );
                     } else {
                       return Text(
                         widget.messages[widget.index].messageContent,
