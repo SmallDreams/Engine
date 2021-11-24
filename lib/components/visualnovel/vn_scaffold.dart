@@ -301,7 +301,7 @@ class _VNState extends State<VNScreen> {
                         TyperAnimatedText(
                           getCharacterText() ?? " ·  ·  · ",
                           textAlign: TextAlign.left,
-                          textStyle: GoogleFonts.varelaRound(
+                          textStyle: GoogleFonts.lexendDeca(
                               //  shadows: <Shadow>[
                               //   Shadow(
                               //     offset:
@@ -318,10 +318,10 @@ class _VNState extends State<VNScreen> {
                               //         Colors.black,
                               //   ),
                               // ],
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.5,
-                              letterSpacing: 1.5),
+                              color: Theme.of(context).colorScheme.secondary,
+                              //  fontWeight: FontWeight.w500,
+                              fontSize: 17.5,
+                              letterSpacing: 1),
                           speed: Duration(milliseconds: speed ?? 15),
                         ),
                       ],

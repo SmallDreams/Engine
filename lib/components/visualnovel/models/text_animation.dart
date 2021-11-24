@@ -358,19 +358,30 @@ class _SalemVisualNovelConstructorState
                         characterName: widget.characterName,
                         vnNameFont: widget.vnNameFont,
                       ),
+                      SizedBox(
+                        height: 12,
+                      ),
                       Column(
                         children: [
                           Stack(
                             alignment: Alignment.centerLeft,
                             children: <Widget>[
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                width: Device.get().isTablet &&
-                                        Device.get().isIos
-                                    ? MediaQuery.of(context).size.width / 2
-                                    : MediaQuery.of(context).size.width / 1.225,
+                              Material(
+                                color: Colors.transparent,
+                                clipBehavior: Clip.antiAlias,
+                                shape: BeveledRectangleBorder(
+                                    side: BorderSide(color: Colors.transparent),
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20.0),
+                                        bottomLeft: Radius.circular(20.0))),
                                 child: Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  width: Device.get().isTablet &&
+                                          Device.get().isIos
+                                      ? MediaQuery.of(context).size.width / 2
+                                      : MediaQuery.of(context).size.width /
+                                          1.225,
                                   decoration: BoxDecoration(
                                       // boxShadow: [
                                       //   BoxShadow(
@@ -380,12 +391,11 @@ class _SalemVisualNovelConstructorState
                                       //         5, 10), // Shadow position
                                       //   ),
                                       // ],
-                                      color: Colors.white.withOpacity(0.9),
-                                      border: Border.all(
-                                        color: Colors.black.withOpacity(0),
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(20))),
+                                      color: Theme.of(context)
+                                          .primaryColor
+                                          .withOpacity(0.9),
+                                      borderRadius:
+                                          BorderRadius.circular(20.0)),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
@@ -410,13 +420,17 @@ class _SalemVisualNovelConstructorState
                                       ),
                                       Align(
                                         alignment: Alignment.centerRight,
-                                        child: Container(
+                                        child: Padding(
                                           padding: EdgeInsets.only(
-                                              right: 20, bottom: 10,),
+                                            right: 20,
+                                            bottom: 10,
+                                          ),
                                           child: Icon(
                                             EvaIcons.playCircleOutline,
-                                            color: Colors.black,
-                                            size: 28,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
+                                            size: 26.5,
                                           ),
                                         ),
                                       ),
