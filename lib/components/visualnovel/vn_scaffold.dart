@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:salem/components/global/onWillPop.dart';
 import 'package:salem/components/visualnovel/models/text_animation.dart';
@@ -205,111 +206,181 @@ class _VNState extends State<VNScreen> {
     getSpeed();
     int size = widget.speechList.length;
     return WillPopScope(
-        onWillPop: () => getOnWillPop(),
-        child: Stack(children: [
+      onWillPop: () => getOnWillPop(),
+      child: Stack(
+        children: [
           BackgroundBuilder(image: widget.bgImage),
-          Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              actions: [
-                Padding(
-                  padding: EdgeInsets.only(right: 10),
-                  child: InkWell(
-                    onTap: () async {
-                      Navigator.of(context).pushNamed("/settings");
-
-                      await buttonPlayer
-                          .setAsset("assets/audio/button_click.mp3")
-                          .then((value) async => await buttonPlayer.play());
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 7),
-                      child: Icon(
-                        LineIcons.cog,
-                        size: 32.5,
-                        color: Colors.white,
+          Builder(
+            builder: (context) {
+              if (mounted && introFade == true) {
+                Future.delayed(const Duration(milliseconds: 1200), () {
+                  setState(() {
+                    introFade = false;
+                  });
+                });
+                Future.delayed(const Duration(milliseconds: 300), () {
+                  setState(() {
+                    opacityIntro = 0.0;
+                  });
+                });
+                return Scaffold(
+                  backgroundColor: Colors.black,
+                  body: Stack(
+                    children: [
+                      // BackgroundBuilder(
+                      //   image: widget.bgImage,
+                      // ),
+                      AnimatedOpacity(
+                        opacity: opacityIntro!,
+                        duration: const Duration(milliseconds: 300),
+                        child: Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-            body: SalemVisualNovelConstructor(
-              // callback: getCallback(),
-              // nextSpeech: widget.nextSpeech,
-              animatedTexts: [
-                TyperAnimatedText(
-                  getCharacterText() ?? " ·  ·  · ",
-                  textAlign: TextAlign.left,
-                  textStyle: TextStyle(
-                      //  shadows: <Shadow>[
-                      //   Shadow(
-                      //     offset:
-                      //         Offset(1, 2),
-                      //     blurRadius: 0,
-                      //     color:
-                      //         Colors.black,
-                      //   ),
-                      //   Shadow(
-                      //     offset: Offset(
-                      //         2.0, 1.1),
-                      //     blurRadius: 0,
-                      //     color:
-                      //         Colors.black,
-                      //   ),
-                      // ],
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Montserrat",
-                      fontSize: 16.5,
-                      letterSpacing: 1.5),
-                  speed: Duration(milliseconds: speed ?? 15),
-                ),
-              ],
-              displayFullTextOnTap: true,
+                );
+              } else {
+                if (switchFade != false) {
+                  return Scaffold(
+                    backgroundColor: Colors.black,
+                    body: Stack(
+                      children: [
+                        // BackgroundBuilder(
+                        //   image: widget.bgImage,
+                        // ),
+                        AnimatedOpacity(
+                          opacity: opacity!,
+                          duration: const Duration(milliseconds: 300),
+                          child: Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return Scaffold(
+                    backgroundColor: Colors.transparent,
+                    appBar: AppBar(
+                      automaticallyImplyLeading: false,
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      actions: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: InkWell(
+                            onTap: () async {
+                              Navigator.of(context).pushNamed("/settings");
 
-              onTap: () {
-                textNumber >= size - 1
-                    ? setState(() {
-                        GlobalAudio.playAudio.stopAmbienceAudio();
-                        Navigator.of(context).pushNamed(widget.nextRoute!);
-                      })
-                    : setState(() {
-                        nextSpeech();
-                        if (getVoice() != null && getVoice()!.isNotEmpty) {
-                          _playAudio();
+                              await buttonPlayer
+                                  .setAsset("assets/audio/button_click.mp3")
+                                  .then((value) async =>
+                                      await buttonPlayer.play());
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 7),
+                              child: Icon(
+                                LineIcons.cog,
+                                size: 32.5,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    body: SalemVisualNovelConstructor(
+                      // callback: getCallback(),
+                      // nextSpeech: widget.nextSpeech,
+                      animatedTexts: [
+                        TyperAnimatedText(
+                          getCharacterText() ?? " ·  ·  · ",
+                          textAlign: TextAlign.left,
+                          textStyle: GoogleFonts.varelaRound(
+                              //  shadows: <Shadow>[
+                              //   Shadow(
+                              //     offset:
+                              //         Offset(1, 2),
+                              //     blurRadius: 0,
+                              //     color:
+                              //         Colors.black,
+                              //   ),
+                              //   Shadow(
+                              //     offset: Offset(
+                              //         2.0, 1.1),
+                              //     blurRadius: 0,
+                              //     color:
+                              //         Colors.black,
+                              //   ),
+                              // ],
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.5,
+                              letterSpacing: 1.5),
+                          speed: Duration(milliseconds: speed ?? 15),
+                        ),
+                      ],
+                      displayFullTextOnTap: true,
+
+                      onTap: () {
+                        if (textNumber >= size - 1) {
+                          GlobalAudio.playAudio.stopAmbienceAudio();
+
+                          Future.delayed(const Duration(milliseconds: 1450),
+                              () {
+                            Navigator.of(context).pushNamed(widget.nextRoute!);
+                          });
+
+                          switchFade = true;
+                          Future.delayed(const Duration(milliseconds: 300), () {
+                            setState(() {
+                              opacity = 1.0;
+                            });
+                          });
+                        } else {
+                          nextSpeech();
+                          if (getVoice() != null && getVoice()!.isNotEmpty) {
+                            _playAudio();
+                          }
+                          GlobalAudio.playAudio.stopVoiceAudio();
+                          if (widget.callback != null) {
+                            widget.callback!(getNumber());
+                          }
                         }
-                        GlobalAudio.playAudio.stopVoiceAudio();
-                        if (widget.callback != null) {
-                          widget.callback!(getNumber());
-                        }
-                      });
-              },
-              isRepeatingAnimation: false,
-              key: ValueKey(
-                getNumber(),
-              ),
+                      },
+                      isRepeatingAnimation: false,
+                      key: ValueKey(
+                        getNumber(),
+                      ),
 
-              bgImage: widget.bgImage,
-              characterName: getCharacterName(),
+                      bgImage: widget.bgImage,
+                      characterName: getCharacterName(),
 
-              cT: getCT(),
+                      cT: getCT(),
 
-              mcImage: getMCImage(),
-              centerCharacterImage: getCenterCharacterImage(),
-              leftCharacterImage: getLeftCharacterImage(),
-              rightCharacterImage: getRightCharacterImage(),
-              route: widget.route,
-              nextRoute: widget.nextRoute,
-              hasAnimation: hasAnimation(),
-              animationName: animationName(),
-              vnFont: widget.vnFont,
-              vnNameFont: widget.vnNameFont,
-            ),
-          ),
-        ]));
+                      mcImage: getMCImage(),
+                      centerCharacterImage: getCenterCharacterImage(),
+                      leftCharacterImage: getLeftCharacterImage(),
+                      rightCharacterImage: getRightCharacterImage(),
+                      route: widget.route,
+                      nextRoute: widget.nextRoute,
+                      hasAnimation: hasAnimation(),
+                      animationName: animationName(),
+                      vnFont: widget.vnFont,
+                      vnNameFont: widget.vnNameFont,
+                    ),
+                  );
+                }
+              }
+            },
+          )
+        ],
+      ),
+    );
   }
 }

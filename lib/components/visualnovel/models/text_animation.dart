@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:math';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:salem/components/global/logical_keyboard.dart';
 import 'package:salem/components/visualnovel/user_interface/vn_img_builder.dart';
@@ -220,7 +221,7 @@ class SalemVisualNovelConstructor extends StatefulWidget {
     this.callback,
     this.onFinished,
     this.isRepeatingAnimation = true,
-    this.totalRepeatCount = 3,
+    this.totalRepeatCount = 1,
     this.repeatForever = false,
     this.bgImage,
     this.characterName,
@@ -312,125 +313,138 @@ class _SalemVisualNovelConstructorState
     double width = MediaQuery.of(context).size.width;
 
     return CounterShortcuts(
-        onIncrementDetected: _incrementCounter,
-        onDecrementDetected: _decrementCounter,
-        child: GestureDetector(
-            onLongPress: () => onTap(),
-            onTap: () => onTap(),
-            child: Scaffold(
-                backgroundColor: Colors.transparent,
-                body: Stack(fit: StackFit.expand, children: [
-                  //Character Image here
-                  Builder(
-                    builder: (BuildContext context) {
-                      if (widget.mcImage != null ||
-                          widget.centerCharacterImage != null ||
-                          widget.leftCharacterImage != null ||
-                          widget.rightCharacterImage != null) {
-                        if (widget.characterName == "MC" ||
-                            widget.characterName == "Narrator") {
-                          return ImageBuilderMC(image: widget.mcImage);
-                        } else {
-                          return ImageBuilder(
-                            centerImage: widget.centerCharacterImage,
-                            hasAnimation: widget.hasAnimation ?? false,
-                            animationName: widget.animationName ?? "idle",
-                          );
-                        }
-                      } else {
-                        return const SizedBox.shrink();
-                      }
-                    },
-                  ),
+      onIncrementDetected: _incrementCounter,
+      onDecrementDetected: _decrementCounter,
+      child: GestureDetector(
+        onLongPressStart: (_) => onTap(),
+        onLongPressEnd: (_) => null,
+        onTap: () => onTap(),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Stack(
+            fit: StackFit.expand,
+            children: [
+              //Character Image here
+              Builder(
+                builder: (BuildContext context) {
+                  if (widget.mcImage != null ||
+                      widget.centerCharacterImage != null ||
+                      widget.leftCharacterImage != null ||
+                      widget.rightCharacterImage != null) {
+                    if (widget.characterName == "MC" ||
+                        widget.characterName == "Narrator") {
+                      return ImageBuilderMC(image: widget.mcImage);
+                    } else {
+                      return ImageBuilder(
+                        centerImage: widget.centerCharacterImage,
+                        hasAnimation: widget.hasAnimation ?? false,
+                        animationName: widget.animationName ?? "idle",
+                      );
+                    }
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                },
+              ),
 
-                  Stack(
-                    fit: StackFit.expand,
-                    children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          NameBox(
-                            characterName: widget.characterName,
-                            vnNameFont: widget.vnNameFont,
-                          ),
-                          Column(
-                            children: [
-                              Stack(
-                                alignment: Alignment.centerLeft,
-                                children: <Widget>[
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10),
-                                    width: Device.get().isTablet &&
-                                            Device.get().isIos
-                                        ? MediaQuery.of(context).size.width / 2
-                                        : MediaQuery.of(context).size.width /
-                                            1.225,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          // boxShadow: [
-                                          //   BoxShadow(
-                                          //     color: Colors.black,
-                                          //     blurRadius: 10,
-                                          //     offset: Offset(
-                                          //         5, 10), // Shadow position
-                                          //   ),
-                                          // ],
-                                          color: Colors.white.withOpacity(0.9),
-                                          border: Border.all(
-                                            color: Colors.black.withOpacity(0),
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20))),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Opacity(
-                                            opacity: 1,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: width * 0.03,
-                                              ),
-                                              child: _isCurrentlyPausing ||
-                                                      !_controller.isAnimating
-                                                  ? completeText
-                                                  : AnimatedBuilder(
-                                                      animation: _controller,
-                                                      builder:
-                                                          _currentAnimatedText
-                                                              .animatedBuilder,
-                                                      child: completeText,
-                                                    ),
-                                            ),
-                                          ),
-                                          // Container(
-                                          //   child: Icon(
-                                          //       EvaIcons.arrowCircleRight),
-                                          // )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height / 6,
-                              ),
-                              // Buttons(
-                              //   route: widget.route,
-                              //   nextRoute: widget.nextRoute,
-                              // ),
-                            ],
-                          )
-                        ],
+              Stack(
+                fit: StackFit.expand,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      NameBox(
+                        characterName: widget.characterName,
+                        vnNameFont: widget.vnNameFont,
                       ),
+                      Column(
+                        children: [
+                          Stack(
+                            alignment: Alignment.centerLeft,
+                            children: <Widget>[
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                width: Device.get().isTablet &&
+                                        Device.get().isIos
+                                    ? MediaQuery.of(context).size.width / 2
+                                    : MediaQuery.of(context).size.width / 1.225,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      // boxShadow: [
+                                      //   BoxShadow(
+                                      //     color: Colors.black,
+                                      //     blurRadius: 10,
+                                      //     offset: Offset(
+                                      //         5, 10), // Shadow position
+                                      //   ),
+                                      // ],
+                                      color: Colors.white.withOpacity(0.9),
+                                      border: Border.all(
+                                        color: Colors.black.withOpacity(0),
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Opacity(
+                                        opacity: 1,
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: width * 0.03,
+                                          ),
+                                          child: _isCurrentlyPausing ||
+                                                  !_controller.isAnimating
+                                              ? completeText
+                                              : AnimatedBuilder(
+                                                  animation: _controller,
+                                                  builder: _currentAnimatedText
+                                                      .animatedBuilder,
+                                                  child: completeText,
+                                                ),
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Container(
+                                          padding: EdgeInsets.only(
+                                              right: 20, bottom: 10,),
+                                          child: Icon(
+                                            EvaIcons.playCircleOutline,
+                                            color: Colors.black,
+                                            size: 28,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: height / 7,
+                          ),
+                          // Buttons(
+                          //   route: widget.route,
+                          //   nextRoute: widget.nextRoute,
+                          // ),
+                        ],
+                      )
                     ],
                   ),
-                ]))));
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
     // GestureDetector(
     //   onTap: onTap,
     // child: _isCurrentlyPausing || !_controller.isAnimating
