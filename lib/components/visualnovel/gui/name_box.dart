@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NameBox extends StatefulWidget {
@@ -51,7 +52,8 @@ class _NameBoxState extends State<NameBox> {
                 //   ),
                 // ],
                 fontFamily: widget.vnNameFont,
-                fontSize: 32.5,
+                fontSize:
+                    Device.get().isTablet && Device.get().isIos ? 42.5 : 32.5,
                 letterSpacing: 1.5,
                 //fontWeight: FontWeight.bold,
                 color: Theme.of(context).colorScheme.secondary,

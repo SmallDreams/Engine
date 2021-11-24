@@ -430,7 +430,10 @@ class _SalemVisualNovelConstructorState
                                             color: Theme.of(context)
                                                 .colorScheme
                                                 .secondary,
-                                            size: 26.5,
+                                            size: Device.get().isTablet &&
+                                                    Device.get().isIos
+                                                ? 32.5
+                                                : 26.5,
                                           ),
                                         ),
                                       ),
@@ -440,9 +443,13 @@ class _SalemVisualNovelConstructorState
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: height / 7,
-                          ),
+                          Device.get().isTablet && Device.get().isIos
+                              ? SizedBox(
+                                  height: height / 5.5,
+                                )
+                              : SizedBox(
+                                  height: height / 7,
+                                ),
                           // Buttons(
                           //   route: widget.route,
                           //   nextRoute: widget.nextRoute,

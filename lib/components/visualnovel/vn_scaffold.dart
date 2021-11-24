@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:salem/components/global/onWillPop.dart';
@@ -320,7 +321,10 @@ class _VNState extends State<VNScreen> {
                               // ],
                               color: Theme.of(context).colorScheme.secondary,
                               //  fontWeight: FontWeight.w500,
-                              fontSize: 17.5,
+                              fontSize:
+                                  Device.get().isTablet && Device.get().isIos
+                                      ? 25.5
+                                      : 17.5,
                               letterSpacing: 1),
                           speed: Duration(milliseconds: speed ?? 15),
                         ),
