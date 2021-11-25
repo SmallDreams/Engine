@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class NameBox extends StatefulWidget {
   final characterName;

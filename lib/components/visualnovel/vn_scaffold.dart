@@ -5,7 +5,10 @@ import 'package:line_icons/line_icons.dart';
 import 'package:salem/components/global/onWillPop.dart';
 import 'package:salem/components/visualnovel/models/text_animation.dart';
 import 'package:salem/components/visualnovel/user_interface/background_builder.dart';
+import 'package:salem/core/audio/ambience_audio.dart';
+import 'package:salem/core/audio/game_audio.dart';
 import 'package:salem/core/audio/global_audio.dart';
+import 'package:salem/core/audio/voice_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -126,6 +129,7 @@ class _VNState extends State<VNScreen> {
 
   var isPressed;
   int textNumber = 0;
+
   void _playAudio() {
     if (getVoice()!.contains("connor")) {
       GlobalAudio.playAudio
@@ -331,8 +335,19 @@ class _VNState extends State<VNScreen> {
                       ],
                       displayFullTextOnTap: true,
 
-                      onTap: () {
+                      onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        double bgmVol = prefs.getDouble('bgmValue') ?? 0.3;
+                        double? ambienceVol =
+                            prefs.getDouble('sfxValue') ?? 1.0;
+
                         if (textNumber >= size - 1) {
+                          setState(() {
+                            GameAudio.playBGM.volume(bgmVol);
+                            AmbienceAudio.playAmbience.volume(ambienceVol);
+                          });
+
                           GlobalAudio.playAudio.stopAmbienceAudio();
 
                           Future.delayed(const Duration(milliseconds: 1450),
@@ -347,6 +362,11 @@ class _VNState extends State<VNScreen> {
                             });
                           });
                         } else {
+                          setState(() {
+                            GameAudio.playBGM.volume(0.12);
+                            AmbienceAudio.playAmbience.volume(0.15);
+                          });
+
                           nextSpeech();
                           if (getVoice() != null && getVoice()!.isNotEmpty) {
                             _playAudio();
