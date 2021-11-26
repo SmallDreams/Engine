@@ -193,13 +193,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.2"
-  just_waveform:
-    dependency: transitive
-    description:
-      name: just_waveform
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1"
   line_icons:
     dependency: transitive
     description:

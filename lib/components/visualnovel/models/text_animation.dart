@@ -9,6 +9,7 @@ import 'package:salem/components/visualnovel/user_interface/vn_img_builder.dart'
 import 'package:salem/salem.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 // Copyright (c) 2018 Ayush Agarwal
 /// Abstract base class for text animations.
@@ -378,7 +379,8 @@ class _SalemVisualNovelConstructorState
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
                                   width: Device.get().isTablet &&
-                                          Device.get().isIos
+                                              Device.get().isIos ||
+                                          UniversalPlatform.isMacOS
                                       ? MediaQuery.of(context).size.width / 2
                                       : MediaQuery.of(context).size.width /
                                           1.225,

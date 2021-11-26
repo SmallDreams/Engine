@@ -22,7 +22,6 @@ dependencies:
   #dart_vlc: ">=0.1.7 <1.0.0"
   #audioplayers: ">=0.20.1 <1.0.0"
   just_audio: ^0.9.17
-  just_waveform: ^0.0.1
 
   # UI
   line_icons: ^2.0.1
